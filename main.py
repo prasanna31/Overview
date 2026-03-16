@@ -36,6 +36,7 @@ def set_background(image_file):
         border-radius: 50%;
         border: 4px solid white;
         box-shadow: 0px 6px 20px rgba(0,0,0,0.5);
+        
     }}
 
     </style>
@@ -84,7 +85,7 @@ st.markdown("""
 - 🧠 Deep Learning and Neural Networks  
 - 📊 Optimization Algorithms  
 - ⚙️ Backend Engineering  
-- 🎮 Machine Learning for Games and Sports
+- 🎮 Machine Learning
 """)
 
 
@@ -93,7 +94,7 @@ st.header("✨ Highlights")
 c1, c2, c3 = st.columns(3)
 
 c1.metric("ML Projects", "10+")
-c2.metric("Research Areas", "AI / Optimization")
+c2.metric("Research Areas", "Artificial Intelligence / Backend systems")
 c3.metric("Focus", "Practical AI Systems")
 
 
