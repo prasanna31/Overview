@@ -77,7 +77,7 @@ The naive approach for pair problems is:
 ```python
     for i in range(n):
         for j in range(i+1, n):
-
+```
 This results in **O(n²)** comparisons.
 
 Two pointer technique avoids this by scanning the array once.
@@ -211,7 +211,7 @@ Example
 
         else:
             right -= 1
-
+```
 Time Complexity
 
     O(n)
@@ -233,7 +233,7 @@ Each pointer moves at most **n times**.
         if condition:
             arr[slow] = arr[fast]
             slow += 1
-
+```
 Used for
 
 • removing duplicates  
@@ -273,7 +273,7 @@ Solution
                 right -= 1
 
         return None
-
+```
 Time Complexity
 
     O(n)
@@ -303,7 +303,7 @@ Solution
                 arr[slow] = arr[fast]
 
         return slow + 1
-
+```
 ------------------------------------------------------------
 
 # Example 3 — Palindrome Check
@@ -322,7 +322,7 @@ Solution
             right -= 1
 
         return True
-
+```
 ------------------------------------------------------------
 
 # Visual Intuition
