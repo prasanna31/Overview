@@ -1,1 +1,3 @@
-print("linear algebra")
+import streamlit as st
+
+st.title("Linear Algebra")
