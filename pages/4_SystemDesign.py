@@ -26,283 +26,283 @@ st.header("1. EDGE LAYER – Where Users Enter")
 with st.expander("DNS (Domain Name System)"):
    st.set_page_config(page_title="DNS Explained", layout="wide")
 
-st.markdown("""
-# DNS – Domain Name System
+    st.markdown("""
+    # DNS – Domain Name System
 
-DNS is one of the most important systems on the internet.
+    DNS is one of the most important systems on the internet.
 
-Without DNS, users would have to remember long IP addresses instead of simple website names.
+    Without DNS, users would have to remember long IP addresses instead of simple website names.
 
-Example:
+    Example:
 
-Instead of typing
+    Instead of typing
 
-142.250.190.14
+    142.250.190.14
 
-we simply type
+    we simply type
 
-google.com
+    google.com
 
-DNS converts the website name into the correct IP address.
+    DNS converts the website name into the correct IP address.
 
----
+    ---
 
-# 1. What is DNS
+    # 1. What is DNS
 
-DNS stands for **Domain Name System**.
+    DNS stands for **Domain Name System**.
 
-It is a system that converts **domain names** into **IP addresses**.
+    It is a system that converts **domain names** into **IP addresses**.
 
-Computers communicate using IP addresses.
+    Computers communicate using IP addresses.
 
-Humans prefer easy names.
+    Humans prefer easy names.
 
-DNS connects these two worlds.
+    DNS connects these two worlds.
 
-Example:
+    Example:
 
-google.com → 142.250.190.14  
-youtube.com → 142.250.183.206
+    google.com → 142.250.190.14  
+    youtube.com → 142.250.183.206
 
----
+    ---
 
-# 2. Simple Analogy
+    # 2. Simple Analogy
 
-Think of DNS like a **phone contact list**.
+    Think of DNS like a **phone contact list**.
 
-Instead of remembering a phone number, we remember a name.
+    Instead of remembering a phone number, we remember a name.
 
-Example:
+    Example:
 
-Prasad → 9876543210
+    Prasad → 9876543210
 
-Similarly:
+    Similarly:
 
-google.com → 142.250.190.14
+    google.com → 142.250.190.14
 
-DNS is basically the **contact list of the internet**.
+    DNS is basically the **contact list of the internet**.
 
----
+    ---
 
-# 3. Why DNS is Needed
+    # 3. Why DNS is Needed
 
-Imagine if DNS did not exist.
+    Imagine if DNS did not exist.
 
-To visit websites we would need to type IP addresses.
+    To visit websites we would need to type IP addresses.
 
-Example:
+    Example:
 
-Instead of
+    Instead of
 
-google.com
+    google.com
 
-we would type
+    we would type
 
-142.250.190.14
+    142.250.190.14
 
-Now imagine remembering IP addresses for thousands of websites.
+    Now imagine remembering IP addresses for thousands of websites.
 
-DNS solves this problem by mapping names to IP addresses.
+    DNS solves this problem by mapping names to IP addresses.
 
----
+    ---
 
-# 4. Important DNS Components
+    # 4. Important DNS Components
 
-## Domain Name
+    ## Domain Name
 
-A domain name is the human readable website name.
+    A domain name is the human readable website name.
 
-Examples:
+    Examples:
 
-amazon.com  
-netflix.com  
-facebook.com
+    amazon.com  
+    netflix.com  
+    facebook.com
 
----
+    ---
 
-## IP Address
+    ## IP Address
 
-The actual address of a server on the internet.
+    The actual address of a server on the internet.
 
-Example:
+    Example:
 
-172.217.160.142
+    172.217.160.142
 
-Servers communicate using IP addresses.
+    Servers communicate using IP addresses.
 
----
+    ---
 
-## DNS Resolver
+    ## DNS Resolver
 
-A DNS resolver finds the IP address for a domain name.
+    A DNS resolver finds the IP address for a domain name.
 
-Usually provided by:
+    Usually provided by:
 
-• Internet Service Provider  
-• Google DNS (8.8.8.8)  
-• Cloudflare DNS (1.1.1.1)
+    • Internet Service Provider  
+    • Google DNS (8.8.8.8)  
+    • Cloudflare DNS (1.1.1.1)
 
----
+    ---
 
-## Root DNS Server
+    ## Root DNS Server
 
-Root servers are the top level DNS servers.
+    Root servers are the top level DNS servers.
 
-They help direct requests to the correct domain servers.
+    They help direct requests to the correct domain servers.
 
----
+    ---
 
-## TLD Server
+    ## TLD Server
 
-TLD means Top Level Domain.
+    TLD means Top Level Domain.
 
-Examples:
+    Examples:
 
-.com  
-.org  
-.net  
-.in
+    .com  
+    .org  
+    .net  
+    .in
 
-These servers manage domains under that extension.
+    These servers manage domains under that extension.
 
----
+    ---
 
-## Authoritative DNS Server
+    ## Authoritative DNS Server
 
-This server contains the final mapping between domain name and IP address.
+    This server contains the final mapping between domain name and IP address.
 
-Example:
+    Example:
 
-netflix.com → 52.89.124.15
+    netflix.com → 52.89.124.15
 
----
+    ---
 
-# 5. DNS Resolution Process (Step by Step)
+    # 5. DNS Resolution Process (Step by Step)
 
-Let us understand what happens when a user types a website.
+    Let us understand what happens when a user types a website.
 
-Step 1 – User enters URL
+    Step 1 – User enters URL
 
-Example:
+    Example:
 
-www.netflix.com
+    www.netflix.com
 
-Step 2 – Browser checks local cache
+    Step 2 – Browser checks local cache
 
-If the IP address is already stored locally, the browser uses it directly.
+    If the IP address is already stored locally, the browser uses it directly.
 
-Step 3 – Request goes to DNS Resolver
+    Step 3 – Request goes to DNS Resolver
 
-The resolver searches for the IP address.
+    The resolver searches for the IP address.
 
-Step 4 – Resolver asks Root DNS Server
+    Step 4 – Resolver asks Root DNS Server
 
-Root server tells where to find the correct TLD server.
+    Root server tells where to find the correct TLD server.
 
-Step 5 – Resolver asks TLD Server
+    Step 5 – Resolver asks TLD Server
 
-TLD server tells which server knows about the domain.
+    TLD server tells which server knows about the domain.
 
-Step 6 – Resolver asks Authoritative Server
+    Step 6 – Resolver asks Authoritative Server
 
-Authoritative server provides the correct IP address.
+    Authoritative server provides the correct IP address.
 
-Example:
+    Example:
 
-netflix.com → 52.89.124.15
+    netflix.com → 52.89.124.15
 
-Step 7 – Resolver sends IP to browser
+    Step 7 – Resolver sends IP to browser
 
-Step 8 – Browser connects to the server
+    Step 8 – Browser connects to the server
 
-The website finally loads.
+    The website finally loads.
 
----
+    ---
 
-# 6. DNS Caching
+    # 6. DNS Caching
 
-DNS caching stores recently used domain lookups.
+    DNS caching stores recently used domain lookups.
 
-This speeds up future requests.
+    This speeds up future requests.
 
-Caching can happen in:
+    Caching can happen in:
 
-• Browser cache  
-• Operating system cache  
-• ISP DNS cache
+    • Browser cache  
+    • Operating system cache  
+    • ISP DNS cache
 
-Example:
+    Example:
 
-If you visited youtube.com recently, the IP address may already be stored locally.
+    If you visited youtube.com recently, the IP address may already be stored locally.
 
----
+    ---
 
-# 7. Types of DNS Records
+    # 7. Types of DNS Records
 
-## A Record
+    ## A Record
 
-Maps domain name to IPv4 address.
+    Maps domain name to IPv4 address.
 
-Example:
+    Example:
 
-example.com → 93.184.216.34
+    example.com → 93.184.216.34
 
----
+    ---
 
-## AAAA Record
+    ## AAAA Record
 
-Maps domain name to IPv6 address.
+    Maps domain name to IPv6 address.
 
----
+    ---
 
-## CNAME Record
+    ## CNAME Record
 
-Creates an alias for another domain.
+    Creates an alias for another domain.
 
-Example:
+    Example:
 
-www.example.com → example.com
+    www.example.com → example.com
 
----
+    ---
 
-## MX Record
+    ## MX Record
 
-Specifies mail servers for email delivery.
+    Specifies mail servers for email delivery.
 
----
+    ---
 
-## TXT Record
+    ## TXT Record
 
-Stores text information for verification and security purposes.
+    Stores text information for verification and security purposes.
 
----
+    ---
 
-# 8. Real World Example
+    # 8. Real World Example
 
-User opens browser and types:
+    User opens browser and types:
 
-amazon.com
+    amazon.com
 
-DNS converts the domain to an IP address.
+    DNS converts the domain to an IP address.
 
-Example:
+    Example:
 
-amazon.com → 54.239.28.85
+    amazon.com → 54.239.28.85
 
-Browser connects to that server.
+    Browser connects to that server.
 
-The server sends back the website data and the page loads for the user.
+    The server sends back the website data and the page loads for the user.
 
----
+    ---
 
-# 9. Simple Memory Trick
+    # 9. Simple Memory Trick
 
-Remember this simple flow:
+    Remember this simple flow:
 
-User → Browser → DNS Resolver → Root Server → TLD Server → Authoritative Server → IP Address → Website Loads
+    User → Browser → DNS Resolver → Root Server → TLD Server → Authoritative Server → IP Address → Website Loads
 
-If you remember this chain, you can explain DNS clearly in interviews.
-""")
+    If you remember this chain, you can explain DNS clearly in interviews.
+    """)
 
 with st.expander("CDN (Content Delivery Network)"):
     st.markdown("""
