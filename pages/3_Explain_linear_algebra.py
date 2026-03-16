@@ -2,29 +2,22 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
+# ---- STYLE FOR SUBHEADERS ----
+
 st.markdown("""
 <style>
 
-.box {
+div[data-testid="stMarkdownContainer"] h3 {
     border: 2px solid #6C63FF;
-    background-color: #f4f2ff;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.box-title {
-    font-size: 24px;
-    font-weight: bold;
+    background-color: #F4F2FF;
+    padding: 12px;
+    border-radius: 10px;
     color: #4A47A3;
-    margin-bottom: 10px;
+    margin-top: 25px;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
-
 st.title("Linear Algebra — Intuition for Machine Learning")
 
 st.markdown("""
