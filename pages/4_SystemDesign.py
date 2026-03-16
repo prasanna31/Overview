@@ -306,27 +306,234 @@ with st.expander("DNS (Domain Name System)"):
 
 with st.expander("CDN (Content Delivery Network)"):
     st.markdown("""
-**What it is**
+# CDN – Content Delivery Network
 
-A CDN stores copies of static files in many countries.
+A CDN helps websites deliver content to users **much faster**.
 
-**Why we need it**
+When users visit a website, they may be located in different countries.
+If the server is far away, loading the website becomes slow.
 
-If a server is only in the US, users in India will get slow speed.
+A **Content Delivery Network (CDN)** solves this problem by storing
+copies of website content in many locations around the world.
 
-A CDN keeps copies of files close to users.
+Example:
 
-**What files are cached**
+A server may be located in the **United States**.
 
-• Images  
-• Videos  
-• CSS  
-• JavaScript  
+But users in **India, Japan, and Europe** can receive the content
+from servers that are closer to them.
 
-**Example**
+This reduces delay and improves website speed.
 
-When you open Instagram, images load fast because
-they are served from nearby CDN servers.
+---
+
+# 1. What is a CDN
+
+CDN stands for **Content Delivery Network**.
+
+It is a network of servers placed in different geographical locations.
+
+These servers store **cached copies of website content**.
+
+When a user visits the website, the CDN serves the content
+from the **nearest server** instead of the main server.
+
+Example:
+
+User in India visits a website.
+
+Instead of loading data from a server in the US,
+the CDN serves the content from a **server in India**.
+
+This makes the website load faster.
+
+---
+
+# 2. Simple Analogy
+
+Think of a CDN like **multiple warehouses for a company**.
+
+Imagine a company has only **one warehouse in Delhi**.
+
+If a customer in **Chennai** orders a product,
+delivery will take many days.
+
+Now imagine the company has warehouses in:
+
+Delhi  
+Mumbai  
+Chennai  
+Bangalore
+
+The product can be delivered from the **nearest warehouse**.
+
+A CDN works exactly like this for website content.
+
+---
+
+# 3. Why CDN is Needed
+
+Without a CDN, every user request must go to the **main server**.
+
+Problems:
+
+• High latency (slow loading)  
+• Server overload  
+• Poor user experience  
+
+A CDN solves these problems.
+
+Benefits:
+
+• Faster website loading  
+• Reduced load on main server  
+• Better performance worldwide
+
+---
+
+# 4. Important CDN Components
+
+## Origin Server
+
+The origin server is the **main server where the website is hosted**.
+
+It contains the original files such as:
+
+HTML  
+Images  
+Videos  
+CSS  
+JavaScript
+
+The CDN copies content from the origin server.
+
+---
+
+## Edge Server
+
+Edge servers are CDN servers located close to users.
+
+These servers store cached copies of content.
+
+When users request data, the **edge server delivers it quickly**.
+
+---
+
+## CDN Cache
+
+CDN cache stores frequently accessed content.
+
+Instead of requesting data from the origin server every time,
+the CDN serves it from the cache.
+
+This reduces load on the origin server.
+
+---
+
+# 5. How CDN Works (Step by Step)
+
+Let us understand what happens when a user visits a website.
+
+Step 1 – User enters website URL
+
+Example:
+
+example.com
+
+Step 2 – DNS directs request to CDN
+
+Instead of sending the request directly to the origin server,
+DNS sends it to the CDN.
+
+Step 3 – CDN finds the nearest edge server
+
+The CDN identifies which server is closest to the user.
+
+Step 4 – Edge server checks cache
+
+If the content is already cached,
+the edge server sends it directly to the user.
+
+Step 5 – If content is not cached
+
+The CDN fetches it from the origin server.
+
+Step 6 – CDN stores a copy
+
+The content is cached in the edge server for future requests.
+
+Step 7 – User receives the content
+
+The website loads faster.
+
+---
+
+# 6. What Content CDN Usually Stores
+
+CDNs mainly cache **static content**.
+
+Examples:
+
+Images  
+Videos  
+CSS files  
+JavaScript files  
+Fonts
+
+These files do not change frequently,
+so they are perfect for caching.
+
+---
+
+# 7. Real World Example
+
+Suppose Netflix stores its main servers in the US.
+
+Users in India want to watch movies.
+
+If every request goes to the US,
+video streaming will become slow.
+
+Instead, Netflix uses CDN servers in many countries.
+
+When a user in India watches a movie,
+the video is streamed from a **nearby CDN server**.
+
+This makes streaming smooth and fast.
+
+---
+
+# 8. Popular CDN Providers
+
+Many companies provide CDN services.
+
+Examples:
+
+Cloudflare  
+Amazon CloudFront  
+Akamai  
+Fastly  
+Google Cloud CDN
+
+These companies maintain thousands of servers worldwide.
+
+---
+
+# 9. Simple Memory Trick
+
+Remember this simple flow:
+
+User → DNS → CDN Edge Server → Cache → Origin Server (if needed)
+
+If the content is cached:
+
+User → CDN Edge Server → Website Loads Fast
+
+If not cached:
+
+User → CDN → Origin Server → Cache → User
+
+This is how CDNs improve internet performance.
 """)
 
 with st.expander("API Gateway"):
