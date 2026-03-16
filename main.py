@@ -1,6 +1,31 @@
 import streamlit as st
 import base64
 
+
+st.markdown(
+    """
+    <style>
+    .rainbow-text {
+        font-size: 50px;
+        font-weight: bold;
+        background: linear-gradient(
+            90deg,
+            red,
+            orange,
+            yellow,
+            green,
+            blue,
+            indigo,
+            violet
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.set_page_config(
     page_title="Jayaprasanna R | AI Portfolio",
     page_icon="🤖",
