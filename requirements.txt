@@ -1,4 +1,4 @@
 streamlit
 networkx
 pyvis
-Digraph
+graphviz
