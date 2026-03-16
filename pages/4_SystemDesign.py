@@ -23,15 +23,8 @@ The same idea applies to software systems.
 # ----------------------------------------------------------
 st.header("1. EDGE LAYER – Where Users Enter")
 
-pages = {
-    "System Design": [
-        st.Page("./sub-pages/DNS.py", title="DNS"),
-    ]
-}
-
-pg = st.navigation(pages)
-
-pg.run()
+with st.expander("DNS (Domain Name System)"):
+    st.Page("./sub-pages/DNS.py", title="DNS"),
 
 with st.expander("CDN (Content Delivery Network)"):
     st.markdown("""
