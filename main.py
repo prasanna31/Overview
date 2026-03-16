@@ -2,6 +2,14 @@ import streamlit as st
 import base64
 
 
+st.markdown("""
+<style>
+.stApp {
+    background-color: #D8E4C5;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.markdown(
 """
 <style>
