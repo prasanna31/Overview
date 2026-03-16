@@ -34,7 +34,7 @@ def set_background(image_file):
 
 
 # ---------- SET BACKGROUND ----------
-set_background("./background-1.jpeg")
+set_background("./background-1.jpg")
 
 
 # ---------- TITLE SECTION ----------
