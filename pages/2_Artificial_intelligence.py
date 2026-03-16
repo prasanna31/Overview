@@ -175,7 +175,6 @@ import streamlit as st
 
 st.title("Artificial Intelligence Topics")
 
-st.title("# 1️⃣ Artificial Intelligence (Root)")
 with st.expander("Definition of AI"):
     st.markdown("")
 
