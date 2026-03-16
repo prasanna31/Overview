@@ -52,23 +52,35 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------- FUNCTION TO SET BACKGROUND ----------
 def set_background(image_file):
+    import base64
+
     with open(image_file, "rb") as file:
         encoded = base64.b64encode(file.read()).decode()
 
     css = f"""
     <style>
 
-    [data-testid="stAppViewContainer"] {{
+    /* main scrolling container */
+    section.main {{
         background-image: url("data:image/jpg;base64,{encoded}");
         background-size: cover;
         background-position: center;
         background-repeat: repeat;
-        background-attachment: scroll;
+        background-attachment: local;
     }}
 
-    /* Profile image top right */
+    /* make parent containers transparent */
+    [data-testid="stAppViewContainer"] {{
+        background: transparent;
+    }}
+
+    .stApp {{
+        background: transparent;
+    }}
+
+    /* Profile image */
+
     .profile-container {{
         position: fixed;
         top: 40px;
@@ -81,7 +93,6 @@ def set_background(image_file):
         border-radius: 50%;
         border: 4px solid white;
         box-shadow: 0px 6px 20px rgba(0,0,0,0.5);
-        
     }}
 
     </style>
@@ -90,9 +101,7 @@ def set_background(image_file):
     st.markdown(css, unsafe_allow_html=True)
 
 
-# ---------- APPLY BACKGROUND ----------
 set_background("./background-1.jpg")
-
 
 # ---------- PROFILE IMAGE ----------
 with open("./myphoto.jpeg", "rb") as file:
