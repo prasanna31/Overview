@@ -27,282 +27,205 @@ with st.expander("DNS (Domain Name System)"):
    st.set_page_config(page_title="DNS Explained", layout="wide")
 
    st.markdown("""
-    # DNS – Domain Name System
+The Domain Name System (DNS) is the naming infrastructure of the internet.  
+It exists to translate human-readable domain names into machine-readable IP addresses.  
+Every device connected to the internet communicates using IP addresses, but humans
+prefer to remember simple names such as **google.com** or **openai.com** rather than
+numerical addresses like **142.250.190.14**.
 
-    DNS is one of the most important systems on the internet.
+DNS acts as a distributed directory that maps domain names to their corresponding
+IP addresses. Whenever a user enters a website address in a browser, DNS performs
+a lookup process to determine which server hosts that website and returns the
+correct IP address so the browser can establish a connection.
 
-    Without DNS, users would have to remember long IP addresses instead of simple website names.
+DNS is therefore one of the fundamental services of the internet. Without DNS,
+users would have to memorize the numerical IP address of every website they want
+to visit.
 
-    Example:
 
-    Instead of typing
+### Why DNS Exists
 
-    142.250.190.14
+The internet is built on the Internet Protocol (IP), which identifies machines
+using numerical addresses. These addresses are efficient for computers but
+extremely difficult for humans to remember.
 
-    we simply type
+DNS solves this problem by introducing a hierarchical naming system where
+meaningful domain names represent numerical IP addresses. This abstraction
+layer allows people to interact with the internet using simple names while
+computers continue to communicate using numbers.
 
-    google.com
 
-    DNS converts the website name into the correct IP address.
+### Basic Example
 
-    ---
-
-    # 1. What is DNS
-
-    DNS stands for **Domain Name System**.
-
-    It is a system that converts **domain names** into **IP addresses**.
-
-    Computers communicate using IP addresses.
-
-    Humans prefer easy names.
-
-    DNS connects these two worlds.
-
-    Example:
-
-    google.com → 142.250.190.14  
-    youtube.com → 142.250.183.206
-
-    ---
-
-    # 2. Simple Analogy
-
-    Think of DNS like a **phone contact list**.
-
-    Instead of remembering a phone number, we remember a name.
-
-    Example:
-
-    Prasad → 9876543210
-
-    Similarly:
-
-    google.com → 142.250.190.14
-
-    DNS is basically the **contact list of the internet**.
-
-    ---
-
-    # 3. Why DNS is Needed
-
-    Imagine if DNS did not exist.
-
-    To visit websites we would need to type IP addresses.
-
-    Example:
-
-    Instead of
+When a user types:
 
     google.com
 
-    we would type
+into the browser, the system cannot directly contact the website because it
+does not yet know the IP address of the server hosting that domain.
+
+DNS resolves the name into an IP address such as:
 
     142.250.190.14
 
-    Now imagine remembering IP addresses for thousands of websites.
+The browser then uses this IP address to send requests to the correct server
+and retrieve the webpage.
 
-    DNS solves this problem by mapping names to IP addresses.
 
-    ---
+### DNS Hierarchy
 
-    # 4. Important DNS Components
+DNS is designed as a hierarchical distributed system rather than a single
+centralized database. The hierarchy allows the system to scale across the
+entire internet.
 
-    ## Domain Name
+The structure contains several levels:
 
-    A domain name is the human readable website name.
+Root Level  
+The root level sits at the top of the DNS hierarchy and directs queries to
+the correct top-level domain servers.
 
-    Examples:
+Top-Level Domains (TLDs)  
+These represent the major categories of domains such as:
 
-    amazon.com  
-    netflix.com  
-    facebook.com
+    .com
+    .org
+    .edu
+    .net
+    .gov
 
-    ---
+Each top-level domain is managed by authoritative servers responsible for
+handling queries related to that domain.
 
-    ## IP Address
+Second-Level Domains  
+These are the main domain names registered by users or organizations.
 
-    The actual address of a server on the internet.
+Example:
 
-    Example:
+    google.com
+    wikipedia.org
+    mit.edu
 
-    172.217.160.142
+Subdomains  
+Organizations can create additional subdivisions under their main domain.
 
-    Servers communicate using IP addresses.
+Example:
 
-    ---
+    mail.google.com
+    docs.google.com
+    api.example.com
 
-    ## DNS Resolver
+This hierarchy allows the DNS system to distribute responsibility across
+thousands of servers worldwide.
 
-    A DNS resolver finds the IP address for a domain name.
 
-    Usually provided by:
+### Components of DNS Resolution
 
-    • Internet Service Provider  
-    • Google DNS (8.8.8.8)  
-    • Cloudflare DNS (1.1.1.1)
+Several components work together to resolve a domain name.
 
-    ---
+DNS Resolver  
+A DNS resolver is typically provided by an Internet Service Provider (ISP)
+or a public DNS service. It receives queries from the user's device and
+performs the lookup process to find the correct IP address.
 
-    ## Root DNS Server
+Root Name Servers  
+Root servers are the first step in the DNS lookup process. They direct the
+resolver to the correct top-level domain servers.
 
-    Root servers are the top level DNS servers.
+TLD Name Servers  
+These servers store information about domains within a specific top-level
+domain such as .com or .org.
 
-    They help direct requests to the correct domain servers.
+Authoritative Name Servers  
+These servers hold the final DNS records for a domain and provide the
+actual IP address associated with the requested domain name.
 
-    ---
 
-    ## TLD Server
+### DNS Lookup Process
 
-    TLD means Top Level Domain.
+The DNS lookup process occurs whenever a user accesses a website.
 
-    Examples:
+1. The user enters a domain name into the browser.
 
-    .com  
-    .org  
-    .net  
-    .in
+2. The browser checks its local cache to see whether it already knows the
+   IP address for that domain.
 
-    These servers manage domains under that extension.
+3. If the address is not cached, the browser sends a query to a DNS resolver.
 
-    ---
+4. The resolver contacts a root server to determine which top-level domain
+   server is responsible for the domain.
 
-    ## Authoritative DNS Server
+5. The root server directs the resolver to the appropriate TLD server.
 
-    This server contains the final mapping between domain name and IP address.
+6. The TLD server points the resolver to the authoritative name server for
+   the domain.
 
-    Example:
+7. The authoritative name server returns the correct IP address.
 
-    netflix.com → 52.89.124.15
+8. The resolver sends this IP address back to the browser.
 
-    ---
+9. The browser uses the IP address to contact the web server and request
+   the webpage.
 
-    # 5. DNS Resolution Process (Step by Step)
 
-    Let us understand what happens when a user types a website.
+### DNS Records
 
-    Step 1 – User enters URL
+DNS stores information in structured records known as DNS records.
 
-    Example:
+A Record  
+Maps a domain name to an IPv4 address.
 
-    www.netflix.com
+AAAA Record  
+Maps a domain name to an IPv6 address.
 
-    Step 2 – Browser checks local cache
+CNAME Record  
+Creates an alias for a domain by pointing one domain name to another.
 
-    If the IP address is already stored locally, the browser uses it directly.
+MX Record  
+Specifies the mail servers responsible for receiving email for a domain.
 
-    Step 3 – Request goes to DNS Resolver
+NS Record  
+Identifies the authoritative name servers for a domain.
 
-    The resolver searches for the IP address.
+TXT Record  
+Stores arbitrary text data, often used for domain verification and
+security mechanisms.
 
-    Step 4 – Resolver asks Root DNS Server
 
-    Root server tells where to find the correct TLD server.
+### DNS Caching
 
-    Step 5 – Resolver asks TLD Server
+DNS queries are cached at multiple levels to improve performance and reduce
+network traffic. Once a resolver retrieves a domain's IP address, it stores
+the result temporarily.
 
-    TLD server tells which server knows about the domain.
+If another user requests the same domain during the cache period, the resolver
+can return the stored result without repeating the entire lookup process.
 
-    Step 6 – Resolver asks Authoritative Server
+Caching significantly speeds up browsing and reduces load on DNS infrastructure.
 
-    Authoritative server provides the correct IP address.
 
-    Example:
+### Distributed Design
 
-    netflix.com → 52.89.124.15
+DNS is designed as a distributed system with servers located across the world.
+No single server contains all domain information. Instead, responsibility is
+delegated across many independent name servers.
 
-    Step 7 – Resolver sends IP to browser
+This architecture ensures that DNS remains scalable, reliable, and fault
+tolerant even as the number of internet users and websites continues to grow.
 
-    Step 8 – Browser connects to the server
 
-    The website finally loads.
+### Importance of DNS
 
-    ---
+DNS is essential for the functioning of the modern internet because it:
 
-    # 6. DNS Caching
+• Provides human-friendly naming for internet resources  
+• Enables scalable addressing across billions of devices  
+• Allows domain ownership and management by different organizations  
+• Supports efficient routing of internet traffic  
 
-    DNS caching stores recently used domain lookups.
-
-    This speeds up future requests.
-
-    Caching can happen in:
-
-    • Browser cache  
-    • Operating system cache  
-    • ISP DNS cache
-
-    Example:
-
-    If you visited youtube.com recently, the IP address may already be stored locally.
-
-    ---
-
-    # 7. Types of DNS Records
-
-    ## A Record
-
-    Maps domain name to IPv4 address.
-
-    Example:
-
-    example.com → 93.184.216.34
-
-    ---
-
-    ## AAAA Record
-
-    Maps domain name to IPv6 address.
-
-    ---
-
-    ## CNAME Record
-
-    Creates an alias for another domain.
-
-    Example:
-
-    www.example.com → example.com
-
-    ---
-
-    ## MX Record
-
-    Specifies mail servers for email delivery.
-
-    ---
-
-    ## TXT Record
-
-    Stores text information for verification and security purposes.
-
-    ---
-
-    # 8. Real World Example
-
-    User opens browser and types:
-
-    amazon.com
-
-    DNS converts the domain to an IP address.
-
-    Example:
-
-    amazon.com → 54.239.28.85
-
-    Browser connects to that server.
-
-    The server sends back the website data and the page loads for the user.
-
-    ---
-
-    # 9. Simple Memory Trick
-
-    Remember this simple flow:
-
-    User → Browser → DNS Resolver → Root Server → TLD Server → Authoritative Server → IP Address → Website Loads
-
-    If you remember this chain, you can explain DNS clearly in interviews.
-    """)
+In essence, DNS serves as the internet’s global phonebook, translating
+readable domain names into the numerical addresses required for network
+communication.
+""")
 
 with st.expander("CDN (Content Delivery Network)"):
     st.markdown("""
