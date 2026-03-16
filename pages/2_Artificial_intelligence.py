@@ -3,6 +3,42 @@ import networkx as nx
 from pyvis.network import Network
 import streamlit.components.v1 as components
 
+st.markdown("""
+<style>
+
+/* H1 Styling (#) */
+h1 {
+    background-color: #eef2ff;
+    padding: 14px;
+    border-left: 10px solid #4f46e5;
+    border-radius: 8px;
+    font-size: 36px;
+}
+
+/* H2 Styling (##) */
+h2 {
+    background-color: #f5f7ff;
+    padding: 10px;
+    border-left: 7px solid #6366f1;
+    border-radius: 6px;
+}
+
+/* H3 Styling (###) */
+h3 {
+    background-color: #f8f9ff;
+    padding: 6px;
+    border-left: 4px solid #818cf8;
+    border-radius: 4px;
+}
+
+/* Optional: nicer paragraph spacing */
+p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.title("Artificial Intelligence Overview")
 with st.expander("AI graph"):
