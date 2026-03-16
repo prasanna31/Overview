@@ -1,4 +1,5 @@
 import streamlit as st
+import base64
 
 st.set_page_config(
     page_title="Jayaprasanna R | AI Portfolio",
@@ -6,59 +7,82 @@ st.set_page_config(
     layout="wide"
 )
 
-# Title
-st.title("👋 Hello, I'm Jayaprasanna R")
+# ---------- FUNCTION TO SET BACKGROUND ----------
+def set_background(image_file):
+    with open(image_file, "rb") as file:
+        encoded = base64.b64encode(file.read()).decode()
 
-# Subtitle
-st.subheader("AI Enthusiast | Backend Developer | Machine Learning Researcher")
+    css = f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/jpg;base64,{encoded}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }}
+
+    .glass {{
+        background: rgba(0,0,0,0.6);
+        padding: 40px;
+        border-radius: 15px;
+    }}
+    </style>
+    """
+
+    st.markdown(css, unsafe_allow_html=True)
+
+
+# ---------- SET BACKGROUND ----------
+set_background("/Users/jayaprasannar/Documents/GitHub/Overview/background.jpeg")
+
+
+# ---------- TITLE SECTION ----------
+col1, col2 = st.columns([1,2])
+
+with col1:
+    st.image("/Users/jayaprasannar/Documents/GitHub/Overview/profile.jpeg", width=250)
+
+with col2:
+    st.title("👋 Hello, I'm Jayaprasanna R")
+    st.subheader("AI Enthusiast | Backend Developer | ML Researcher")
+
+    st.markdown("""
+    I build **AI systems, machine learning models, and scalable backend applications**.
+
+    My passion is understanding the **mathematics behind intelligence** and turning those
+    ideas into real-world systems.
+    """)
 
 st.markdown("---")
 
-# Introduction
+
+# ---------- ABOUT ----------
 st.markdown("""
-Welcome! I'm **Jayaprasanna**, a developer and researcher passionate about building intelligent systems.
-
-My work lies at the intersection of **Artificial Intelligence, Machine Learning, and Scalable Backend Systems**.  
-I enjoy understanding the **mathematics behind algorithms** and turning those ideas into practical applications.
-
-Currently, my interests include:
+### 🚀 About Me
 
 - 🤖 Artificial Intelligence & Machine Learning  
 - 🧠 Deep Learning and Neural Networks  
 - 📊 Optimization Algorithms  
-- ⚙️ Backend Engineering and System Design  
-- 🎮 Machine Learning for Games and Sports  
+- ⚙️ Backend Engineering  
+- 🎮 Machine Learning for Games & Sports  
 
-I also enjoy **breaking down complex concepts** and documenting them clearly — whether it's through **projects, research, or writing technical books**.
-
-This app serves as a space where I showcase:
-
-- 📚 Projects  
-- 🧪 Experiments  
-- 📈 Machine Learning Models  
-- 📝 Research Notes  
-- 🚀 Interactive Demos
+I enjoy **breaking down complex concepts** and documenting them clearly through
+projects, experiments, and technical writing.
 """)
 
-st.markdown("---")
 
-# Highlights
-st.header("✨ Highlights")
+# ---------- HIGHLIGHTS ----------
+st.markdown("### ✨ Highlights")
 
 col1, col2, col3 = st.columns(3)
 
-with col1:
-    st.metric(label="ML Projects", value="10+")
+col1.metric("ML Projects", "10+")
+col2.metric("Research Areas", "AI / Optimization")
+col3.metric("Focus", "Practical AI Systems")
 
-with col2:
-    st.metric(label="Research Areas", value="AI / Optimization")
-
-with col3:
-    st.metric(label="Focus", value="Practical AI Systems")
 
 st.markdown("---")
 
-# Closing
 st.info(
-    "💡 This portfolio is continuously evolving as I explore new ideas in AI, machine learning, and system design."
+    "💡 This portfolio evolves as I explore new ideas in AI, optimization, and intelligent systems."
 )
