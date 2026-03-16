@@ -24,36 +24,7 @@ The same idea applies to software systems.
 st.header("1. EDGE LAYER – Where Users Enter")
 
 with st.expander("DNS (Domain Name System)"):
-    st.markdown("""
-**What it is**
-
-DNS converts a website name into an IP address.
-
-Computers cannot understand names like:
-
-```
-google.com
-```
-
-They only understand numbers like:
-
-```
-142.250.190.14
-```
-
-**Why we need it**
-
-Humans remember names easily but computers need IP addresses.
-
-**Where it is used**
-
-Every website on the internet uses DNS.
-
-**Example**
-
-When you type `youtube.com`, DNS tells your computer
-which server to connect to.
-""")
+    st.Page("./sub-pages/DNS.py", title="DNS"),
 
 with st.expander("CDN (Content Delivery Network)"):
     st.markdown("""
