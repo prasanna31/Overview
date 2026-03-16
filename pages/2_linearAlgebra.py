@@ -247,7 +247,150 @@ data = [
 
 ("Matrices","Trace","Sum of diagonal elements.",
 "Total scaling effect.",
-"tr(A)","Eigenvalue sum")
+"tr(A)","Eigenvalue sum"),
+# ---------------- Linear Systems ----------------
+("Linear Systems","Linear System","A collection of linear equations with the same variables","Intersection of planes or lines in space","Ax = b"),
+("Linear Systems","Consistent System","A system that has at least one solution","Planes intersect somewhere","∃ x : Ax=b"),
+("Linear Systems","Inconsistent System","System with no solutions","Parallel planes never meeting","Ax ≠ b"),
+("Linear Systems","Unique Solution","Exactly one solution exists","Planes intersect at one point","rank(A)=n"),
+("Linear Systems","Infinite Solutions","System has infinitely many solutions","Intersection forms line or plane","rank(A)<n"),
+("Linear Systems","Augmented Matrix","Matrix representation of linear system","Equations stacked together","(A | b)"),
+("Linear Systems","Linear Independence","Vectors not expressible as combination of others","Independent directions","Σcivi=0 → ci=0"),
+("Linear Systems","Linear Dependence","Vectors depend on each other","Vectors lie in same plane","Σcivi=0"),
+("Linear Systems","System Transformation","Row operations preserving solutions","Moving planes without changing intersection","row operations"),
+("Linear Systems","Matrix Representation","Linear equations written compactly","Vector transformation","Ax=b"),
+
+# ---------------- Gaussian Elimination ----------------
+("Gaussian Elimination","Row Reduction","Systematic elimination of variables","Flattening matrix into triangular form","row operations"),
+("Gaussian Elimination","Pivot","Leading element in row reduction","Anchor for elimination","pivot element"),
+("Gaussian Elimination","Forward Elimination","Eliminate entries below pivot","Create triangular structure","U form"),
+("Gaussian Elimination","Back Substitution","Solve from last variable upward","Climb triangular system","solve Ux=b"),
+("Gaussian Elimination","Row Echelon Form","Matrix with zeros below pivots","Staircase pattern","REF"),
+("Gaussian Elimination","Reduced Row Echelon","Fully simplified row echelon","Identity-like structure","RREF"),
+("Gaussian Elimination","Partial Pivoting","Swap rows to avoid numerical instability","Choose strongest pivot","max pivot"),
+("Gaussian Elimination","LU Decomposition","Factor matrix into lower and upper","Decompose transformation","A=LU"),
+("Gaussian Elimination","Complexity","Time complexity grows cubically","More work for bigger matrices","O(n^3)"),
+("Gaussian Elimination","Numerical Stability","Accuracy affected by rounding errors","Error amplification","pivoting"),
+
+# ---------------- Rank ----------------
+("Rank","Rank Definition","Number of independent rows or columns","Dimension of spanned space","rank(A)"),
+("Rank","Full Rank","Maximum independent rows or columns","Matrix spans entire space","rank=n"),
+("Rank","Rank Deficiency","Not enough independent vectors","Dimension collapse","rank<n"),
+("Rank","Row Rank","Number of independent rows","Independent equations","row rank"),
+("Rank","Column Rank","Number of independent columns","Independent vectors","column rank"),
+("Rank","Rank Theorem","Row rank equals column rank","Same dimensionality","rank(A)"),
+("Rank","Rank and Solutions","Determines solution structure","Intersection structure","rank(A)=rank((A|b))"),
+("Rank","Rank Factorization","Matrix represented using rank basis","Minimal representation","A=BC"),
+("Rank","Rank in ML","Measures information content of dataset","Redundant features reduce rank","rank(X)"),
+("Rank","Rank Nullity Theorem","Relationship between rank and null space","Dimensions balance","rank+nullity=n"),
+
+# ---------------- Null Space ----------------
+("Null Space","Null Space Definition","Set of vectors mapped to zero","Directions collapsed by transformation","Ax=0"),
+("Null Space","Kernel","Another name for null space","Invisible directions","ker(A)"),
+("Null Space","Nullity","Dimension of null space","Number of collapsed directions","dim(N(A))"),
+("Null Space","Trivial Null Space","Contains only zero vector","No collapse","{0}"),
+("Null Space","Non-Trivial Null Space","Infinite vectors mapped to zero","Flattened dimension","span vectors"),
+("Null Space","Null Space Basis","Independent vectors generating null space","Hidden directions","basis(N(A))"),
+("Null Space","Null Space Geometry","Vectors disappear after transformation","Arrow mapped to origin","Ax=0"),
+("Null Space","Solution Structure","Solutions split into particular + null","Free directions","x = xp + xn"),
+("Null Space","ML Interpretation","Redundant features create null directions","No influence on output","kernel"),
+("Null Space","Rank Relation","Nullity tied to rank","Complementary dimensions","rank+nullity=n"),
+
+# ---------------- Column Space ----------------
+("Column Space","Column Space","All vectors reachable as Ax","Output plane","Col(A)"),
+("Column Space","Column Space Basis","Independent columns","Axes of output space","pivot columns"),
+("Column Space","Dimension","Dimension equals rank","Number of directions","dim(Col(A))"),
+("Column Space","Range","Another name for column space","Image of transformation","range(A)"),
+("Column Space","Solvability","b must lie in column space","Point must lie on plane","Ax=b"),
+("Column Space","Projection","Project vector to column space","Closest point on plane","least squares"),
+("Column Space","Orthogonality","Residual orthogonal to column space","Error vector perpendicular","A^Tr=0"),
+("Column Space","Data Interpretation","Represents span of dataset","Feature plane","span"),
+("Column Space","Dimensionality","Effective dimension of transformation","Independent axes","rank"),
+("Column Space","Regression","Linear regression finds closest vector in column space","Approximation plane","Ax≈b"),
+
+# ---------------- Eigen Concepts ----------------
+("Eigen","Eigenvalue","Scalar scaling factor of transformation","Stretch along direction","Av=λv"),
+("Eigen","Eigenvector","Direction unchanged by transformation","Axis of stretching","Av=λv"),
+("Eigen","Eigenpair","Eigenvalue and eigenvector pair","Scale along direction","(λ,v)"),
+("Eigen","Characteristic Equation","Equation used to compute eigenvalues","Scaling factors of transform","det(A-λI)=0"),
+("Eigen","Eigenbasis","Basis made of eigenvectors","Natural coordinate system","basis"),
+("Eigen","Eigenvalue Spectrum","All eigenvalues of matrix","Transformation scaling","spectrum(A)"),
+("Eigen","Dominant Eigenvalue","Largest eigenvalue magnitude","Strongest stretching direction","max |λ|"),
+("Eigen","Eigen Stability","Eigenvalues determine system behavior","Expansion vs contraction","|λ|"),
+("Eigen","ML Usage","Eigen decomposition used in PCA","Variance directions","eigen decomposition"),
+("Eigen","Eigen Geometry","Transformation stretches along eigen directions","Independent axes","Av=λv"),
+
+# ---------------- Diagonalization ----------------
+("Diagonalization","Diagonalizable Matrix","Matrix expressed as diagonal form","Independent scaling axes","A=PDP^-1"),
+("Diagonalization","Diagonal Matrix","Matrix with only diagonal entries","Pure scaling","diag(λ)"),
+("Diagonalization","Similarity Transform","Change of basis transformation","Rotate coordinate axes","P^-1AP"),
+("Diagonalization","Eigenbasis Transform","Express matrix in eigenvector coordinates","Aligned axes","PDP^-1"),
+("Diagonalization","Matrix Powers","Simplifies power computation","Repeated scaling","A^k=PD^kP^-1"),
+("Diagonalization","Matrix Exponential","Used in differential equations","Continuous scaling","e^{At}"),
+("Diagonalization","Geometry","Transformation splits along eigen axes","Axis scaling","diagonalization"),
+("Diagonalization","Computation","Reduces complexity","Simplified operations","spectral methods"),
+("Diagonalization","Requirement","Needs independent eigenvectors","Complete basis","n eigenvectors"),
+("Diagonalization","ML Application","Used in PCA and covariance analysis","Principal axes","eigenvectors"),
+
+# ---------------- Spectral Decomposition ----------------
+("Spectral","Spectral Theorem","Symmetric matrices diagonalizable","Orthogonal axes","A=QΛQᵀ"),
+("Spectral","Eigen Spectrum","Ordered eigenvalues","Energy distribution","λ1≥λ2"),
+("Spectral","Orthogonal Eigenvectors","Eigenvectors perpendicular","Clean coordinate axes","QᵀQ=I"),
+("Spectral","Symmetric Matrix","Always diagonalizable","Rotation + scaling","spectral theorem"),
+("Spectral","Variance Interpretation","Eigenvalues represent variance","Spread along direction","λ"),
+("Spectral","Graph Spectrum","Eigenvalues of graph Laplacian","Network structure","Laplacian eigenvalues"),
+("Spectral","Dimensionality Reduction","Largest eigenvalues dominate","Principal axes","PCA"),
+("Spectral","Spectral Clustering","Clustering using eigenvectors","Graph partitioning","spectral methods"),
+("Spectral","Stability","Eigenvalues determine dynamics","Expansion or contraction","|λ|"),
+("Spectral","Signal Processing","Frequency decomposition","Orthogonal waves","spectral transform"),
+
+# ---------------- PCA ----------------
+("Machine Learning","PCA","Principal Component Analysis","Rotate data to maximize variance","eigenvectors of covariance"),
+("Machine Learning","Principal Components","Directions of maximum variance","Longest axes of data cloud","PCs"),
+("Machine Learning","Dimensionality Reduction","Reduce feature dimension","Flatten data","k components"),
+("Machine Learning","Variance Maximization","Find direction with largest variance","Longest data axis","max variance"),
+("Machine Learning","PCA Projection","Project data onto components","Shadow on axis","XW"),
+("Machine Learning","PCA Covariance","Based on covariance matrix","Spread structure","Σ"),
+("Machine Learning","PCA Whitening","Remove correlations","Circularize data","Σ^{-1/2}"),
+("Machine Learning","PCA Visualization","Data projected to 2D or 3D","Flattened cloud","projection"),
+("Machine Learning","Feature Compression","Reduce features while keeping variance","Data compression","PCA"),
+("Machine Learning","ML Preprocessing","Used before training models","Better feature space","dim reduction"),
+
+# ---------------- Covariance ----------------
+("Machine Learning","Covariance Matrix","Measures correlation between variables","Elliptical data cloud","Σ = E((x-μ)(x-μ)ᵀ)"),
+("Machine Learning","Variance","Spread of single variable","Width of data distribution","var(x)"),
+("Machine Learning","Correlation","Normalized covariance","Angle similarity","corr(x,y)"),
+("Machine Learning","Data Spread","Covariance defines shape of data","Ellipse orientation","Σ"),
+("Machine Learning","Eigenvalues","Variance along principal axes","Ellipse radii","λ"),
+("Machine Learning","Eigenvectors","Direction of variance","Ellipse axes","v"),
+("Machine Learning","Whitening","Transform to remove correlation","Circular cloud","Σ^{-1/2}"),
+("Machine Learning","Gaussian Models","Used in multivariate Gaussian","Probability ellipsoid","N(μ,Σ)"),
+("Machine Learning","Feature Redundancy","High covariance means redundant features","Tilted ellipse","cov"),
+("Machine Learning","ML Role","Used in PCA and statistics","Data analysis","covariance"),
+
+# ---------------- SVD ----------------
+("Machine Learning","SVD","Matrix factorization into rotations and scaling","Rotate stretch rotate","A=UΣVᵀ"),
+("Machine Learning","Singular Values","Scaling strengths of transformation","Stretch factors","σ"),
+("Machine Learning","Left Singular Vectors","Output space directions","Output axes","U"),
+("Machine Learning","Right Singular Vectors","Input directions","Input axes","V"),
+("Machine Learning","Low Rank Approximation","Approximate matrix using few components","Flatten data","A_k"),
+("Machine Learning","Image Compression","Reduce image size via SVD","Remove redundancy","compression"),
+("Machine Learning","Recommender Systems","Matrix factorization for recommendations","Latent factors","UΣVᵀ"),
+("Machine Learning","SVD and PCA","SVD used to compute PCA","Same principal directions","SVD"),
+("Machine Learning","Numerical Stability","More stable than eigen decomposition","Robust factorization","SVD"),
+("Machine Learning","Rank Detection","Number of nonzero singular values","Effective dimension","rank"),
+
+# ---------------- Embeddings ----------------
+("Machine Learning","Embeddings","Mapping objects to vectors","Points in latent space","embedding vector"),
+("Machine Learning","Word Embeddings","Words represented as vectors","Semantic geometry","word2vec"),
+("Machine Learning","Vector Similarity","Measure semantic closeness","Angle between vectors","cosine similarity"),
+("Machine Learning","Latent Space","Hidden representation space","Clustered points","feature space"),
+("Machine Learning","Embedding Dimension","Number of latent features","Vector length","R^d"),
+("Machine Learning","Neural Embeddings","Learned via neural networks","Representation learning","encoder"),
+("Machine Learning","Graph Embeddings","Nodes mapped to vectors","Network geometry","node2vec"),
+("Machine Learning","Recommendation Systems","User-item embeddings","Preference similarity","matrix factorization"),
+("Machine Learning","Distance Metric","Distance measures similarity","Points close together","||x-y||"),
+("Machine Learning","Deep Learning","Embedding layers in models","Vector representation","embedding layer")
 
 ]
 
@@ -268,3 +411,11 @@ df = pd.DataFrame(rows, columns=[
 st.dataframe(df, use_container_width=True, height=700)
 
 st.write("Total rows:", len(df))
+
+
+import streamlit as st
+import pandas as pd
+
+st.set_page_config(layout="wide")
+
+st.title("Linear Algebra for Machine Learning")
