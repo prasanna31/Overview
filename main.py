@@ -33,14 +33,14 @@ def set_background(image_file):
 
 
 # ---------- SET BACKGROUND ----------
-set_background("/Users/jayaprasannar/Documents/GitHub/Overview/background.jpeg")
+set_background("./background.jpeg")
 
 
 # ---------- TITLE SECTION ----------
 col1, col2 = st.columns([1,2])
 
 with col1:
-    st.image("/Users/jayaprasannar/Documents/GitHub/Overview/profile.jpeg", width=250)
+    st.image("./myphoto.jpeg", width=250)
 
 with col2:
     st.title("👋 Hello, I'm Jayaprasanna R")
