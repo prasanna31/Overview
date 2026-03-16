@@ -9,22 +9,28 @@ st.markdown(
 /* Apply Comic Sans to everything */
 html, body, [class*="css"]  {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: black;
 }
 
-/* Rainbow gradient text */
-body, p, span, div, h1, h2, h3, h4, h5, h6 {
-    background: linear-gradient(
-        90deg,
-        red,
-        orange,
-        yellow,
-        green,
-        blue,
-        indigo,
-        violet
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+# /* Rainbow gradient text */
+# body, p, span, div, h1, h2, h3, h4, h5, h6 {
+#     background: linear-gradient(
+#         90deg,
+#         red,
+#         orange,
+#         yellow,
+#         green,
+#         blue,
+#         indigo,
+#         violet
+#     );
+#     -webkit-background-clip: text;
+#     -webkit-text-fill-color: transparent;
+# }
+
+/* Ensure headings also black */
+h1, h2, h3, h4, h5, h6 {
+    color: black;
 }
 
 </style>
