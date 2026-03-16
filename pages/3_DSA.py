@@ -384,8 +384,350 @@ Two pointers allow us to replace nested loops.
 This makes it one of the **most powerful patterns in algorithm design**.
 """)
 with st.expander("2. Sliding Window Pattern"):
-    st.write("Maintain a window over a subarray and expand or shrink it to solve problems involving contiguous ranges.")
 
+    st.markdown("""
+# Sliding Window Pattern
+
+The **Sliding Window Pattern** is used to process **contiguous subarrays or substrings** efficiently.
+
+Instead of recalculating results for every possible window using nested loops,
+we **reuse previous computations** while expanding or shrinking a window.
+
+This reduces complexity from:
+
+    O(n²) → O(n)
+
+Sliding Window is extremely common in problems involving:
+
+• subarrays  
+• substrings  
+• fixed-size windows  
+• variable-size windows  
+• maximum/minimum values in ranges  
+
+It is one of the **most important patterns for arrays and strings**.
+
+--------------------------------------------------------------------
+
+# Core Idea
+
+Imagine a window moving across the array.
+
+Example:
+
+    [2, 1, 5, 1, 3, 2]
+
+Window size = 3
+
+    [2, 1, 5] 1 3 2
+      [1, 5, 1] 3 2
+        [5, 1, 3] 2
+          [1, 3, 2]
+
+Instead of recomputing every window sum:
+
+    sum(arr[i:i+k])
+
+we update incrementally:
+
+    add next element
+    remove previous element
+
+--------------------------------------------------------------------
+
+# When To Use Sliding Window
+
+Use sliding window when:
+
+### 1. The problem involves contiguous subarrays or substrings
+
+Examples
+
+• maximum sum subarray of size k  
+• longest substring without repeating characters  
+• smallest subarray with given sum  
+
+--------------------------------------------------------------------
+
+### 2. Repeated computations overlap
+
+Example
+
+Window size = 3
+
+Instead of computing:
+
+    sum([2,1,5])
+    sum([1,5,1])
+    sum([5,1,3])
+
+We reuse previous work.
+
+--------------------------------------------------------------------
+
+### 3. Need optimal result over ranges
+
+Examples
+
+• maximum window sum  
+• longest valid substring  
+• minimum length subarray  
+
+--------------------------------------------------------------------
+
+# Types of Sliding Window
+
+## 1. Fixed Size Window
+
+The window size remains constant.
+
+Example
+
+    find maximum sum of subarray of size k
+
+Window
+
+    [2,1,5] 1 3 2
+
+Move window
+
+    remove left element
+    add new right element
+
+--------------------------------------------------------------------
+
+## 2. Variable Size Window
+
+Window size changes dynamically.
+
+Example
+
+    longest substring without repeating characters
+
+Window expands until constraint breaks,
+then shrinks.
+
+--------------------------------------------------------------------
+
+# Fixed Window Template
+
+    window_sum = 0
+    max_sum = 0
+    window_start = 0
+
+    for window_end in range(len(arr)):
+
+        window_sum += arr[window_end]
+
+        if window_end >= k - 1:
+
+            max_sum = max(max_sum, window_sum)
+
+            window_sum -= arr[window_start]
+
+            window_start += 1
+
+Time Complexity
+
+    O(n)
+
+--------------------------------------------------------------------
+
+# Variable Window Template
+
+    window_start = 0
+
+    for window_end in range(len(arr)):
+
+        add element to window
+
+        while constraint violated:
+            remove element from window
+            window_start += 1
+
+        update result
+
+--------------------------------------------------------------------
+
+# Example 1 — Maximum Sum Subarray of Size K
+
+Input
+
+    arr = [2,1,5,1,3,2]
+    k = 3
+
+Brute Force
+
+    for i in range(n):
+        sum(arr[i:i+k])
+
+Time
+
+    O(n*k)
+
+Sliding Window Solution
+
+    def max_sum_subarray(arr, k):
+
+        window_sum = 0
+        max_sum = 0
+        window_start = 0
+
+        for window_end in range(len(arr)):
+
+            window_sum += arr[window_end]
+
+            if window_end >= k - 1:
+
+                max_sum = max(max_sum, window_sum)
+
+                window_sum -= arr[window_start]
+
+                window_start += 1
+
+        return max_sum
+
+Time Complexity
+
+    O(n)
+
+Space Complexity
+
+    O(1)
+
+--------------------------------------------------------------------
+
+# Example 2 — Longest Substring Without Repeating Characters
+
+Input
+
+    "abcabcbb"
+
+Goal
+
+    longest substring without repeating characters
+
+Sliding Window Solution
+
+    def longest_unique_substring(s):
+
+        char_set = set()
+
+        left = 0
+        max_length = 0
+
+        for right in range(len(s)):
+
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+
+            char_set.add(s[right])
+
+            max_length = max(max_length, right - left + 1)
+
+        return max_length
+
+Time Complexity
+
+    O(n)
+
+--------------------------------------------------------------------
+
+# Visual Example
+
+Array
+
+    [2,1,5,1,3,2]
+
+k = 3
+
+Step 1
+
+    window = [2,1,5]
+    sum = 8
+
+Step 2
+
+    remove 2
+    add 1
+
+    window = [1,5,1]
+    sum = 7
+
+Step 3
+
+    remove 1
+    add 3
+
+    window = [5,1,3]
+    sum = 9
+
+Step 4
+
+    remove 5
+    add 2
+
+    window = [1,3,2]
+    sum = 6
+
+Maximum = 9
+
+--------------------------------------------------------------------
+
+# Common Interview Problems
+
+Maximum Sum Subarray of Size K  
+Minimum Size Subarray Sum  
+Longest Substring Without Repeating Characters  
+Longest Repeating Character Replacement  
+Permutation in String  
+Sliding Window Maximum  
+Fruit Into Baskets  
+
+--------------------------------------------------------------------
+
+# Sliding Window vs Two Pointer
+
+Sliding window is actually a **special case of two pointers**.
+
+Two pointers track window boundaries.
+
+    left -> window start
+    right -> window end
+
+But sliding window always represents a **contiguous region**.
+
+--------------------------------------------------------------------
+
+# Complexity
+
+Time Complexity
+
+    O(n)
+
+Space Complexity
+
+    O(1) or O(k)
+
+depending on additional data structures.
+
+--------------------------------------------------------------------
+
+# Key Insight
+
+Sliding Window avoids recalculating overlapping ranges.
+
+Instead of
+
+    O(n²)
+
+we get
+
+    O(n)
+
+This makes it one of the **most powerful patterns for arrays and strings**.
+""")
 with st.expander("3. Prefix Sum Pattern"):
     st.write("Precompute cumulative sums so that range sum queries can be answered in constant time.")
 
