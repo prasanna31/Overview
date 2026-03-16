@@ -77,7 +77,92 @@ net.repulsion()
 
 # Save and display
 
+
 net.save_graph("ai_graph.html")
 
 HtmlFile = open("ai_graph.html", "r", encoding="utf-8")
 components.html(HtmlFile.read(), height=700)
+
+
+import streamlit as st
+from graphviz import Digraph
+import streamlit.components.v1 as components
+
+st.title("AI Ecosystem Tree")
+
+dot = Digraph(comment="Artificial Intelligence")
+
+# Root
+dot.node("AI", "Artificial Intelligence")
+
+# Level 1
+dot.node("ML", "Machine Learning")
+dot.node("DL", "Deep Learning")
+dot.node("NLP", "Natural Language Processing")
+dot.node("CV", "Computer Vision")
+dot.node("GenAI", "Generative AI")
+dot.node("Infra", "AI Infrastructure")
+dot.node("Apps", "AI Applications")
+
+dot.edges([
+    ("AI", "ML"),
+    ("AI", "DL"),
+    ("AI", "NLP"),
+    ("AI", "CV"),
+    ("AI", "GenAI"),
+    ("AI", "Infra"),
+    ("AI", "Apps"),
+])
+
+# Level 2 - ML
+dot.node("Supervised", "Supervised Learning")
+dot.node("Unsupervised", "Unsupervised Learning")
+dot.node("RL", "Reinforcement Learning")
+dot.edges([
+    ("ML", "Supervised"),
+    ("ML", "Unsupervised"),
+    ("ML", "RL"),
+])
+
+# Level 2 - Deep Learning
+dot.node("CNN", "CNN")
+dot.node("RNN", "RNN")
+dot.node("Transformers", "Transformers")
+dot.edges([
+    ("DL", "CNN"),
+    ("DL", "RNN"),
+    ("DL", "Transformers"),
+])
+
+# Level 2 - Generative AI
+dot.node("LLM", "Large Language Models")
+dot.node("Diffusion", "Diffusion Models")
+dot.node("GANs", "GANs")
+dot.edges([
+    ("GenAI", "LLM"),
+    ("GenAI", "Diffusion"),
+    ("GenAI", "GANs"),
+])
+
+# Level 3 - LLM
+dot.node("GPT", "GPT")
+dot.node("BERT", "BERT")
+dot.node("LLaMA", "LLaMA")
+dot.edges([
+    ("LLM", "GPT"),
+    ("LLM", "BERT"),
+    ("LLM", "LLaMA"),
+])
+
+# Level 2 - RAG / Retrieval
+dot.node("RAG", "Retrieval-Augmented Generation")
+dot.node("VectorDB", "Vector Databases")
+dot.node("Embeddings", "Embeddings")
+dot.edges([
+    ("GenAI", "RAG"),
+    ("RAG", "VectorDB"),
+    ("RAG", "Embeddings"),
+])
+
+# Render the tree
+st.graphviz_chart(dot)
