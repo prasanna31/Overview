@@ -14,75 +14,89 @@ def set_background(image_file):
 
     css = f"""
     <style>
+
     .stApp {{
         background-image: url("data:image/jpg;base64,{encoded}");
         background-size: cover;
         background-position: center;
-        background-attachment: scroll; 
-
+        background-repeat: no-repeat;
+        background-attachment: scroll;
     }}
 
-    .glass {{
-        background: rgba(0,0,0,0.6);
-        padding: 40px;
-        border-radius: 15px;
+    /* Profile image top right */
+    .profile-container {{
+        position: fixed;
+        top: 40px;
+        right: 40px;
+        z-index: 100;
     }}
+
+    .profile-container img {{
+        width: 180px;
+        border-radius: 50%;
+        border: 4px solid white;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.5);
+    }}
+
     </style>
     """
 
     st.markdown(css, unsafe_allow_html=True)
 
 
-# ---------- SET BACKGROUND ----------
+# ---------- APPLY BACKGROUND ----------
 set_background("./background-1.jpg")
 
 
-# ---------- TITLE SECTION ----------
-col1, col2 = st.columns([1,2])
+# ---------- PROFILE IMAGE ----------
+with open("./myphoto.jpg", "rb") as file:
+    img = base64.b64encode(file.read()).decode()
 
-with col1:
-    st.title("👋 Hello, I'm Jayaprasanna R")
-    st.subheader("AI Enthusiast | Backend Developer | ML Researcher")
+st.markdown(
+    f"""
+    <div class="profile-container">
+        <img src="data:image/jpg;base64,{img}">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-    st.markdown("""
-    I build **AI systems, machine learning models, and scalable backend applications**.
 
-    My passion is understanding the **mathematics behind intelligence** and turning those
-    ideas into real-world systems.
-    """)
-with col2:
-    st.image("./myphoto.jpeg", width=250)
+# ---------- PAGE CONTENT ----------
+st.title("👋 Hello, I'm Jayaprasanna R")
+
+st.subheader("AI Enthusiast | Backend Developer | ML Researcher")
+
+st.markdown("""
+I build **AI systems, machine learning models, and scalable backend applications**.
+
+My passion is understanding the **mathematics behind intelligence** and turning those
+ideas into real-world systems.
+""")
 
 st.markdown("---")
 
 
-# ---------- ABOUT ----------
-st.markdown("""
-### 🚀 About Me
+st.header("🚀 About Me")
 
+st.markdown("""
 - 🤖 Artificial Intelligence & Machine Learning  
 - 🧠 Deep Learning and Neural Networks  
 - 📊 Optimization Algorithms  
 - ⚙️ Backend Engineering  
-- 🎮 Machine Learning for Games & Sports  
-
-I enjoy **breaking down complex concepts** and documenting them clearly through
-projects, experiments, and technical writing.
+- 🎮 Machine Learning for Games and Sports
 """)
 
 
-# ---------- HIGHLIGHTS ----------
-st.markdown("### ✨ Highlights")
+st.header("✨ Highlights")
 
-col1, col2, col3 = st.columns(3)
+c1, c2, c3 = st.columns(3)
 
-col1.metric("ML Projects", "10+")
-col2.metric("Research Areas", "AI / Optimization")
-col3.metric("Focus", "Practical AI Systems")
+c1.metric("ML Projects", "10+")
+c2.metric("Research Areas", "AI / Optimization")
+c3.metric("Focus", "Practical AI Systems")
 
 
 st.markdown("---")
 
-st.info(
-    "💡 This portfolio evolves as I explore new ideas in AI, optimization, and intelligent systems."
-)
+st.info("💡 This portfolio grows as I explore AI, optimization, and intelligent systems.")
