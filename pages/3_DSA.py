@@ -42,28 +42,403 @@ searching, sorting, and numerical computations.
 """)
 
 st.subheader("Array Patterns")
-st.markdown("""
-1. Two Pointer Pattern  
-2. Sliding Window Pattern  
-3. Prefix Sum Pattern  
-4. Difference Array Pattern  
-5. Kadane’s Algorithm Pattern  
-6. Cyclic Sort Pattern  
-7. Partition Pattern  
-8. Dutch National Flag Pattern  
-9. Binary Search Pattern  
-10. Rotated Array Search Pattern  
-11. Subarray Sum Pattern  
-12. Product Except Self Pattern  
-13. Merge Sorted Arrays Pattern  
-14. Frequency Counting Pattern  
-15. Greedy Rearrangement Pattern  
-16. Matrix Traversal Pattern  
-17. Spiral Traversal Pattern  
-18. Diagonal Traversal Pattern  
-19. Range Query Pattern  
-20. Array Simulation Pattern
+
+
+import streamlit as st
+
+st.header("Array Patterns")
+
+
+with st.expander("1. Two Pointer Pattern"):
+
+    st.markdown("""
+# Two Pointer Pattern
+
+The **Two Pointer Pattern** is a technique where **two indices (pointers)** traverse a data structure 
+— usually an array or string — in order to reduce time complexity from **O(n²)** to **O(n)**.
+
+Instead of checking every possible pair using nested loops, two pointers move strategically
+through the data to examine only the necessary elements.
+
+This pattern is extremely common in technical interviews and is used in problems involving:
+
+• pairs in sorted arrays  
+• palindrome checks  
+• removing duplicates  
+• partitioning arrays  
+• container problems  
+• merging sorted data  
+
+------------------------------------------------------------
+
+# Core Idea
+
+The naive approach for pair problems is:
+```python
+    for i in range(n):
+        for j in range(i+1, n):
+
+This results in **O(n²)** comparisons.
+
+Two pointer technique avoids this by scanning the array once.
+
+Example pointer initialization:
+
+    left = 0
+    right = len(arr) - 1
+
+Pointers move based on a condition until they meet.
+
+------------------------------------------------------------
+
+# Types of Two Pointer Techniques
+
+## 1. Opposite Direction Pointers
+
+Pointers start at **both ends** of the array and move toward each other.
+
+Visualization
+
+    left -> -> -> <- <- <- right
+
+Common Uses
+
+• pair sum in sorted arrays  
+• palindrome checks  
+• container with most water  
+• trapping rain water  
+
+Example
+
+    [1,2,3,4,6]
+     ^       ^
+    left    right
+
+------------------------------------------------------------
+
+## 2. Same Direction Pointers
+
+Both pointers move forward.
+
+Visualization
+
+    slow -> -> -> ->
+    fast -> -> -> ->
+
+One pointer scans the array while the other tracks valid elements.
+
+Common Uses
+
+• remove duplicates  
+• move zeros  
+• stable filtering  
+
+------------------------------------------------------------
+
+## 3. Fast and Slow Pointer (Runner Technique)
+
+Two pointers move at **different speeds**.
+
+Visualization
+
+    slow -> -> -> ->
+    fast -> -> -> -> -> -> ->
+
+Common Uses
+
+• detect cycle in linked list  
+• find middle element  
+• detect loop in arrays  
+
+------------------------------------------------------------
+
+# When To Use Two Pointers
+
+Use this pattern when:
+
+### 1. The array is sorted
+
+Sorted data allows pointer movement decisions.
+
+Example problems
+
+• Two Sum II  
+• Pair with target sum  
+• remove duplicates  
+
+------------------------------------------------------------
+
+### 2. Need to examine pairs
+
+Instead of nested loops.
+
+Example
+
+    find pair whose sum = target
+
+------------------------------------------------------------
+
+### 3. Need to compress or filter data
+
+Examples
+
+• remove duplicates  
+• move zeros  
+• partition array  
+
+------------------------------------------------------------
+
+### 4. Need symmetric comparisons
+
+Example
+
+    palindrome check
+
+------------------------------------------------------------
+
+# Generic Template (Opposite Direction)
+```python
+    left = 0
+    right = len(arr) - 1
+
+    while left < right:
+
+        if condition:
+            return result
+
+        elif need_bigger_value:
+            left += 1
+
+        else:
+            right -= 1
+
+Time Complexity
+
+    O(n)
+
+Space Complexity
+
+    O(1)
+
+Each pointer moves at most **n times**.
+
+------------------------------------------------------------
+
+# Generic Template (Same Direction)
+```python
+    slow = 0
+
+    for fast in range(len(arr)):
+
+        if condition:
+            arr[slow] = arr[fast]
+            slow += 1
+
+Used for
+
+• removing duplicates  
+• filtering elements  
+
+------------------------------------------------------------
+
+# Example 1 — Pair With Target Sum
+
+Problem
+
+Find two numbers that add up to a target.
+
+Sorted array
+
+    [1,2,3,4,6]
+    target = 6
+
+Solution
+```python
+    def pair_sum(arr, target):
+
+        left = 0
+        right = len(arr) - 1
+
+        while left < right:
+
+            s = arr[left] + arr[right]
+
+            if s == target:
+                return left, right
+
+            elif s < target:
+                left += 1
+
+            else:
+                right -= 1
+
+        return None
+
+Time Complexity
+
+    O(n)
+
+Space Complexity
+
+    O(1)
+
+------------------------------------------------------------
+
+# Example 2 — Remove Duplicates (Sorted Array)
+
+Input
+
+    [1,1,2,2,3,4,4]
+
+Solution
+```python
+    def remove_duplicates(arr):
+
+        slow = 0
+
+        for fast in range(1, len(arr)):
+
+            if arr[fast] != arr[slow]:
+                slow += 1
+                arr[slow] = arr[fast]
+
+        return slow + 1
+
+------------------------------------------------------------
+
+# Example 3 — Palindrome Check
+```python
+    def is_palindrome(s):
+
+        left = 0
+        right = len(s) - 1
+
+        while left < right:
+
+            if s[left] != s[right]:
+                return False
+
+            left += 1
+            right -= 1
+
+        return True
+
+------------------------------------------------------------
+
+# Visual Intuition
+
+Array
+
+    [1,2,3,4,6]
+    target = 6
+
+Step 1
+
+    1 + 6 = 7
+    move right
+
+Step 2
+
+    1 + 4 = 5
+    move left
+
+Step 3
+
+    2 + 4 = 6
+    solution found
+
+Only **3 comparisons** instead of **10 comparisons** using nested loops.
+
+------------------------------------------------------------
+
+# Complexity
+
+Time Complexity
+
+    O(n)
+
+Space Complexity
+
+    O(1)
+
+------------------------------------------------------------
+
+# Common Interview Problems
+
+Two Sum II  
+Container With Most Water  
+3Sum  
+Trapping Rain Water  
+Remove Duplicates from Sorted Array  
+Valid Palindrome  
+Move Zeroes  
+
+------------------------------------------------------------
+
+# Key Insight
+
+Two pointers allow us to replace nested loops.
+
+    O(n²)  ->  O(n)
+
+This makes it one of the **most powerful patterns in algorithm design**.
 """)
+with st.expander("2. Sliding Window Pattern"):
+    st.write("Maintain a window over a subarray and expand or shrink it to solve problems involving contiguous ranges.")
+
+with st.expander("3. Prefix Sum Pattern"):
+    st.write("Precompute cumulative sums so that range sum queries can be answered in constant time.")
+
+with st.expander("4. Difference Array Pattern"):
+    st.write("Use an auxiliary array to efficiently perform multiple range updates.")
+
+with st.expander("5. Kadane’s Algorithm Pattern"):
+    st.write("Find the maximum sum subarray by tracking the maximum sum ending at each position.")
+
+with st.expander("6. Cyclic Sort Pattern"):
+    st.write("Used when numbers are in a fixed range; place elements at their correct indices by swapping.")
+
+with st.expander("7. Partition Pattern"):
+    st.write("Divide the array into two groups based on a pivot element.")
+
+with st.expander("8. Dutch National Flag Pattern"):
+    st.write("Three-way partitioning of elements into low, mid, and high categories.")
+
+with st.expander("9. Binary Search Pattern"):
+    st.write("Repeatedly divide a sorted search space in half to find an element efficiently.")
+
+with st.expander("10. Rotated Array Search Pattern"):
+    st.write("Binary search variant used when a sorted array has been rotated.")
+
+with st.expander("11. Subarray Sum Pattern"):
+    st.write("Find subarrays with specific sums using prefix sums or hash maps.")
+
+with st.expander("12. Product Except Self Pattern"):
+    st.write("Compute products of all elements except the current one without division.")
+
+with st.expander("13. Merge Sorted Arrays Pattern"):
+    st.write("Combine two sorted arrays into one sorted sequence.")
+
+with st.expander("14. Frequency Counting Pattern"):
+    st.write("Use hash maps or arrays to count occurrences of elements.")
+
+with st.expander("15. Greedy Rearrangement Pattern"):
+    st.write("Rearrange elements to satisfy constraints using greedy decisions.")
+
+with st.expander("16. Matrix Traversal Pattern"):
+    st.write("Systematically visit elements in a 2D grid.")
+
+with st.expander("17. Spiral Traversal Pattern"):
+    st.write("Traverse a matrix layer by layer in spiral order.")
+
+with st.expander("18. Diagonal Traversal Pattern"):
+    st.write("Traverse elements across matrix diagonals.")
+
+with st.expander("19. Range Query Pattern"):
+    st.write("Answer queries on array ranges using preprocessing techniques.")
+
+with st.expander("20. Array Simulation Pattern"):
+    st.write("Simulate operations step-by-step to model array transformations.")
 
 
 # STRINGS
