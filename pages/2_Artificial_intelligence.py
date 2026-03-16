@@ -3,6 +3,8 @@ import networkx as nx
 from pyvis.network import Network
 import streamlit.components.v1 as components
 
+
+st.title("Artificial Intelligence Overview")
 with st.expander("AI graph"):
     st.title("Artificial Intelligence Ecosystem")
 
@@ -168,11 +170,12 @@ with st.expander("Clear AI overview"):
     # Render the tree
     st.graphviz_chart(dot)
 
+
 import streamlit as st
 
-st.title("Artificial Intelligence Overview")
+st.title("Artificial Intelligence Topics")
 
-st.markdown("# 1️⃣ Artificial Intelligence (Root)")
+st.title("# 1️⃣ Artificial Intelligence (Root)")
 with st.expander("Definition of AI"):
     st.markdown("")
 
@@ -185,7 +188,7 @@ with st.expander("Core Goals of AI"):
 with st.expander("Difference between AI, ML, and GenAI"):
     st.markdown("")
 
-st.markdown("# 2️⃣ Machine Learning")
+st.title("# 2️⃣ Machine Learning")
 with st.expander("Supervised Learning"):
     st.markdown("")
 
@@ -195,14 +198,14 @@ with st.expander("Unsupervised Learning"):
 with st.expander("Reinforcement Learning"):
     st.markdown("")
 
-st.markdown("# 3️⃣ Deep Learning")
+st.title("# 3️⃣ Deep Learning")
 with st.expander("Neural Networks"):
     st.markdown("")
 
 with st.expander("CNN, RNN, Transformers"):
     st.markdown("")
 
-st.markdown("# 4️⃣ Natural Language Processing")
+st.title("# 4️⃣ Natural Language Processing")
 with st.expander("Language Models"):
     st.markdown("")
 
@@ -215,7 +218,7 @@ with st.expander("Text Classification"):
 with st.expander("Machine Translation"):
     st.markdown("")
 
-st.markdown("# 5️⃣ Generative AI")
+st.title("# 5️⃣ Generative AI")
 with st.expander("Large Language Models (GPT, BERT, LLaMA)"):
     st.markdown("")
 
@@ -228,7 +231,7 @@ with st.expander("GANs"):
 with st.expander("Retrieval-Augmented Generation (RAG)"):
     st.markdown("")
 
-st.markdown("# 6️⃣ AI Infrastructure")
+st.title("# 6️⃣ AI Infrastructure")
 with st.expander("GPUs & Hardware"):
     st.markdown("")
 
@@ -238,7 +241,7 @@ with st.expander("Model Training"):
 with st.expander("Model Serving & Inference"):
     st.markdown("")
 
-st.markdown("# 7️⃣ AI Applications")
+st.title("# 7️⃣ AI Applications")
 with st.expander("Chatbots"):
     st.markdown("")
 
@@ -254,7 +257,7 @@ with st.expander("Healthcare AI"):
 with st.expander("Fraud Detection"):
     st.markdown("")
 
-st.markdown("# 8️⃣ Data Preparation & Preprocessing (Non-Technical) ")
+st.title("# 8️⃣ Data Preparation & Preprocessing (Non-Technical) ")
 with st.expander("Data Collection"):
     st.markdown("")
 
@@ -270,7 +273,7 @@ with st.expander("Feature Engineering"):
 with st.expander("Data Augmentation"):
     st.markdown("")
 
-st.markdown("# 9️⃣ Deployment & Production (Non-Technical / DevOps)")
+st.title("# 9️⃣ Deployment & Production (Non-Technical / DevOps)")
 with st.expander("Model Deployment"):
     st.markdown("")
 
