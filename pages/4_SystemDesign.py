@@ -1,367 +1,426 @@
 import streamlit as st
 
-st.set_page_config(page_title="HLD Encyclopedia", layout="wide")
+st.set_page_config(page_title="System Design Encyclopedia", layout="wide")
 
-st.title("High Level Design Components Encyclopedia")
+st.title("High Level Design Components – Practical Encyclopedia")
 
 st.markdown("""
-High Level Design (HLD) is about designing systems that are scalable, reliable,
-and efficient. Most large distributed systems can be understood by organizing
-their components into a few conceptual layers.
+In system design interviews, many students get confused because there are
+too many components. The trick is to group them.
 
-### Mental Model
+Every large system can be understood using **5 simple layers**.
 
 EDGE → TRAFFIC → COMPUTE → DATA → RELIABILITY
 
-1. Edge Layer – Where users enter the system  
-2. Traffic Layer – How requests are routed  
-3. Compute Layer – Where business logic runs  
-4. Data Layer – Where information is stored  
-5. Reliability Layer – How the system survives failures
+Think of it like a **shopping mall**:
+
+Users enter the gate → Security directs people → Shops do the work →
+Goods are stored in warehouses → CCTV and guards keep things safe.
+
+The same idea applies to software systems.
 """)
 
-# ============================================================
-st.subheader("1. Edge Layer — User Entry Layer")
+# ----------------------------------------------------------
+st.header("1. EDGE LAYER – Where Users Enter")
 
-with st.expander("API Gateway"):
+with st.expander("DNS (Domain Name System)"):
     st.markdown("""
-Single entry point for all client requests.
+**What it is**
 
-Responsibilities
-- Authentication
-- Authorization
-- Request routing
-- Rate limiting
-- API aggregation
-- Request validation
+DNS converts a website name into an IP address.
 
-Example:
-Mobile apps communicate with the API gateway instead of directly
-calling microservices.
+Computers cannot understand names like:
+
+```
+google.com
+```
+
+They only understand numbers like:
+
+```
+142.250.190.14
+```
+
+**Why we need it**
+
+Humans remember names easily but computers need IP addresses.
+
+**Where it is used**
+
+Every website on the internet uses DNS.
+
+**Example**
+
+When you type `youtube.com`, DNS tells your computer
+which server to connect to.
 """)
 
 with st.expander("CDN (Content Delivery Network)"):
     st.markdown("""
-Distributed network of servers that cache static content.
+**What it is**
 
-Benefits
-- Reduced latency
-- Lower backend load
-- Faster global delivery
+A CDN stores copies of static files in many countries.
 
-Cached content includes:
-Images, videos, CSS, JavaScript.
+**Why we need it**
+
+If a server is only in the US, users in India will get slow speed.
+
+A CDN keeps copies of files close to users.
+
+**What files are cached**
+
+• Images  
+• Videos  
+• CSS  
+• JavaScript  
+
+**Example**
+
+When you open Instagram, images load fast because
+they are served from nearby CDN servers.
 """)
 
-with st.expander("DNS"):
+with st.expander("API Gateway"):
     st.markdown("""
-Domain Name System translates domain names into IP addresses.
+**What it is**
 
-Example
+API Gateway is the **main entry gate for backend services**.
 
-google.com → 142.250.190.14
+All requests first go to the API Gateway.
 
-Without DNS users would need to remember IP addresses.
+**Why we need it**
+
+Without API gateway, the client would need to call
+many microservices directly.
+
+API Gateway simplifies this.
+
+**Responsibilities**
+
+• Authentication  
+• Request routing  
+• Rate limiting  
+• Logging  
+
+**Example**
+
+Mobile app → API Gateway → User Service / Payment Service
 """)
 
-with st.expander("Reverse Proxy"):
-    st.markdown("""
-A server that sits in front of backend servers and forwards requests.
-
-Benefits
-- Security
-- SSL termination
-- Request routing
-- Load balancing
-""")
-
-with st.expander("Edge Caching"):
-    st.markdown("""
-Caching content close to the user.
-
-This reduces latency and reduces the number of requests
-reaching backend servers.
-""")
-
-# ============================================================
-st.subheader("2. Traffic Management Layer")
+# ----------------------------------------------------------
+st.header("2. TRAFFIC MANAGEMENT – Controlling Requests")
 
 with st.expander("Load Balancer"):
     st.markdown("""
-Distributes incoming requests across multiple servers.
+**What it is**
 
-Goals
-- Prevent overload
-- Improve reliability
-- Enable horizontal scaling
+A load balancer distributes requests across many servers.
 
-Common Algorithms
-- Round Robin
-- Least Connections
-- Consistent Hashing
-""")
+**Why we need it**
 
-with st.expander("Service Discovery"):
-    st.markdown("""
-Helps services dynamically locate each other.
+If one server receives all requests it will crash.
 
-In distributed systems services frequently change instances.
-Service discovery maintains a registry of available services.
+Load balancer spreads the work.
+
+**Example**
+
+1000 users send requests.
+
+Instead of one server handling everything:
+
+Server1 → 250 requests  
+Server2 → 250 requests  
+Server3 → 250 requests  
+Server4 → 250 requests
+
+**Benefit**
+
+System becomes faster and safer.
 """)
 
 with st.expander("Rate Limiter"):
     st.markdown("""
-Restricts the number of requests a client can make
-within a defined time window.
+**What it is**
 
-Purpose
-- Prevent abuse
-- Protect backend systems
-- Maintain fairness
-""")
+A rate limiter controls how many requests a user can send.
 
-with st.expander("Traffic Shaping"):
-    st.markdown("""
-Controls request flow to prioritize important traffic
-and smooth traffic spikes.
+**Why we need it**
+
+Without rate limiting:
+
+• Hackers can attack the system  
+• Bots can overload servers  
+
+**Example**
+
+Twitter allows only a certain number of tweets per minute.
+
+**Simple rule**
+
+```
+User can send only 100 requests per minute
+```
 """)
 
 with st.expander("Circuit Breaker"):
     st.markdown("""
-Stops requests from reaching a failing service.
+**What it is**
 
-Prevents cascading failures in distributed systems.
+Circuit breaker stops requests to a failing service.
+
+**Why we need it**
+
+If one service crashes and other services keep calling it,
+the whole system may fail.
+
+Circuit breaker temporarily blocks the calls.
+
+**Example**
+
+Payment service is down.
+
+Instead of waiting forever:
+
+System returns:
+
+```
+Payment service unavailable. Try later.
+```
 """)
 
-# ============================================================
-st.subheader("3. Compute Layer — Business Logic")
+# ----------------------------------------------------------
+st.header("3. COMPUTE LAYER – Where Work Happens")
 
 with st.expander("Application Servers"):
     st.markdown("""
-Servers that execute backend application code.
+**What it is**
 
-Examples
-- User authentication
-- Payment processing
-- Order management
+Application servers run backend code.
+
+They contain the business logic.
+
+**Examples of business logic**
+
+• Login verification  
+• Order placement  
+• Payment processing  
+
+**Example flow**
+
+User login request → Application server checks username/password.
 """)
 
 with st.expander("Microservices"):
     st.markdown("""
-Architectural style where applications are divided
+**What it is**
+
+Instead of one big application, we divide the system
 into small independent services.
 
-Benefits
-- Independent deployment
-- Scalability
-- Fault isolation
-""")
+**Why we need it**
 
-with st.expander("Containers"):
-    st.markdown("""
-Lightweight environments that package applications
-with dependencies.
+Large systems become difficult to maintain.
 
-Example technology: Docker
-""")
+Small services are easier to manage.
 
-with st.expander("Container Orchestration"):
-    st.markdown("""
-Systems that manage container deployment,
-scaling, networking, and health.
+**Example**
 
-Example: Kubernetes
-""")
+Instead of one large app:
 
-with st.expander("Serverless Functions"):
-    st.markdown("""
-Code executed on demand without managing servers.
+User Service  
+Payment Service  
+Notification Service  
+Order Service
 
-Benefits
-- Automatic scaling
-- Pay per execution
-- Reduced infrastructure management
+Each service does one job.
 """)
 
 with st.expander("Background Workers"):
     st.markdown("""
-Processes that execute asynchronous tasks.
+**What it is**
 
-Examples
-- Email sending
-- Video processing
-- Image resizing
+Background workers process tasks that do not need
+immediate response.
+
+**Why we need it**
+
+Some tasks take time.
+
+Example:
+
+• Sending emails  
+• Video processing  
+• Image resizing  
+
+Instead of making the user wait, we process them in background.
+
+**Example**
+
+User uploads photo → background worker compresses image.
 """)
 
-# ============================================================
-st.subheader("4. Data Layer — Storage Systems")
+# ----------------------------------------------------------
+st.header("4. DATA LAYER – Where Data is Stored")
 
 with st.expander("Relational Databases (SQL)"):
     st.markdown("""
-Structured databases with tables and relationships.
+**What it is**
 
-Examples
-- PostgreSQL
-- MySQL
+A structured database where data is stored in tables.
 
-Strengths
-- ACID transactions
-- Strong consistency
+**Example table**
+
+Users table
+
+| id | name | email |
+|----|------|------|
+
+**Why we use SQL databases**
+
+• Strong consistency  
+• Transactions  
+• Reliable storage
+
+**Examples**
+
+PostgreSQL  
+MySQL
 """)
 
 with st.expander("NoSQL Databases"):
     st.markdown("""
-Databases designed for flexible schemas and scalability.
+**What it is**
 
-Examples
-- MongoDB
-- Cassandra
-- DynamoDB
+Databases designed for large scale systems
+where flexible data structure is needed.
 
-Types
-- Document stores
-- Key-value stores
-- Column stores
-- Graph databases
+**Types**
+
+Document database → MongoDB  
+Key-value store → DynamoDB  
+Column store → Cassandra  
+
+**Why we use them**
+
+Better scalability compared to traditional databases.
 """)
 
 with st.expander("Cache"):
     st.markdown("""
-In-memory storage used for frequently accessed data.
+**What it is**
 
-Benefits
-- Extremely fast access
-- Reduces database load
+Cache stores frequently used data in memory.
 
-Example: Redis
+Memory is much faster than disk.
+
+**Why we need it**
+
+If database is queried every time,
+system becomes slow.
+
+Cache stores popular data.
+
+**Example**
+
+Trending videos list stored in Redis.
 """)
 
-with st.expander("Search Engines"):
+with st.expander("Message Queue"):
     st.markdown("""
-Specialized systems optimized for text search and indexing.
+**What it is**
 
-Example: Elasticsearch
+A message queue allows services to communicate asynchronously.
+
+**Why we need it**
+
+Services should not depend on each other directly.
+
+Queues help decouple them.
+
+**Example**
+
+User signs up → message placed in queue
+
+Other services read the message:
+
+• Email service sends welcome mail  
+• Analytics service records new user
 """)
 
-with st.expander("Message Queues"):
-    st.markdown("""
-Systems that allow asynchronous communication between services.
-
-Benefits
-- Decoupling services
-- Reliable task processing
-
-Examples
-- RabbitMQ
-- Amazon SQS
-""")
-
-with st.expander("Event Streaming Platforms"):
-    st.markdown("""
-Platforms designed for high-throughput real-time event processing.
-
-Example: Apache Kafka
-""")
-
-with st.expander("Object Storage"):
-    st.markdown("""
-Storage optimized for large binary files.
-
-Examples
-- Images
-- Videos
-- Backups
-
-Example technologies
-- Amazon S3
-- Google Cloud Storage
-""")
-
-# ============================================================
-st.subheader("5. Reliability & Operations Layer")
+# ----------------------------------------------------------
+st.header("5. RELIABILITY LAYER – Keeping System Healthy")
 
 with st.expander("Monitoring"):
     st.markdown("""
-Tracks system health metrics.
+**What it is**
 
-Examples
-- CPU usage
-- Memory usage
-- Latency
-- Error rates
+Monitoring tools track system health.
+
+**Things monitored**
+
+• CPU usage  
+• Memory usage  
+• Response time  
+• Error rate  
+
+If something goes wrong engineers can see it quickly.
 """)
 
 with st.expander("Logging"):
     st.markdown("""
-Records system events for debugging and auditing.
+**What it is**
 
-Logs help engineers diagnose failures and analyze system behavior.
-""")
+Logs record events happening inside the system.
 
-with st.expander("Alerting"):
-    st.markdown("""
-Automatically notifies engineers when abnormal
-conditions occur.
+Example log
 
-Example triggers
-- High latency
-- Error spikes
-- Server failures
-""")
+```
+User 1023 logged in at 10:02 AM
+```
 
-with st.expander("Distributed Tracing"):
-    st.markdown("""
-Tracks requests across multiple services.
-
-Helps diagnose latency problems in microservice architectures.
+Logs help debug problems later.
 """)
 
 with st.expander("Auto Scaling"):
     st.markdown("""
-Automatically increases or decreases the number of servers
-based on traffic load.
+**What it is**
+
+Auto scaling automatically increases or decreases
+the number of servers.
+
+**Example**
+
+During IPL match streaming:
+
+Traffic increases → more servers start automatically.
+
+After match:
+
+Traffic decreases → servers shut down.
 """)
 
 with st.expander("Replication"):
     st.markdown("""
-Maintains multiple copies of data to improve
-availability and reliability.
+**What it is**
+
+Replication means keeping multiple copies of data.
+
+**Why we need it**
+
+If one database server crashes,
+another copy is available.
+
+This improves reliability.
 """)
 
-with st.expander("Sharding"):
-    st.markdown("""
-Splits large datasets across multiple machines
-to support high traffic workloads.
-""")
+# ----------------------------------------------------------
 
-with st.expander("Backup and Disaster Recovery"):
-    st.markdown("""
-Processes that restore system data after failures.
-
-Includes
-- Snapshots
-- Incremental backups
-- Cross-region replication
-""")
-
-with st.expander("Feature Flags"):
-    st.markdown("""
-Allow enabling or disabling features dynamically
-without redeploying applications.
-""")
-
-# ============================================================
-st.subheader("Mental Model Summary")
+st.header("Simple Memory Trick")
 
 st.markdown("""
-To remember the entire High Level Design stack:
+Remember this simple chain:
 
-EDGE → TRAFFIC → COMPUTE → DATA → RELIABILITY
+User → DNS → CDN → Load Balancer → Servers → Cache → Database → Monitoring
 
-or
-
-ENTRY → ROUTE → PROCESS → STORE → PROTECT
-
-This structure works for almost every system design problem
-including Instagram, Netflix, Uber, and WhatsApp.
+If you remember this flow, you can explain most system designs in interviews.
 """)
