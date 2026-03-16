@@ -49,7 +49,7 @@ set_background("./background-1.jpg")
 
 
 # ---------- PROFILE IMAGE ----------
-with open("./myphoto.jpg", "rb") as file:
+with open("./myphoto.jpeg", "rb") as file:
     img = base64.b64encode(file.read()).decode()
 
 st.markdown(
