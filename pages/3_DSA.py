@@ -17,7 +17,7 @@ st.markdown("""
 
 /* Style for all subheaders */
 h3 {
-    background-color: #111111;
+    background-color: #ffffff;
     padding: 12px 16px;
     border-left: 6px solid #00FFD1;
     border-radius: 8px;
