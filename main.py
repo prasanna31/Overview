@@ -18,7 +18,8 @@ def set_background(image_file):
         background-image: url("data:image/jpg;base64,{encoded}");
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
+        background-attachment: scroll; 
+
     }}
 
     .glass {{
@@ -33,16 +34,13 @@ def set_background(image_file):
 
 
 # ---------- SET BACKGROUND ----------
-set_background("./background.jpeg")
+set_background("./background-1.jpeg")
 
 
 # ---------- TITLE SECTION ----------
 col1, col2 = st.columns([1,2])
 
 with col1:
-    st.image("./myphoto.jpeg", width=250)
-
-with col2:
     st.title("👋 Hello, I'm Jayaprasanna R")
     st.subheader("AI Enthusiast | Backend Developer | ML Researcher")
 
@@ -52,6 +50,8 @@ with col2:
     My passion is understanding the **mathematics behind intelligence** and turning those
     ideas into real-world systems.
     """)
+with col2:
+    st.image("./myphoto.jpeg", width=250)
 
 st.markdown("---")
 
