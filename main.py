@@ -29,7 +29,7 @@ html, body, [class*="css"]  {
 # }
 
 /* Ensure headings also black */
-h1, h2, h3, h4, h5, h6 {
+body, p, span, div, h1, h2, h3, h4, h5, h6 {
     color: black;
 }
 
