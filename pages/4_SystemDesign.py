@@ -26,7 +26,7 @@ st.header("1. EDGE LAYER – Where Users Enter")
 with st.expander("DNS (Domain Name System)"):
    st.set_page_config(page_title="DNS Explained", layout="wide")
 
-    st.markdown("""
+   st.markdown("""
     # DNS – Domain Name System
 
     DNS is one of the most important systems on the internet.
