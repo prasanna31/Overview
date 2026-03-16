@@ -187,7 +187,7 @@ with st.expander("Core Goals of AI"):
 with st.expander("Difference between AI, ML, and GenAI"):
     st.markdown("")
 
-st.title(" 2️⃣ Machine Learning")
+st.title("Machine Learning")
 with st.expander("Supervised Learning"):
     st.markdown("")
 
@@ -197,14 +197,14 @@ with st.expander("Unsupervised Learning"):
 with st.expander("Reinforcement Learning"):
     st.markdown("")
 
-st.title(" 3️⃣ Deep Learning")
+st.title("Deep Learning")
 with st.expander("Neural Networks"):
     st.markdown("")
 
 with st.expander("CNN, RNN, Transformers"):
     st.markdown("")
 
-st.title(" 4️⃣ Natural Language Processing")
+st.title("Natural Language Processing")
 with st.expander("Language Models"):
     st.markdown("")
 
@@ -217,7 +217,7 @@ with st.expander("Text Classification"):
 with st.expander("Machine Translation"):
     st.markdown("")
 
-st.title(" 5️⃣ Generative AI")
+st.title("Generative AI")
 with st.expander("Large Language Models (GPT, BERT, LLaMA)"):
     st.markdown("")
 
@@ -230,7 +230,7 @@ with st.expander("GANs"):
 with st.expander("Retrieval-Augmented Generation (RAG)"):
     st.markdown("")
 
-st.title(" 6️⃣ AI Infrastructure")
+st.title("AI Infrastructure")
 with st.expander("GPUs & Hardware"):
     st.markdown("")
 
@@ -240,7 +240,7 @@ with st.expander("Model Training"):
 with st.expander("Model Serving & Inference"):
     st.markdown("")
 
-st.title(" 7️⃣ AI Applications")
+st.title("AI Applications")
 with st.expander("Chatbots"):
     st.markdown("")
 
@@ -256,7 +256,20 @@ with st.expander("Healthcare AI"):
 with st.expander("Fraud Detection"):
     st.markdown("")
 
-st.title(" 8️⃣ Data Preparation & Preprocessing (Non-Technical) ")
+st.title("Computer Vision")
+with st.expander("Image Classification"):
+    st.markdown("")
+
+with st.expander("Object Detection"):
+    st.markdown("")
+
+with st.expander("Segmentation"):
+    st.markdown("")
+
+with st.expander("Face / Gesture Recognition"):
+    st.markdown("")
+
+st.title("Data Preparation & Preprocessing (Non-Technical) ")
 with st.expander("Data Collection"):
     st.markdown("")
 
@@ -272,7 +285,7 @@ with st.expander("Feature Engineering"):
 with st.expander("Data Augmentation"):
     st.markdown("")
 
-st.title(" 9️⃣ Deployment & Production (Non-Technical / DevOps)")
+st.title("Deployment & Production (Non-Technical / DevOps)")
 with st.expander("Model Deployment"):
     st.markdown("")
 
