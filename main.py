@@ -60,7 +60,7 @@ def set_background(image_file):
     css = f"""
     <style>
 
-    .stApp {{
+    [data-testid="stAppViewContainer"] {{
         background-image: url("data:image/jpg;base64,{encoded}");
         background-size: cover;
         background-position: center;
