@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 st.markdown("""
 <style>
 .stApp {
-    background-color: #d3d3d3;
+    background-color: #D8E4C5;
 }
 </style>
 """, unsafe_allow_html=True)
