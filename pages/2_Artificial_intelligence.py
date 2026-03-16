@@ -5,6 +5,14 @@ import streamlit.components.v1 as components
 
 st.markdown("""
 <style>
+.stApp {
+    background-color: #0e1117;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
 
 /* H1 Styling (#) */
 h1 {
