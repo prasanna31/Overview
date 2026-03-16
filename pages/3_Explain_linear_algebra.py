@@ -2,6 +2,29 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
+st.markdown("""
+<style>
+
+.box {
+    border: 2px solid #6C63FF;
+    background-color: #f4f2ff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.box-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4A47A3;
+    margin-bottom: 10px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
 st.title("Linear Algebra — Intuition for Machine Learning")
 
 st.markdown("""
