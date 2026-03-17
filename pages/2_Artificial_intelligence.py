@@ -1143,1078 +1143,1078 @@ with st.expander("2. Mathematical Foundations"):
         Key idea:
         Projection = extracting useful information along a direction.
         """)
-with st.expander("2.2 Probability Theory"):
+    with st.expander("2.2 Probability Theory"):
 
-    with st.expander("2.2.1 Basic Terminology"):
+        with st.expander("2.2.1 Basic Terminology"):
 
-        with st.expander("Experiment"):
+            with st.expander("Experiment"):
+                st.markdown("""
+        An experiment is any process or action that produces an outcome, where the result is uncertain beforehand.
+
+        Examples:
+        - Tossing a coin
+        - Rolling a dice
+        - Predicting if an email is spam
+
+        Key idea:
+        An experiment defines the setting where randomness exists.
+
+        Intuition:
+        Think of an experiment as “asking a question whose answer is not known yet.”
+        """)
+
+            with st.expander("Sample Space"):
+                st.markdown("""
+        The sample space (Ω) is the set of all possible outcomes of an experiment.
+
+        Examples:
+        - Coin toss → Ω = {Heads, Tails}
+        - Dice roll → Ω = {1,2,3,4,5,6}
+
+        Properties:
+        - Must include all possible outcomes
+        - Outcomes are mutually exclusive
+
+        Intuition:
+        Sample space is the “universe” of all possibilities.
+
+        Everything that can happen is inside Ω.
+        """)
+
+            with st.expander("Event"):
+                st.markdown("""
+        An event is a subset of the sample space.
+
+        Examples:
+        - Getting Heads → {Heads}
+        - Getting an even number → {2,4,6}
+
+        Types:
+        - Simple event → single outcome
+        - Compound event → multiple outcomes
+
+        Operations:
+        - Union (A ∪ B): A or B happens
+        - Intersection (A ∩ B): both A and B happen
+        - Complement (Aᶜ): A does not happen
+
+        Intuition:
+        Events are the specific outcomes we care about within the larger universe.
+        """)
+
+            with st.expander("Probability"):
+                st.markdown("""
+        Probability measures how likely an event is to occur.
+
+        Definition:
+        P(A) = number between 0 and 1
+
+        - P(A) = 0 → impossible
+        - P(A) = 1 → certain
+
+        For equally likely outcomes:
+        P(A) = (number of favorable outcomes) / (total outcomes)
+
+        Example:
+        P(even number on dice) = 3/6 = 1/2
+
+        Intuition:
+        Probability quantifies uncertainty.
+
+        It answers:
+        “How confident are we that this event will occur?”
+        """)
+
+            with st.expander("Axioms of Probability"):
+                st.markdown("""
+        Probability is built on three fundamental rules (Kolmogorov axioms):
+
+        1. Non-negativity:
+        P(A) ≥ 0
+
+        2. Normalization:
+        P(Ω) = 1
+
+        3. Additivity:
+        If A and B are disjoint:
+        P(A ∪ B) = P(A) + P(B)
+
+        Derived rule:
+        P(Aᶜ) = 1 - P(A)
+
+        General formula:
+        P(A ∪ B) = P(A) + P(B) - P(A ∩ B)
+
+        Intuition:
+        These axioms ensure probability behaves logically and consistently.
+
+        They are the “laws” governing uncertainty.
+        """)
+
+
+        with st.expander("2.2.2 Types of Probability"):
+
+            with st.expander("Classical Probability"):
+                st.markdown("""
+        Classical probability assumes all outcomes are equally likely.
+
+        Formula:
+        P(A) = (favorable outcomes) / (total outcomes)
+
+        Example:
+        Probability of getting a 3 on a dice:
+        P(3) = 1/6
+
+        When to use:
+        - Games of chance
+        - Symmetric situations
+
+        Limitation:
+        Does not work when outcomes are not equally likely.
+
+        Intuition:
+        Fair world → all outcomes treated equally.
+        """)
+
+            with st.expander("Frequentist Probability"):
+                st.markdown("""
+        Frequentist probability defines probability as long-run frequency.
+
+        Formula:
+        P(A) = (number of times A occurs) / (total trials)
+
+        As trials → ∞, this stabilizes.
+
+        Example:
+        If it rains 300 out of 1000 days:
+        P(rain) = 0.3
+
+        Key idea:
+        Probability is not a belief—it is an observed frequency.
+
+        In ML:
+        - Used in maximum likelihood estimation (MLE)
+        - Data-driven approach
+
+        Intuition:
+        “What fraction of the time does this event happen?”
+        """)
+
+            with st.expander("Bayesian Probability"):
+                st.markdown("""
+        Bayesian probability treats probability as a degree of belief.
+
+        Key Idea:
+        We update our belief as we get new data.
+
+        Bayes Theorem:
+        P(A|B) = (P(B|A) * P(A)) / P(B)
+
+        Where:
+        P(A) → prior belief  
+        P(B|A) → likelihood  
+        P(A|B) → updated belief (posterior)
+
+        Example:
+        Medical test:
+        - Prior → probability of disease
+        - Likelihood → test accuracy
+        - Posterior → probability after seeing result
+
+        In ML:
+        - Bayesian models
+        - Uncertainty estimation
+
+        Intuition:
+        Start with a belief → update it with evidence.
+
+        Key difference:
+        Frequentist → based on data frequency  
+        Bayesian → based on belief + evidence
+        """)
+
+        with st.expander("2.2.3 Conditional Probability"):
+
+            with st.expander("Definition"):
+                st.markdown("""
+        Conditional probability answers:
+
+        "What is the probability of A, given that B has already happened?"
+
+        This fundamentally changes the space we are working in.
+
+        Instead of considering all possible outcomes (Ω),
+        we restrict ourselves ONLY to outcomes where B is true.
+
+        So:
+        Original space → Ω  
+        New space → B  
+
+        We now measure how much of B is occupied by A.
+
+        This is why conditional probability is not just a formula—it is a change of perspective.
+        """)
+
+            with st.expander("Formula"):
+                st.markdown("""
+        P(A | B) = P(A ∩ B) / P(B)
+
+        Derivation (very important):
+
+        We restrict to region B.
+        Inside B, the portion that also satisfies A is A ∩ B.
+
+        So:
+        Probability = (portion of B that is also A) / (total B)
+
+        Example:
+        Deck of 52 cards
+
+        Let:
+        A = card is King → P(A) = 4/52  
+        B = card is Heart → P(B) = 13/52  
+
+        A ∩ B = King of Hearts → 1/52  
+
+        So:
+        P(A | B) = (1/52) / (13/52) = 1/13  
+
+        Interpretation:
+        If you already know it's a Heart, probability of King becomes 1/13.
+
+        Key transformation:
+        Global probability → Local probability inside B.
+        """)
+
+            with st.expander("Intuition"):
+                st.markdown("""
+        The most important idea:
+
+        Conditioning = shrinking the world.
+
+        Imagine 100 people:
+        - 40 are students (B)
+        - 20 like coding (A)
+        - 15 are both (A ∩ B)
+
+        Without conditioning:
+        P(A) = 20/100 = 0.2
+
+        With conditioning:
+        We ONLY look at students (40 people)
+
+        Out of them, 15 like coding:
+        P(A | B) = 15/40 = 0.375
+
+        So probability increased because we changed the reference group.
+
+        Key insight:
+        Probabilities change because the denominator changes.
+
+        This idea is used everywhere in ML:
+        - filtering data
+        - computing likelihoods
+        - updating beliefs
+        """)
+
+
+        with st.expander("2.2.4 Independence"):
+
+            with st.expander("Definition"):
+                st.markdown("""
+        Two events are independent if knowing one does not change the probability of the other.
+
+        Formally:
+        P(A | B) = P(A)
+
+        Using conditional probability formula:
+        P(A ∩ B) = P(A)P(B)
+
+        This is the most important identity for independence.
+
+        Interpretation:
+        Information about B gives ZERO information about A.
+        """)
+
+            with st.expander("Independent Events"):
+                st.markdown("""
+        Independent events behave like completely separate systems.
+
+        Example:
+        Two coin tosses
+
+        Let:
+        A = first toss is Heads  
+        B = second toss is Heads  
+
+        P(A) = 1/2  
+        P(B) = 1/2  
+
+        Joint:
+        P(A ∩ B) = 1/4 = (1/2)*(1/2)
+
+        Why?
+        Because outcome of first toss does not influence second.
+
+        Geometric intuition:
+        The probability of overlap = product of probabilities.
+
+        In ML:
+        Naive Bayes assumes features are conditionally independent:
+        P(x₁, x₂, ..., xₙ | y) = Π P(xᵢ | y)
+
+        Key idea:
+        Independence simplifies joint probability into multiplication.
+        """)
+
+            with st.expander("Dependent Events"):
+                st.markdown("""
+        Events are dependent if one changes the probability of the other.
+
+        Formally:
+        P(A | B) ≠ P(A)
+
+        Example:
+        Drawing cards WITHOUT replacement
+
+        Let:
+        A = first card is Ace  
+        B = second card is Ace  
+
+        P(A) = 4/52  
+
+        After drawing one Ace:
+        Remaining Aces = 3  
+        Remaining cards = 51  
+
+        So:
+        P(B | A) = 3/51 ≠ 4/52
+
+        Thus dependent.
+
+        General formula:
+        P(A ∩ B) = P(A | B) * P(B)
+
+        Key insight:
+        Dependence means information flows between events.
+
+        In ML:
+        Most real-world features are dependent.
+        Ignoring this (like in Naive Bayes) is a simplification.
+        """)
+
+
+        with st.expander("2.2.5 Bayes Theorem"):
+
+            with st.expander("Formula"):
+                st.markdown("""
+        Bayes Theorem:
+
+        P(A | B) = (P(B | A) * P(A)) / P(B)
+
+        Derivation (important):
+
+        From conditional probability:
+        P(A | B) = P(A ∩ B) / P(B)  
+        P(B | A) = P(A ∩ B) / P(A)
+
+        So:
+        P(A ∩ B) = P(B | A) * P(A)
+
+        Substitute:
+        P(A | B) = (P(B | A) * P(A)) / P(B)
+
+        This is just algebra, but the interpretation is powerful.
+
+        Extended form (multiple hypotheses):
+        P(Aᵢ | B) = (P(B | Aᵢ)P(Aᵢ)) / Σ P(B | Aⱼ)P(Aⱼ)
+        """)
+
+            with st.expander("Prior, Likelihood, Posterior"):
+                st.markdown("""
+        Break Bayes into parts:
+
+        1. Prior → P(A)
+        Initial belief before seeing data
+
+        2. Likelihood → P(B | A)
+        How probable the evidence is if A is true
+
+        3. Posterior → P(A | B)
+        Updated belief after seeing evidence
+
+        4. Evidence → P(B)
+        Normalization (ensures probabilities sum to 1)
+
+        Pipeline:
+        Prior → incorporate data → Posterior
+
+        Concrete Example:
+
+        Disease test:
+
+        P(Disease) = 0.01 (rare)  
+        P(Positive | Disease) = 0.99  
+        P(Positive | No Disease) = 0.05  
+
+        We want:
+        P(Disease | Positive)
+
+        Compute:
+        P(Positive) =
+        0.99 * 0.01 + 0.05 * 0.99  
+        = 0.0099 + 0.0495 = 0.0594  
+
+        Now:
+        P(Disease | Positive) =
+        (0.99 * 0.01) / 0.0594 ≈ 0.166
+
+        Even with a positive test,
+        probability is only ~16.6%
+
+        Why?
+        Because prior was very small.
+
+        This is extremely important intuition.
+        """)
+
+            with st.expander("Intuition"):
+                st.markdown("""
+        Bayes theorem reverses conditional probability.
+
+        We often know:
+        P(B | A) → how data behaves given a cause
+
+        But we want:
+        P(A | B) → probability of cause given data
+
+        Bayes allows this reversal.
+
+        Core insight:
+        Posterior ∝ Likelihood × Prior
+
+        Meaning:
+        New belief = old belief × evidence strength
+
+        Key intuition:
+
+        - Strong prior → hard to change belief
+        - Strong likelihood → strong evidence
+        - Weak evidence → small update
+
+        In ML:
+        - Classification (Naive Bayes)
+        - Bayesian inference
+        - Updating models with new data
+
+        Final takeaway:
+        Learning = updating beliefs mathematically.
+        """)
+        with st.expander("2.2.6 Random Variables"):
+
+            with st.expander("Definition"):
+                st.markdown("""
+        A random variable is a function that maps outcomes of a random experiment to real numbers.
+
+        Formally:
+        X : Ω → ℝ
+
+        Meaning:
+        Instead of working with raw outcomes (like "Heads", "Tail", "Red card"),
+        we assign numbers to them so we can do mathematics.
+
+        Example:
+        Coin toss:
+        Ω = {H, T}
+
+        Define:
+        X(H) = 1  
+        X(T) = 0  
+
+        Now instead of outcomes, we work with numbers.
+
+        Key idea:
+        Random variable = numerical representation of randomness
+
+        Why important?
+        Because ML models work with numbers, not abstract outcomes.
+        """)
+
+            with st.expander("Discrete Random Variables"):
+                st.markdown("""
+        A discrete random variable takes a finite or countable number of values.
+
+        Examples:
+        - Number of heads in 3 coin tosses → {0,1,2,3}
+        - Number of customers arriving → {0,1,2,...}
+
+        Key property:
+        Values are countable
+
+        We describe it using a PMF (Probability Mass Function)
+
+        Example:
+        X = number of heads in 2 tosses
+
+        Values:
+        0, 1, 2
+
+        Probabilities:
+        P(X=0) = 1/4  
+        P(X=1) = 1/2  
+        P(X=2) = 1/4  
+
+        Key idea:
+        Probability is assigned directly to each value.
+        """)
+
+            with st.expander("Continuous Random Variables"):
+                st.markdown("""
+        A continuous random variable takes infinitely many values in an interval.
+
+        Examples:
+        - Height
+        - Weight
+        - Time
+        - Temperature
+
+        Key property:
+        Uncountably infinite values
+
+        Important:
+        P(X = exact value) = 0
+
+        Instead, we work with intervals:
+        P(a ≤ X ≤ b)
+
+        We describe it using a PDF (Probability Density Function)
+
+        Example:
+        Height of people
+
+        We cannot say:
+        P(height = 170 cm)
+
+        We say:
+        P(165 ≤ height ≤ 175)
+
+        Key idea:
+        Probability is spread continuously, not at points.
+        """)
+
+
+        with st.expander("2.2.7 Probability Distributions"):
+
+            with st.expander("PMF (Probability Mass Function)"):
+                st.markdown("""
+        Used for discrete random variables.
+
+        Definition:
+        PMF gives probability of each exact value.
+
+        P(X = x)
+
+        Properties:
+        1. P(X = x) ≥ 0  
+        2. Σ P(X = x) = 1  
+
+        Example:
+        Dice roll:
+
+        P(X=1) = 1/6  
+        P(X=2) = 1/6  
+        ...  
+
+        Interpretation:
+        Each value has a specific probability mass.
+
+        Key idea:
+        Probability is concentrated at points.
+        """)
+
+            with st.expander("PDF (Probability Density Function)"):
+                st.markdown("""
+        Used for continuous random variables.
+
+        Definition:
+        PDF describes density of probability, not direct probability.
+
+        f(x)
+
+        Important:
+        P(X = x) = 0
+
+        Probability over interval:
+        P(a ≤ X ≤ b) = ∫[a to b] f(x) dx
+
+        Properties:
+        1. f(x) ≥ 0  
+        2. ∫ f(x) dx = 1  
+
+        Example:
+        Normal distribution (Gaussian)
+
+        Key idea:
+        PDF tells how dense probability is around a point,
+        not the probability of that exact point.
+        """)
+
+            with st.expander("CDF (Cumulative Distribution Function)"):
+                st.markdown("""
+        CDF gives cumulative probability up to a value.
+
+        Definition:
+        F(x) = P(X ≤ x)
+
+        For discrete:
+        F(x) = Σ P(X ≤ x)
+
+        For continuous:
+        F(x) = ∫[-∞ to x] f(t) dt
+
+        Properties:
+        1. Monotonically increasing  
+        2. Range: 0 to 1  
+
+        Interpretation:
+        CDF tells "how much probability has accumulated up to x"
+
+        Key idea:
+        CDF = accumulated probability curve.
+        """)
+
+
+        with st.expander("2.2.8 Expectation and Variance"):
+
+            with st.expander("Expected Value"):
+                st.markdown("""
+        Expected value is the average or mean value of a random variable.
+
+        It represents the "center of mass" of the distribution.
+
+        Discrete:
+        E[X] = Σ x P(X = x)
+
+        Continuous:
+        E[X] = ∫ x f(x) dx
+
+        Example:
+        Dice roll:
+
+        E[X] = (1+2+3+4+5+6)/6 = 3.5
+
+        Important:
+        Expected value does not have to be a possible outcome.
+
+        Interpretation:
+        If you repeat experiment many times, average → E[X]
+
+        In ML:
+        - Loss functions are expectations
+        - Models try to minimize expected error
+
+        Key idea:
+        Expectation = long-run average.
+        """)
+
+            with st.expander("Variance"):
+                st.markdown("""
+        Variance measures how spread out values are from the mean.
+
+        Definition:
+        Var(X) = E[(X - μ)²]
+
+        Where:
+        μ = E[X]
+
+        Expanded form:
+        Var(X) = E[X²] - (E[X])²
+
+        Interpretation:
+        - Small variance → values close to mean
+        - Large variance → values widely spread
+
+        Example:
+        Two datasets:
+        [4,5,6] vs [1,5,9]
+
+        Same mean, different variance.
+
+        Key idea:
+        Variance = measure of uncertainty/spread.
+        """)
+
+            with st.expander("Standard Deviation"):
+                st.markdown("""
+        Standard deviation is the square root of variance.
+
+        σ = √Var(X)
+
+        Why needed?
+        Variance is in squared units (hard to interpret),
+        so we take square root to bring it back to original units.
+
+        Example:
+        If variance = 9,
+        standard deviation = 3
+
+        Interpretation:
+        Average distance from the mean.
+
+        In ML:
+        - Used in normalization
+        - Important in Gaussian distributions
+        - Controls spread of data
+
+        Key idea:
+        Standard deviation = interpretable measure of spread.
+        """)
+
+        with st.expander("2.2.9 Common Distributions"):
+
+            with st.expander("Bernoulli Distribution"):
+                st.markdown("""
+        This is the simplest distribution — a single binary outcome.
+
+        Used when there are only TWO possible outcomes:
+        Success (1) or Failure (0)
+
+        Example:
+        - Coin toss
+        - Click / No Click
+        - Spam / Not Spam
+
+        Parameter:
+        p = P(X = 1)
+
+        PMF:
+        P(X = x) = p^x * (1 - p)^(1 - x), where x ∈ {0,1}
+
+        Mean:
+        E[X] = p
+
+        Variance:
+        Var(X) = p(1 - p)
+
+        Intuition:
+        This models a single yes/no experiment.
+
+        In ML:
+        - Logistic regression outputs Bernoulli probability
+        - Binary classification is Bernoulli modeling
+        """)
+
+            with st.expander("Binomial Distribution"):
+                st.markdown("""
+        Extension of Bernoulli to multiple independent trials.
+
+        Question:
+        "How many successes in n trials?"
+
+        Example:
+        - Number of heads in 10 tosses
+        - Number of correct predictions
+
+        Parameters:
+        n = number of trials  
+        p = probability of success
+
+        PMF:
+        P(X = k) = C(n, k) * p^k * (1 - p)^(n - k)
+
+        Mean:
+        E[X] = np
+
+        Variance:
+        Var(X) = np(1 - p)
+
+        Intuition:
+        You repeat Bernoulli experiment n times and count successes.
+
+        In ML:
+        - Modeling counts
+        - Used in likelihood functions
+        """)
+
+
+            with st.expander("Gaussian (Normal) Distribution"):
+                st.markdown("""
+        Most important distribution in ML.
+
+        Shape:
+        Bell curve (symmetric)
+
+        Parameters:
+        μ = mean (center)  
+        σ² = variance (spread)
+
+        PDF:
+        f(x) = (1 / √(2πσ²)) * exp(-(x - μ)² / (2σ²))
+
+        Properties:
+        - Symmetric around mean
+        - Mean = Median = Mode
+        - Controlled by μ and σ
+
+        68-95-99 rule:
+        - 68% within 1σ
+        - 95% within 2σ
+        - 99% within 3σ
+
+        Intuition:
+        Many natural processes cluster around a mean with small deviations.
+
+        Why everywhere?
+        Central Limit Theorem:
+        Sum of many random variables → Gaussian
+
+        In ML:
+        - Assumption in many models
+        - Errors often assumed Gaussian
+        - Used in linear regression
+        """)
+
+
+            with st.expander("Uniform Distribution"):
+                st.markdown("""
+        All values are equally likely.
+
+        Discrete example:
+        Dice → each value has probability 1/6
+
+        Continuous example:
+        X ~ Uniform(a, b)
+
+        PDF:
+        f(x) = 1 / (b - a), for a ≤ x ≤ b
+
+        Mean:
+        E[X] = (a + b) / 2
+
+        Variance:
+        Var(X) = (b - a)² / 12
+
+        Intuition:
+        No preference — completely flat probability.
+
+        In ML:
+        - Used for random initialization
+        - Baseline assumption when no prior knowledge exists
+        """)
+
+
+        with st.expander("2.2.10 Joint and Marginal Probability"):
+
+            with st.expander("Joint Distribution"):
+                st.markdown("""
+        Joint probability describes probability of multiple variables together.
+
+        P(X, Y)
+
+        Example:
+        P(Weather = Rain, Traffic = Heavy)
+
+        Discrete:
+        P(X = x, Y = y)
+
+        Continuous:
+        f(x, y)
+
+        Key idea:
+        Captures relationship between variables.
+
+        If independent:
+        P(X, Y) = P(X)P(Y)
+
+        If not:
+        They influence each other.
+
+        In ML:
+        Joint distributions define full probabilistic models.
+        """)
+
+            with st.expander("Marginal Distribution"):
+                st.markdown("""
+        Marginal probability is obtained by summing or integrating out other variables.
+
+        From joint:
+        P(X) = Σ P(X, Y)   (discrete)
+        P(X) = ∫ f(X, Y) dY   (continuous)
+
+        Example:
+        You know joint distribution of (Weather, Traffic),
+        but want only Weather.
+
+        So you "remove" Traffic.
+
+        Intuition:
+        Marginalization = ignoring other variables.
+
+        Key idea:
+        From joint → reduce to one variable.
+        """)
+
+            with st.expander("Conditional Distribution"):
+                st.markdown("""
+        Conditional distribution describes probability of one variable given another.
+
+        P(X | Y)
+
+        Formula:
+        P(X | Y) = P(X, Y) / P(Y)
+
+        Interpretation:
+        Restrict joint distribution to Y.
+
+        In ML:
+        Most models compute:
+        P(output | input)
+
+        Example:
+        P(Spam | Email features)
+
+        Key idea:
+        Conditional = focused view of joint distribution.
+        """)
+
+
+        with st.expander("2.2.11 Law of Total Probability"):
+
+            with st.expander("Formula"):
+                st.markdown("""
+        If A₁, A₂, ..., Aₙ are mutually exclusive and exhaustive:
+
+        P(B) = Σ P(B | Aᵢ) P(Aᵢ)
+
+        Meaning:
+        Break probability into cases.
+
+        Example:
+        P(Positive Test) =
+        P(Positive | Disease)P(Disease)
+        + P(Positive | No Disease)P(No Disease)
+        """)
+
+            with st.expander("Intuition"):
+                st.markdown("""
+        This is "divide and conquer" for probability.
+
+        Instead of computing P(B) directly,
+        we break it into simpler cases.
+
+        Steps:
+        1. Split world into cases (A₁, A₂, ...)
+        2. Compute probability in each case
+        3. Add them
+
+        Geometric view:
+        Partition the space → sum contributions.
+
+        In ML:
+        Used in:
+        - Bayesian inference
+        - Hidden variable models
+
+        Key idea:
+        Total probability = weighted sum over cases.
+        """)
+
+
+        with st.expander("2.2.12 Information Theory Basics"):
+
+            with st.expander("Entropy"):
+                st.markdown("""
+        Entropy measures uncertainty in a random variable.
+
+        Formula:
+        H(X) = - Σ P(x) log P(x)
+
+        Interpretation:
+        - High entropy → high uncertainty
+        - Low entropy → predictable
+
+        Examples:
+        Fair coin:
+        H = 1 (maximum uncertainty)
+
+        Biased coin:
+        Lower entropy
+
+        Extreme:
+        If P=1 → H=0 (no uncertainty)
+
+        In ML:
+        - Used in decision trees (information gain)
+        - Measures randomness in data
+
+        Key idea:
+        Entropy = amount of surprise.
+        """)
+
+            with st.expander("Cross Entropy"):
+                st.markdown("""
+        Measures how well one probability distribution approximates another.
+
+        Formula:
+        H(P, Q) = - Σ P(x) log Q(x)
+
+        Where:
+        P = true distribution  
+        Q = predicted distribution  
+
+        Interpretation:
+        Penalty for predicting Q when true is P.
+
+        In ML:
+        This is the MOST important loss function.
+
+        Example:
+        Classification loss = Cross Entropy
+
+        Key idea:
+        Lower cross entropy = better predictions.
+        """)
+
+            with st.expander("KL Divergence"):
+                st.markdown("""
+        Measures difference between two distributions.
+
+        Formula:
+        KL(P || Q) = Σ P(x) log (P(x)/Q(x))
+
+        Relation:
+        KL = Cross Entropy - Entropy
+
+        Properties:
+        - KL ≥ 0
+        - KL = 0 only if P = Q
+
+        Interpretation:
+        “How much extra information is needed if we use Q instead of P?”
+
+        Important:
+        KL is NOT symmetric.
+
+        In ML:
+        - Used in VAEs
+        - Distribution matching
+        - Regularization
+
+        Key idea:
+        KL divergence = distance between distributions.
+        """)
+
             st.markdown("""
-    An experiment is any process or action that produces an outcome, where the result is uncertain beforehand.
+        Final Insight:
 
-    Examples:
-    - Tossing a coin
-    - Rolling a dice
-    - Predicting if an email is spam
+        Entropy → uncertainty  
+        Cross Entropy → prediction error  
+        KL Divergence → distribution difference  
 
-    Key idea:
-    An experiment defines the setting where randomness exists.
-
-    Intuition:
-    Think of an experiment as “asking a question whose answer is not known yet.”
-    """)
-
-        with st.expander("Sample Space"):
-            st.markdown("""
-    The sample space (Ω) is the set of all possible outcomes of an experiment.
-
-    Examples:
-    - Coin toss → Ω = {Heads, Tails}
-    - Dice roll → Ω = {1,2,3,4,5,6}
-
-    Properties:
-    - Must include all possible outcomes
-    - Outcomes are mutually exclusive
-
-    Intuition:
-    Sample space is the “universe” of all possibilities.
-
-    Everything that can happen is inside Ω.
-    """)
-
-        with st.expander("Event"):
-            st.markdown("""
-    An event is a subset of the sample space.
-
-    Examples:
-    - Getting Heads → {Heads}
-    - Getting an even number → {2,4,6}
-
-    Types:
-    - Simple event → single outcome
-    - Compound event → multiple outcomes
-
-    Operations:
-    - Union (A ∪ B): A or B happens
-    - Intersection (A ∩ B): both A and B happen
-    - Complement (Aᶜ): A does not happen
-
-    Intuition:
-    Events are the specific outcomes we care about within the larger universe.
-    """)
-
-        with st.expander("Probability"):
-            st.markdown("""
-    Probability measures how likely an event is to occur.
-
-    Definition:
-    P(A) = number between 0 and 1
-
-    - P(A) = 0 → impossible
-    - P(A) = 1 → certain
-
-    For equally likely outcomes:
-    P(A) = (number of favorable outcomes) / (total outcomes)
-
-    Example:
-    P(even number on dice) = 3/6 = 1/2
-
-    Intuition:
-    Probability quantifies uncertainty.
-
-    It answers:
-    “How confident are we that this event will occur?”
-    """)
-
-        with st.expander("Axioms of Probability"):
-            st.markdown("""
-    Probability is built on three fundamental rules (Kolmogorov axioms):
-
-    1. Non-negativity:
-    P(A) ≥ 0
-
-    2. Normalization:
-    P(Ω) = 1
-
-    3. Additivity:
-    If A and B are disjoint:
-    P(A ∪ B) = P(A) + P(B)
-
-    Derived rule:
-    P(Aᶜ) = 1 - P(A)
-
-    General formula:
-    P(A ∪ B) = P(A) + P(B) - P(A ∩ B)
-
-    Intuition:
-    These axioms ensure probability behaves logically and consistently.
-
-    They are the “laws” governing uncertainty.
-    """)
-
-
-    with st.expander("2.2.2 Types of Probability"):
-
-        with st.expander("Classical Probability"):
-            st.markdown("""
-    Classical probability assumes all outcomes are equally likely.
-
-    Formula:
-    P(A) = (favorable outcomes) / (total outcomes)
-
-    Example:
-    Probability of getting a 3 on a dice:
-    P(3) = 1/6
-
-    When to use:
-    - Games of chance
-    - Symmetric situations
-
-    Limitation:
-    Does not work when outcomes are not equally likely.
-
-    Intuition:
-    Fair world → all outcomes treated equally.
-    """)
-
-        with st.expander("Frequentist Probability"):
-            st.markdown("""
-    Frequentist probability defines probability as long-run frequency.
-
-    Formula:
-    P(A) = (number of times A occurs) / (total trials)
-
-    As trials → ∞, this stabilizes.
-
-    Example:
-    If it rains 300 out of 1000 days:
-    P(rain) = 0.3
-
-    Key idea:
-    Probability is not a belief—it is an observed frequency.
-
-    In ML:
-    - Used in maximum likelihood estimation (MLE)
-    - Data-driven approach
-
-    Intuition:
-    “What fraction of the time does this event happen?”
-    """)
-
-        with st.expander("Bayesian Probability"):
-            st.markdown("""
-    Bayesian probability treats probability as a degree of belief.
-
-    Key Idea:
-    We update our belief as we get new data.
-
-    Bayes Theorem:
-    P(A|B) = (P(B|A) * P(A)) / P(B)
-
-    Where:
-    P(A) → prior belief  
-    P(B|A) → likelihood  
-    P(A|B) → updated belief (posterior)
-
-    Example:
-    Medical test:
-    - Prior → probability of disease
-    - Likelihood → test accuracy
-    - Posterior → probability after seeing result
-
-    In ML:
-    - Bayesian models
-    - Uncertainty estimation
-
-    Intuition:
-    Start with a belief → update it with evidence.
-
-    Key difference:
-    Frequentist → based on data frequency  
-    Bayesian → based on belief + evidence
-    """)
-
-    with st.expander("2.2.3 Conditional Probability"):
-
-        with st.expander("Definition"):
-            st.markdown("""
-    Conditional probability answers:
-
-    "What is the probability of A, given that B has already happened?"
-
-    This fundamentally changes the space we are working in.
-
-    Instead of considering all possible outcomes (Ω),
-    we restrict ourselves ONLY to outcomes where B is true.
-
-    So:
-    Original space → Ω  
-    New space → B  
-
-    We now measure how much of B is occupied by A.
-
-    This is why conditional probability is not just a formula—it is a change of perspective.
-    """)
-
-        with st.expander("Formula"):
-            st.markdown("""
-    P(A | B) = P(A ∩ B) / P(B)
-
-    Derivation (very important):
-
-    We restrict to region B.
-    Inside B, the portion that also satisfies A is A ∩ B.
-
-    So:
-    Probability = (portion of B that is also A) / (total B)
-
-    Example:
-    Deck of 52 cards
-
-    Let:
-    A = card is King → P(A) = 4/52  
-    B = card is Heart → P(B) = 13/52  
-
-    A ∩ B = King of Hearts → 1/52  
-
-    So:
-    P(A | B) = (1/52) / (13/52) = 1/13  
-
-    Interpretation:
-    If you already know it's a Heart, probability of King becomes 1/13.
-
-    Key transformation:
-    Global probability → Local probability inside B.
-    """)
-
-        with st.expander("Intuition"):
-            st.markdown("""
-    The most important idea:
-
-    Conditioning = shrinking the world.
-
-    Imagine 100 people:
-    - 40 are students (B)
-    - 20 like coding (A)
-    - 15 are both (A ∩ B)
-
-    Without conditioning:
-    P(A) = 20/100 = 0.2
-
-    With conditioning:
-    We ONLY look at students (40 people)
-
-    Out of them, 15 like coding:
-    P(A | B) = 15/40 = 0.375
-
-    So probability increased because we changed the reference group.
-
-    Key insight:
-    Probabilities change because the denominator changes.
-
-    This idea is used everywhere in ML:
-    - filtering data
-    - computing likelihoods
-    - updating beliefs
-    """)
-
-
-    with st.expander("2.2.4 Independence"):
-
-        with st.expander("Definition"):
-            st.markdown("""
-    Two events are independent if knowing one does not change the probability of the other.
-
-    Formally:
-    P(A | B) = P(A)
-
-    Using conditional probability formula:
-    P(A ∩ B) = P(A)P(B)
-
-    This is the most important identity for independence.
-
-    Interpretation:
-    Information about B gives ZERO information about A.
-    """)
-
-        with st.expander("Independent Events"):
-            st.markdown("""
-    Independent events behave like completely separate systems.
-
-    Example:
-    Two coin tosses
-
-    Let:
-    A = first toss is Heads  
-    B = second toss is Heads  
-
-    P(A) = 1/2  
-    P(B) = 1/2  
-
-    Joint:
-    P(A ∩ B) = 1/4 = (1/2)*(1/2)
-
-    Why?
-    Because outcome of first toss does not influence second.
-
-    Geometric intuition:
-    The probability of overlap = product of probabilities.
-
-    In ML:
-    Naive Bayes assumes features are conditionally independent:
-    P(x₁, x₂, ..., xₙ | y) = Π P(xᵢ | y)
-
-    Key idea:
-    Independence simplifies joint probability into multiplication.
-    """)
-
-        with st.expander("Dependent Events"):
-            st.markdown("""
-    Events are dependent if one changes the probability of the other.
-
-    Formally:
-    P(A | B) ≠ P(A)
-
-    Example:
-    Drawing cards WITHOUT replacement
-
-    Let:
-    A = first card is Ace  
-    B = second card is Ace  
-
-    P(A) = 4/52  
-
-    After drawing one Ace:
-    Remaining Aces = 3  
-    Remaining cards = 51  
-
-    So:
-    P(B | A) = 3/51 ≠ 4/52
-
-    Thus dependent.
-
-    General formula:
-    P(A ∩ B) = P(A | B) * P(B)
-
-    Key insight:
-    Dependence means information flows between events.
-
-    In ML:
-    Most real-world features are dependent.
-    Ignoring this (like in Naive Bayes) is a simplification.
-    """)
-
-
-    with st.expander("2.2.5 Bayes Theorem"):
-
-        with st.expander("Formula"):
-            st.markdown("""
-    Bayes Theorem:
-
-    P(A | B) = (P(B | A) * P(A)) / P(B)
-
-    Derivation (important):
-
-    From conditional probability:
-    P(A | B) = P(A ∩ B) / P(B)  
-    P(B | A) = P(A ∩ B) / P(A)
-
-    So:
-    P(A ∩ B) = P(B | A) * P(A)
-
-    Substitute:
-    P(A | B) = (P(B | A) * P(A)) / P(B)
-
-    This is just algebra, but the interpretation is powerful.
-
-    Extended form (multiple hypotheses):
-    P(Aᵢ | B) = (P(B | Aᵢ)P(Aᵢ)) / Σ P(B | Aⱼ)P(Aⱼ)
-    """)
-
-        with st.expander("Prior, Likelihood, Posterior"):
-            st.markdown("""
-    Break Bayes into parts:
-
-    1. Prior → P(A)
-    Initial belief before seeing data
-
-    2. Likelihood → P(B | A)
-    How probable the evidence is if A is true
-
-    3. Posterior → P(A | B)
-    Updated belief after seeing evidence
-
-    4. Evidence → P(B)
-    Normalization (ensures probabilities sum to 1)
-
-    Pipeline:
-    Prior → incorporate data → Posterior
-
-    Concrete Example:
-
-    Disease test:
-
-    P(Disease) = 0.01 (rare)  
-    P(Positive | Disease) = 0.99  
-    P(Positive | No Disease) = 0.05  
-
-    We want:
-    P(Disease | Positive)
-
-    Compute:
-    P(Positive) =
-    0.99 * 0.01 + 0.05 * 0.99  
-    = 0.0099 + 0.0495 = 0.0594  
-
-    Now:
-    P(Disease | Positive) =
-    (0.99 * 0.01) / 0.0594 ≈ 0.166
-
-    Even with a positive test,
-    probability is only ~16.6%
-
-    Why?
-    Because prior was very small.
-
-    This is extremely important intuition.
-    """)
-
-        with st.expander("Intuition"):
-            st.markdown("""
-    Bayes theorem reverses conditional probability.
-
-    We often know:
-    P(B | A) → how data behaves given a cause
-
-    But we want:
-    P(A | B) → probability of cause given data
-
-    Bayes allows this reversal.
-
-    Core insight:
-    Posterior ∝ Likelihood × Prior
-
-    Meaning:
-    New belief = old belief × evidence strength
-
-    Key intuition:
-
-    - Strong prior → hard to change belief
-    - Strong likelihood → strong evidence
-    - Weak evidence → small update
-
-    In ML:
-    - Classification (Naive Bayes)
-    - Bayesian inference
-    - Updating models with new data
-
-    Final takeaway:
-    Learning = updating beliefs mathematically.
-    """)
-    with st.expander("2.2.6 Random Variables"):
-
-        with st.expander("Definition"):
-            st.markdown("""
-    A random variable is a function that maps outcomes of a random experiment to real numbers.
-
-    Formally:
-    X : Ω → ℝ
-
-    Meaning:
-    Instead of working with raw outcomes (like "Heads", "Tail", "Red card"),
-    we assign numbers to them so we can do mathematics.
-
-    Example:
-    Coin toss:
-    Ω = {H, T}
-
-    Define:
-    X(H) = 1  
-    X(T) = 0  
-
-    Now instead of outcomes, we work with numbers.
-
-    Key idea:
-    Random variable = numerical representation of randomness
-
-    Why important?
-    Because ML models work with numbers, not abstract outcomes.
-    """)
-
-        with st.expander("Discrete Random Variables"):
-            st.markdown("""
-    A discrete random variable takes a finite or countable number of values.
-
-    Examples:
-    - Number of heads in 3 coin tosses → {0,1,2,3}
-    - Number of customers arriving → {0,1,2,...}
-
-    Key property:
-    Values are countable
-
-    We describe it using a PMF (Probability Mass Function)
-
-    Example:
-    X = number of heads in 2 tosses
-
-    Values:
-    0, 1, 2
-
-    Probabilities:
-    P(X=0) = 1/4  
-    P(X=1) = 1/2  
-    P(X=2) = 1/4  
-
-    Key idea:
-    Probability is assigned directly to each value.
-    """)
-
-        with st.expander("Continuous Random Variables"):
-            st.markdown("""
-    A continuous random variable takes infinitely many values in an interval.
-
-    Examples:
-    - Height
-    - Weight
-    - Time
-    - Temperature
-
-    Key property:
-    Uncountably infinite values
-
-    Important:
-    P(X = exact value) = 0
-
-    Instead, we work with intervals:
-    P(a ≤ X ≤ b)
-
-    We describe it using a PDF (Probability Density Function)
-
-    Example:
-    Height of people
-
-    We cannot say:
-    P(height = 170 cm)
-
-    We say:
-    P(165 ≤ height ≤ 175)
-
-    Key idea:
-    Probability is spread continuously, not at points.
-    """)
-
-
-    with st.expander("2.2.7 Probability Distributions"):
-
-        with st.expander("PMF (Probability Mass Function)"):
-            st.markdown("""
-    Used for discrete random variables.
-
-    Definition:
-    PMF gives probability of each exact value.
-
-    P(X = x)
-
-    Properties:
-    1. P(X = x) ≥ 0  
-    2. Σ P(X = x) = 1  
-
-    Example:
-    Dice roll:
-
-    P(X=1) = 1/6  
-    P(X=2) = 1/6  
-    ...  
-
-    Interpretation:
-    Each value has a specific probability mass.
-
-    Key idea:
-    Probability is concentrated at points.
-    """)
-
-        with st.expander("PDF (Probability Density Function)"):
-            st.markdown("""
-    Used for continuous random variables.
-
-    Definition:
-    PDF describes density of probability, not direct probability.
-
-    f(x)
-
-    Important:
-    P(X = x) = 0
-
-    Probability over interval:
-    P(a ≤ X ≤ b) = ∫[a to b] f(x) dx
-
-    Properties:
-    1. f(x) ≥ 0  
-    2. ∫ f(x) dx = 1  
-
-    Example:
-    Normal distribution (Gaussian)
-
-    Key idea:
-    PDF tells how dense probability is around a point,
-    not the probability of that exact point.
-    """)
-
-        with st.expander("CDF (Cumulative Distribution Function)"):
-            st.markdown("""
-    CDF gives cumulative probability up to a value.
-
-    Definition:
-    F(x) = P(X ≤ x)
-
-    For discrete:
-    F(x) = Σ P(X ≤ x)
-
-    For continuous:
-    F(x) = ∫[-∞ to x] f(t) dt
-
-    Properties:
-    1. Monotonically increasing  
-    2. Range: 0 to 1  
-
-    Interpretation:
-    CDF tells "how much probability has accumulated up to x"
-
-    Key idea:
-    CDF = accumulated probability curve.
-    """)
-
-
-    with st.expander("2.2.8 Expectation and Variance"):
-
-        with st.expander("Expected Value"):
-            st.markdown("""
-    Expected value is the average or mean value of a random variable.
-
-    It represents the "center of mass" of the distribution.
-
-    Discrete:
-    E[X] = Σ x P(X = x)
-
-    Continuous:
-    E[X] = ∫ x f(x) dx
-
-    Example:
-    Dice roll:
-
-    E[X] = (1+2+3+4+5+6)/6 = 3.5
-
-    Important:
-    Expected value does not have to be a possible outcome.
-
-    Interpretation:
-    If you repeat experiment many times, average → E[X]
-
-    In ML:
-    - Loss functions are expectations
-    - Models try to minimize expected error
-
-    Key idea:
-    Expectation = long-run average.
-    """)
-
-        with st.expander("Variance"):
-            st.markdown("""
-    Variance measures how spread out values are from the mean.
-
-    Definition:
-    Var(X) = E[(X - μ)²]
-
-    Where:
-    μ = E[X]
-
-    Expanded form:
-    Var(X) = E[X²] - (E[X])²
-
-    Interpretation:
-    - Small variance → values close to mean
-    - Large variance → values widely spread
-
-    Example:
-    Two datasets:
-    [4,5,6] vs [1,5,9]
-
-    Same mean, different variance.
-
-    Key idea:
-    Variance = measure of uncertainty/spread.
-    """)
-
-        with st.expander("Standard Deviation"):
-            st.markdown("""
-    Standard deviation is the square root of variance.
-
-    σ = √Var(X)
-
-    Why needed?
-    Variance is in squared units (hard to interpret),
-    so we take square root to bring it back to original units.
-
-    Example:
-    If variance = 9,
-    standard deviation = 3
-
-    Interpretation:
-    Average distance from the mean.
-
-    In ML:
-    - Used in normalization
-    - Important in Gaussian distributions
-    - Controls spread of data
-
-    Key idea:
-    Standard deviation = interpretable measure of spread.
-    """)
-
-    with st.expander("2.2.9 Common Distributions"):
-
-        with st.expander("Bernoulli Distribution"):
-            st.markdown("""
-    This is the simplest distribution — a single binary outcome.
-
-    Used when there are only TWO possible outcomes:
-    Success (1) or Failure (0)
-
-    Example:
-    - Coin toss
-    - Click / No Click
-    - Spam / Not Spam
-
-    Parameter:
-    p = P(X = 1)
-
-    PMF:
-    P(X = x) = p^x * (1 - p)^(1 - x), where x ∈ {0,1}
-
-    Mean:
-    E[X] = p
-
-    Variance:
-    Var(X) = p(1 - p)
-
-    Intuition:
-    This models a single yes/no experiment.
-
-    In ML:
-    - Logistic regression outputs Bernoulli probability
-    - Binary classification is Bernoulli modeling
-    """)
-
-        with st.expander("Binomial Distribution"):
-            st.markdown("""
-    Extension of Bernoulli to multiple independent trials.
-
-    Question:
-    "How many successes in n trials?"
-
-    Example:
-    - Number of heads in 10 tosses
-    - Number of correct predictions
-
-    Parameters:
-    n = number of trials  
-    p = probability of success
-
-    PMF:
-    P(X = k) = C(n, k) * p^k * (1 - p)^(n - k)
-
-    Mean:
-    E[X] = np
-
-    Variance:
-    Var(X) = np(1 - p)
-
-    Intuition:
-    You repeat Bernoulli experiment n times and count successes.
-
-    In ML:
-    - Modeling counts
-    - Used in likelihood functions
-    """)
-
-
-        with st.expander("Gaussian (Normal) Distribution"):
-            st.markdown("""
-    Most important distribution in ML.
-
-    Shape:
-    Bell curve (symmetric)
-
-    Parameters:
-    μ = mean (center)  
-    σ² = variance (spread)
-
-    PDF:
-    f(x) = (1 / √(2πσ²)) * exp(-(x - μ)² / (2σ²))
-
-    Properties:
-    - Symmetric around mean
-    - Mean = Median = Mode
-    - Controlled by μ and σ
-
-    68-95-99 rule:
-    - 68% within 1σ
-    - 95% within 2σ
-    - 99% within 3σ
-
-    Intuition:
-    Many natural processes cluster around a mean with small deviations.
-
-    Why everywhere?
-    Central Limit Theorem:
-    Sum of many random variables → Gaussian
-
-    In ML:
-    - Assumption in many models
-    - Errors often assumed Gaussian
-    - Used in linear regression
-    """)
-
-
-        with st.expander("Uniform Distribution"):
-            st.markdown("""
-    All values are equally likely.
-
-    Discrete example:
-    Dice → each value has probability 1/6
-
-    Continuous example:
-    X ~ Uniform(a, b)
-
-    PDF:
-    f(x) = 1 / (b - a), for a ≤ x ≤ b
-
-    Mean:
-    E[X] = (a + b) / 2
-
-    Variance:
-    Var(X) = (b - a)² / 12
-
-    Intuition:
-    No preference — completely flat probability.
-
-    In ML:
-    - Used for random initialization
-    - Baseline assumption when no prior knowledge exists
-    """)
-
-
-    with st.expander("2.2.10 Joint and Marginal Probability"):
-
-        with st.expander("Joint Distribution"):
-            st.markdown("""
-    Joint probability describes probability of multiple variables together.
-
-    P(X, Y)
-
-    Example:
-    P(Weather = Rain, Traffic = Heavy)
-
-    Discrete:
-    P(X = x, Y = y)
-
-    Continuous:
-    f(x, y)
-
-    Key idea:
-    Captures relationship between variables.
-
-    If independent:
-    P(X, Y) = P(X)P(Y)
-
-    If not:
-    They influence each other.
-
-    In ML:
-    Joint distributions define full probabilistic models.
-    """)
-
-        with st.expander("Marginal Distribution"):
-            st.markdown("""
-    Marginal probability is obtained by summing or integrating out other variables.
-
-    From joint:
-    P(X) = Σ P(X, Y)   (discrete)
-    P(X) = ∫ f(X, Y) dY   (continuous)
-
-    Example:
-    You know joint distribution of (Weather, Traffic),
-    but want only Weather.
-
-    So you "remove" Traffic.
-
-    Intuition:
-    Marginalization = ignoring other variables.
-
-    Key idea:
-    From joint → reduce to one variable.
-    """)
-
-        with st.expander("Conditional Distribution"):
-            st.markdown("""
-    Conditional distribution describes probability of one variable given another.
-
-    P(X | Y)
-
-    Formula:
-    P(X | Y) = P(X, Y) / P(Y)
-
-    Interpretation:
-    Restrict joint distribution to Y.
-
-    In ML:
-    Most models compute:
-    P(output | input)
-
-    Example:
-    P(Spam | Email features)
-
-    Key idea:
-    Conditional = focused view of joint distribution.
-    """)
-
-
-    with st.expander("2.2.11 Law of Total Probability"):
-
-        with st.expander("Formula"):
-            st.markdown("""
-    If A₁, A₂, ..., Aₙ are mutually exclusive and exhaustive:
-
-    P(B) = Σ P(B | Aᵢ) P(Aᵢ)
-
-    Meaning:
-    Break probability into cases.
-
-    Example:
-    P(Positive Test) =
-    P(Positive | Disease)P(Disease)
-    + P(Positive | No Disease)P(No Disease)
-    """)
-
-        with st.expander("Intuition"):
-            st.markdown("""
-    This is "divide and conquer" for probability.
-
-    Instead of computing P(B) directly,
-    we break it into simpler cases.
-
-    Steps:
-    1. Split world into cases (A₁, A₂, ...)
-    2. Compute probability in each case
-    3. Add them
-
-    Geometric view:
-    Partition the space → sum contributions.
-
-    In ML:
-    Used in:
-    - Bayesian inference
-    - Hidden variable models
-
-    Key idea:
-    Total probability = weighted sum over cases.
-    """)
-
-
-    with st.expander("2.2.12 Information Theory Basics"):
-
-        with st.expander("Entropy"):
-            st.markdown("""
-    Entropy measures uncertainty in a random variable.
-
-    Formula:
-    H(X) = - Σ P(x) log P(x)
-
-    Interpretation:
-    - High entropy → high uncertainty
-    - Low entropy → predictable
-
-    Examples:
-    Fair coin:
-    H = 1 (maximum uncertainty)
-
-    Biased coin:
-    Lower entropy
-
-    Extreme:
-    If P=1 → H=0 (no uncertainty)
-
-    In ML:
-    - Used in decision trees (information gain)
-    - Measures randomness in data
-
-    Key idea:
-    Entropy = amount of surprise.
-    """)
-
-        with st.expander("Cross Entropy"):
-            st.markdown("""
-    Measures how well one probability distribution approximates another.
-
-    Formula:
-    H(P, Q) = - Σ P(x) log Q(x)
-
-    Where:
-    P = true distribution  
-    Q = predicted distribution  
-
-    Interpretation:
-    Penalty for predicting Q when true is P.
-
-    In ML:
-    This is the MOST important loss function.
-
-    Example:
-    Classification loss = Cross Entropy
-
-    Key idea:
-    Lower cross entropy = better predictions.
-    """)
-
-        with st.expander("KL Divergence"):
-            st.markdown("""
-    Measures difference between two distributions.
-
-    Formula:
-    KL(P || Q) = Σ P(x) log (P(x)/Q(x))
-
-    Relation:
-    KL = Cross Entropy - Entropy
-
-    Properties:
-    - KL ≥ 0
-    - KL = 0 only if P = Q
-
-    Interpretation:
-    “How much extra information is needed if we use Q instead of P?”
-
-    Important:
-    KL is NOT symmetric.
-
-    In ML:
-    - Used in VAEs
-    - Distribution matching
-    - Regularization
-
-    Key idea:
-    KL divergence = distance between distributions.
-    """)
-
-        st.markdown("""
-    Final Insight:
-
-    Entropy → uncertainty  
-    Cross Entropy → prediction error  
-    KL Divergence → distribution difference  
-
-    This trio forms the foundation of modern ML loss functions.
-    """)
+        This trio forms the foundation of modern ML loss functions.
+        """)
     with st.expander("2.3 Statistics for Machine Learning"):
-        st.markdown("")
+         st.markdown("")
     with st.expander("2.4 Optimization Theory"):
         st.markdown("")
     with st.expander("2.5 Information Theory"):
