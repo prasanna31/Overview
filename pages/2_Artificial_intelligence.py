@@ -2392,6 +2392,7 @@ with st.expander("2. Mathematical Foundations"):
         - Coin: H₀: coin is fair (p = 0.5), H₁: coin is biased (p ≠ 0.5)
 
         Geometric intuition:
+        - Imagine probability distributions under H₀.  
         - H₁ represents deviation from this distribution.  
 
         ML Relevance:
@@ -2711,8 +2712,85 @@ with st.expander("2. Mathematical Foundations"):
             
         with st.expander("2.4.14 Constrained Optimization Algorithms"):
             st.markdown("")
-    with st.expander("2.5 Information Theory"):
-        st.markdown("")
+    with st.expander("2.2.12 Information Theory Basics"):
+
+        with st.expander("Entropy"):
+            st.markdown("""
+    **Definition**: Measures the uncertainty or randomness of a random variable \(X\).
+
+    - Formula (for discrete X):
+    \[
+    H(X) = - \sum_{i} P(x_i) \log_2 P(x_i)
+    \]
+
+    - Intuition:
+    - High entropy → very unpredictable (e.g., fair coin, H=1)  
+    - Low entropy → very predictable (e.g., biased coin always heads, H=0)  
+
+    - Example:
+    - Fair coin: \(P(H)=P(T)=0.5\)  
+    \[
+    H(X) = -[0.5\log_2 0.5 + 0.5 \log_2 0.5] = 1
+    \]
+
+    - Geometric: Think of entropy as “spread” of probability distribution; flatter → higher entropy  
+
+    - ML Relevance:
+    - Decision tree splitting (ID3, C4.5)  
+    - Regularization and uncertainty quantification
+    """)
+
+        with st.expander("Cross Entropy"):
+            st.markdown("""
+    **Definition**: Measures difference between true distribution \(P\) and predicted distribution \(Q\).  
+
+    - Formula:
+    \[
+    H(P,Q) = - \sum_{i} P(x_i) \log Q(x_i)
+    \]
+
+    - Intuition:
+    - Lower cross-entropy → predicted distribution closer to true distribution  
+    - Used as **loss function** in classification  
+
+    - Example:
+    - True label: cat (one-hot: [1,0])  
+    - Prediction: [0.8, 0.2]  
+    \[
+    H(P,Q) = -(1* \log 0.8 + 0* \log 0.2) = 0.32
+    \]
+
+    - Geometric: Penalizes predicted probabilities far from true ones  
+
+    - ML Relevance:
+    - Softmax + cross-entropy = standard loss for multi-class classification
+    """)
+
+        with st.expander("KL Divergence"):
+            st.markdown("""
+    **Definition**: Measures how one probability distribution \(Q\) diverges from true distribution \(P\).  
+
+    - Formula:
+    \[
+    D_{KL}(P||Q) = \sum_i P(x_i) \log \frac{P(x_i)}{Q(x_i)}
+    \]
+
+    - Intuition:
+    - KL divergence = extra bits needed to encode P using Q  
+    - 0 if P=Q (perfect match)  
+
+    - Example:
+    - P = [0.5,0.5], Q=[0.9,0.1]  
+    \[
+    D_{KL}(P||Q) = 0.5 \log \frac{0.5}{0.9} + 0.5 \log \frac{0.5}{0.1} \approx 0.736
+    \]
+
+    - Geometric: Measures “distance” between two probability distributions in information space  
+
+    - ML Relevance:
+    - Variational Autoencoders (VAEs), regularization  
+    - Generative models, Bayesian inference
+    """)
 
 # 3. Data and Feature Engineering
 with st.expander("3. Data and Feature Engineering"):
