@@ -50,8 +50,9 @@ st.header("Array Patterns")
 
 
 with st.expander("1. Two Pointer Pattern"):
+    with st.expander("1. Two Pointer Pattern"):
 
-    st.markdown("""
+        st.markdown("""
 # Two Pointer Pattern
 
 The **Two Pointer Pattern** is a technique where **two indices (pointers)** traverse a data structure 
