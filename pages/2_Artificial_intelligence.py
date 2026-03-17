@@ -3068,23 +3068,22 @@ with st.expander("Machine Learning?"):
     # 6. Classification Algorithms
     with st.expander("6. Classification Algorithms"):
 
-        with st.expander("6.1 Logistic Regression"):
-            st.markdown("""
+        st.markdown("""
     **Logistic Regression** is a supervised learning algorithm for predicting **binary or multi-class categorical outcomes**.
 
     **Equation (Binary):**  
     """)
-            st.latex(r"\hat{p} = \sigma(\beta_0 + \beta_1 x_1 + \dots + \beta_n x_n), \quad \sigma(z) = \frac{1}{1 + e^{-z}}")
-            st.markdown("""
+        st.latex(r"\hat{p} = \sigma(\beta_0 + \beta_1 x_1 + \dots + \beta_n x_n), \quad \sigma(z) = \frac{1}{1 + e^{-z}}")
+        st.markdown("""
     - \(\hat{p}\) is the predicted probability of the positive class.  
     - \(\sigma(z)\) is the sigmoid function mapping any real number to [0,1].  
     - Decision threshold is usually 0.5 for binary classification.
 
     **Loss function (Cross-Entropy / Log Loss):**  
     """)
-            st.latex(r"\text{Loss} = -\frac{1}{n} \sum_{i=1}^{n} \left[y_i \log(\hat{p}_i) + (1-y_i) \log(1-\hat{p}_i)\right]")
+        st.latex(r"\text{Loss} = -\frac{1}{n} \sum_{i=1}^{n} \left[y_i \log(\hat{p}_i) + (1-y_i) \log(1-\hat{p}_i)\right]")
 
-            st.markdown("""
+        st.markdown("""
             **Intuition:** Logistic regression estimates the probability of a class based on weighted input features.  
             - If the probability > 0.5 → positive class, else negative.  
 
@@ -3187,7 +3186,7 @@ with st.expander("Machine Learning?"):
             ---
             
             """)
-            st.markdown("""
+        st.markdown("""
         These are **advanced gradient boosting frameworks** that improve upon basic gradient boosting by optimizing speed, accuracy, and handling large/high-dimensional datasets efficiently.
 
         ---
@@ -3195,9 +3194,9 @@ with st.expander("Machine Learning?"):
         ### **XGBoost (Extreme Gradient Boosting)**
         **Objective Function:**
         """)
-            st.latex(r"\mathcal{L}(\phi) = \sum_{i=1}^{n} l(y_i, \hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k)")
-            st.latex(r"\Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2")
-            st.markdown("""
+        st.latex(r"\mathcal{L}(\phi) = \sum_{i=1}^{n} l(y_i, \hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k)")
+        st.latex(r"\Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2")
+        st.markdown("""
         - \(l(y_i, \hat{y}_i)\) is the training loss (e.g., squared error or log loss).  
         - \(f_k\) is the k-th tree in the ensemble.  
         - \(\Omega(f)\) penalizes tree complexity (number of leaves \(T\) and leaf weights \(w_j\)).  
