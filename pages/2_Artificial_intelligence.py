@@ -2383,22 +2383,21 @@ with st.expander("2. Mathematical Foundations"):
 
     with st.expander("2.3.4 Hypothesis Testing"):
 
-    with st.expander("Null and Alternative Hypothesis"):
-        st.markdown("""
-    - **Null Hypothesis (H₀)**: Default assumption, usually "no effect" or "no difference".  
-    - **Alternative Hypothesis (H₁ or Ha)**: What you want to test for, "there is an effect".  
+        with st.expander("Null and Alternative Hypothesis"):
+            st.markdown("""
+        - **Null Hypothesis (H₀)**: Default assumption, usually "no effect" or "no difference".  
+        - **Alternative Hypothesis (H₁ or Ha)**: What you want to test for, "there is an effect".  
 
-    Example:
-    - Coin: H₀: coin is fair (p = 0.5), H₁: coin is biased (p ≠ 0.5)
+        Example:
+        - Coin: H₀: coin is fair (p = 0.5), H₁: coin is biased (p ≠ 0.5)
 
-    Geometric intuition:
-    - Imagine probability distributions under H₀.  
-    - H₁ represents deviation from this distribution.  
+        Geometric intuition:
+        - H₁ represents deviation from this distribution.  
 
-    ML Relevance:
-    - Evaluating model improvements
-    - Statistical significance of features
-    """)
+        ML Relevance:
+        - Evaluating model improvements
+        - Statistical significance of features
+        """)
 
         with st.expander("p-value"):
             st.markdown("""
@@ -2574,22 +2573,120 @@ with st.expander("2. Mathematical Foundations"):
     with st.expander("2.4 Optimization Theory"):
 
         with st.expander("2.4.1 Introduction to Optimization"):
-            st.markdown("")
-            
+            st.markdown("""
+        **Optimization** is the process of finding the best solution (maximum or minimum) of a problem under given constraints.  
+        - **Goal**: Maximize or minimize an objective function \(f(x)\).  
+        - **Geometric intuition**: Imagine a 3D surface (for 2 variables) — optimization is finding the lowest valley (min) or the highest peak (max).
+
+        **Mathematical Formulation**:
+        \[
+        \text{Minimize / Maximize } f(x), \quad x \in \mathbb{R}^n
+        \]
+
+        **ML Relevance**:
+        - Training models involves minimizing a **loss function** (e.g., MSE in linear regression, cross-entropy in classification)
+        - Hyperparameter tuning is also an optimization problem.
+        """)
+
         with st.expander("2.4.2 Types of Optimization Problems"):
-            st.markdown("")
-            
+            st.markdown("""
+        1. **Unconstrained Optimization**  
+        - No restrictions on variables: \( \min f(x), x \in \mathbb{R}^n \)  
+        - Example: Linear regression weights via gradient descent  
+
+        2. **Constrained Optimization**  
+        - Variables must satisfy constraints \( g_i(x) \le 0, h_j(x) = 0 \)  
+        - Example: Portfolio optimization with budget constraints  
+
+        3. **Convex vs Non-Convex**  
+        - **Convex**: Any local minimum is global minimum  
+        - **Non-Convex**: Multiple local minima, harder to solve  
+
+        4. **Discrete Optimization**  
+        - Variables are integers or categorical  
+        - Example: Feature selection (choose subset of features)
+
+        Geometric intuition:
+        - Unconstrained: freely move on surface to find optimum  
+        - Constrained: restricted to a feasible region, like a valley bounded by walls
+        """)
+
         with st.expander("2.4.3 Objective Function"):
-            st.markdown("")
-            
+            st.markdown("""
+        - **Definition**: Function that needs to be optimized (minimized or maximized)  
+        - Notation: \( f(x_1, x_2, ..., x_n) \)  
+        - Can be **loss function**, **cost function**, or **utility function** depending on context  
+
+        **Example in ML**:  
+        - Linear Regression: \( f(\mathbf{w}) = \sum_{i=1}^{n} (y_i - \mathbf{w}^T x_i)^2 \)  
+        - Cross-Entropy for classification:  
+        \[
+        f(\mathbf{w}) = - \sum_{i=1}^{n} [y_i \log(\hat{y_i}) + (1 - y_i)\log(1 - \hat{y_i})]
+        \]
+
+        **Geometric Intuition**:  
+        - Objective function is the "terrain" over which optimization searches for the peak or valley.
+        """)
+
         with st.expander("2.4.4 Constraints"):
-            st.markdown("")
-            
+            st.markdown("""
+        Constraints restrict feasible solutions.  
+
+        1. **Equality constraints**: \( h(x) = 0 \)  
+        - Example: x + y = 10  
+
+        2. **Inequality constraints**: \( g(x) \le 0 \)  
+        - Example: x ≥ 0, y ≥ 0  
+
+        **Geometric Intuition**:  
+        - Constraints form a boundary or a surface.  
+        - Optimization is like walking on the terrain but restricted to the allowed surface.
+
+        **ML Relevance**:
+        - Regularization (e.g., L1/L2) can be seen as a constraint on weights
+        - Resource constraints in deployment
+        """)
+
         with st.expander("2.4.5 Feasible Region"):
-            st.markdown("")
-            
+            st.markdown("""
+        - **Definition**: Set of all points satisfying all constraints  
+        \[
+        \mathcal{F} = \{ x \in \mathbb{R}^n : g_i(x) \le 0, h_j(x) = 0 \}
+        \]
+
+        **Geometric Intuition**:  
+        - Imagine a valley bounded by walls — only inside the valley is feasible  
+
+        **Example**:  
+        - Linear Programming: maximize profit with budget and resource constraints  
+
+        **ML Relevance**:
+        - Feasible parameter space for constrained optimization  
+        - Ensures model respects limits (e.g., non-negative probabilities)
+        """)
+
         with st.expander("2.4.6 Unconstrained vs Constrained Optimization"):
-            st.markdown("")
+            st.markdown("""
+        **Unconstrained Optimization**:
+        - No restrictions on variables  
+        - Solve by setting gradient to zero:  
+        \[
+        \nabla f(x) = 0
+        \]  
+        - Geometric: freely moves to global/local minima on surface  
+        - Example: Linear regression weight optimization  
+
+        **Constrained Optimization**:
+        - Variables must satisfy constraints \( g_i(x) \le 0, h_j(x) = 0 \)  
+        - Solve using methods like:
+        - Lagrange multipliers  
+        - KKT conditions  
+        - Geometric: search is restricted to feasible region, optima often on boundaries  
+
+        **ML Relevance**:
+        - Constrained: Regularized models, optimization with limits on weights or probability distributions  
+        - Unconstrained: Most gradient-based training of neural networks
+        """)
             
         with st.expander("2.4.7 Convex vs Non-Convex Optimization"):
             st.markdown("")
