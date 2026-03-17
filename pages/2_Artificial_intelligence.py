@@ -2214,9 +2214,406 @@ with st.expander("2. Mathematical Foundations"):
         This trio forms the foundation of modern ML loss functions.
         """)
     with st.expander("2.3 Statistics for Machine Learning"):
-         st.markdown("")
+
+        with st.expander("2.3.1 Descriptive Statistics"):
+
+            with st.expander("Measures of Central Tendency (Mean, Median, Mode)"):
+                st.markdown("""
+        **Mean (Average)**
+
+        - Formula: 
+        \[
+        \mu = \frac{1}{n} \sum_{i=1}^{n} x_i
+        \]
+
+        - Geometric Intuition: Think of each data point as a weight on a number line; the mean is the balance point where the number line would perfectly balance if each point were a weight.
+
+        - Example:
+        Dataset = [2, 3, 5, 8]  
+        Mean = (2 + 3 + 5 + 8)/4 = 4.5
+
+        - ML Relevance: Feature centering, normalization, baseline for regression.
+
+        ---
+
+        **Median**
+
+        - Middle value after sorting.
+        - Robust to outliers (unlike mean).
+        - Geometric Intuition: Divide dataset into two halves on number line; median is the center.
+        - Example: [2, 3, 5, 8] → Median = (3+5)/2 = 4
+        - ML Relevance: Handling skewed data, robust statistics.
+
+        ---
+
+        **Mode**
+
+        - Most frequent value.
+        - Example: [2, 2, 3, 5] → Mode = 2
+        - Geometric Intuition: Peak in a histogram.
+        - ML Relevance: Categorical data summarization, imputation.
+        """)
+
+            with st.expander("Measures of Dispersion (Variance, Std Dev, Range, IQR)"):
+                st.markdown("""
+        **Range**:  
+        \[
+        \text{Range} = x_{max} - x_{min}
+        \]  
+        - Simple measure of spread, sensitive to outliers.  
+
+        **Variance**:  
+        \[
+        \text{Var}(X) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2
+        \]  
+        - Geometric: Squares the distance of each point from mean, emphasizes outliers.  
+        - Example: [2,3,5,8], mean=4.5 → Var = ((2-4.5)² + (3-4.5)² + (5-4.5)² + (8-4.5)²)/4 = 5.25
+
+        **Standard Deviation**:  
+        \[
+        \sigma = \sqrt{\text{Var}(X)}
+        \]  
+        - Geometric: Average distance from mean.
+        - ML Relevance: Feature scaling, z-score normalization.
+
+        **Interquartile Range (IQR)**:  
+        \[
+        \text{IQR} = Q_3 - Q_1
+        \]  
+        - Geometric: Range of middle 50% of data, robust to outliers.
+        - Example: Q1=3, Q3=7 → IQR=4
+        - ML Relevance: Outlier detection, robust scaling.
+        """)
+
+            with st.expander("Data Distribution and Shape (Skewness, Kurtosis)"):
+                st.markdown("""
+        **Skewness**:  
+        \[
+        \gamma = \frac{E[(X - \mu)^3]}{\sigma^3}
+        \]  
+        - Positive skew → tail right, negative skew → tail left  
+        - Geometric: Measures asymmetry of histogram.
+        - ML Relevance: Feature transformation for Gaussian assumptions.
+
+        **Kurtosis**:  
+        \[
+        \kappa = \frac{E[(X - \mu)^4]}{\sigma^4}
+        \]  
+        - High kurtosis → heavy tails, prone to outliers  
+        - Low kurtosis → flat distribution  
+        - Geometric: Measures “peakedness” of histogram.
+        - ML Relevance: Detects extreme values, informs robust statistics.
+        """)
+
+
+        with st.expander("2.3.2 Inferential Statistics"):
+
+            with st.expander("Population vs Sample"):
+                st.markdown("""
+        **Population**: Entire group, unknown parameters (μ, σ²)  
+        **Sample**: Subset of population, provides statistics (x̄, s²)  
+        - Geometric: Think of population as full histogram, sample as a small subset that approximates it.  
+        - ML Relevance: Models are trained on samples to generalize to population.
+        """)
+
+            with st.expander("Sampling Techniques"):
+                st.markdown("""
+        1. **Simple Random Sampling**: Equal chance for all.  
+        2. **Stratified Sampling**: Sample proportionally from strata → preserves distribution shape.  
+        3. **Systematic Sampling**: Every k-th element → geometrically spaced selection.  
+        4. **Cluster Sampling**: Random clusters → reduces variance within clusters, more variance across clusters.  
+
+        ML Relevance: Ensures training data is representative to reduce bias.
+        """)
+
+            with st.expander("Sampling Distribution"):
+                st.markdown("""
+        Distribution of a statistic (e.g., mean) over repeated samples.
+
+        - **Central Limit Theorem**: For large n, sampling distribution of mean ≈ Normal(μ, σ²/n)
+        - Geometric: Imagine plotting mean of every possible sample; distribution forms a bell curve centered at μ.
+        - ML Relevance: Confidence intervals, hypothesis testing, understanding variability of model estimates.
+        """)
+
+
+        with st.expander("2.3.3 Estimation Theory"):
+
+            with st.expander("Point Estimation"):
+                st.markdown("""
+        - Single best guess of population parameter from sample.
+        - Examples:
+        - x̄ estimates μ
+        - s² estimates σ²
+        - Desirable properties: unbiased, consistent, efficient
+        - Geometric: Estimator as a point on number line approximating true value.
+        - ML Relevance: Parameter estimation (weights, MLE, MAP)
+        """)
+
+            with st.expander("Interval Estimation (Confidence Intervals)"):
+                st.markdown("""
+        - Range of plausible values.
+        - Formula (mean, large n):
+        \[
+        \text{CI} = \bar{x} \pm Z \frac{\sigma}{\sqrt{n}}
+        \]
+        - Geometric: Error bar around sample mean, probability that true mean lies within it.
+        - ML Relevance: Uncertainty quantification in predictions, model confidence.
+        """)
+
+            with st.expander("Bias and Variance"):
+                st.markdown("""
+        **Bias**: Systematic deviation from true value.
+        \[
+        \text{Bias}(\hat{\theta}) = E[\hat{\theta}] - \theta
+        \]
+
+        **Variance**: Spread of estimator.
+        \[
+        \text{Var}(\hat{\theta}) = E[(\hat{\theta} - E[\hat{\theta}])^2]
+        \]
+
+        **Bias-Variance Tradeoff**:  
+        \[
+        \text{Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
+        \]
+
+        - Geometric: Bias = distance of average estimator from true parameter, Variance = scatter around average.
+        - ML Relevance: Guides model complexity, regularization, and overfitting prevention.
+        """)
+
+    with st.expander("2.3.4 Hypothesis Testing"):
+
+    with st.expander("Null and Alternative Hypothesis"):
+        st.markdown("""
+    - **Null Hypothesis (H₀)**: Default assumption, usually "no effect" or "no difference".  
+    - **Alternative Hypothesis (H₁ or Ha)**: What you want to test for, "there is an effect".  
+
+    Example:
+    - Coin: H₀: coin is fair (p = 0.5), H₁: coin is biased (p ≠ 0.5)
+
+    Geometric intuition:
+    - Imagine probability distributions under H₀.  
+    - H₁ represents deviation from this distribution.  
+
+    ML Relevance:
+    - Evaluating model improvements
+    - Statistical significance of features
+    """)
+
+        with st.expander("p-value"):
+            st.markdown("""
+    - Probability of observing data at least as extreme as sample, assuming H₀ is true.
+
+    Formula:
+    \[
+    p\text{-value} = P(\text{data} \mid H_0)
+    \]
+
+    Interpretation:
+    - Low p-value (< 0.05) → reject H₀
+    - High p-value → fail to reject H₀
+
+    Geometric:
+    - Area under null distribution curve beyond observed statistic.
+
+    ML Relevance:
+    - Feature selection, significance testing of model metrics.
+    """)
+
+        with st.expander("Type I and Type II Errors"):
+            st.markdown("""
+    - **Type I Error (α)**: Rejecting H₀ when it’s true (false positive)  
+    - **Type II Error (β)**: Failing to reject H₀ when H₁ is true (false negative)
+
+    Tradeoff:
+    - Decreasing α increases β and vice versa
+
+    Geometric:
+    - α = area of rejection region under H₀  
+    - β = area under H₁ not in rejection region
+
+    ML Relevance:
+    - Important in classification thresholds and hypothesis-based tests
+    """)
+
+        with st.expander("t-test, z-test"):
+            st.markdown("""
+    **t-test**: Used when population variance unknown, small sample  
+    \[
+    t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
+    \]
+
+    **z-test**: Used when population variance known, large sample  
+    \[
+    z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
+    \]
+
+    Geometric:
+    - Test statistic measures distance from null mean in units of standard error  
+    - Compare against critical value for rejection region
+
+    ML Relevance:
+    - Model comparisons, evaluating mean differences between datasets
+    """)
+
+    with st.expander("2.3.5 Correlation and Covariance"):
+
+        with st.expander("Covariance"):
+            st.markdown("""
+    Measures joint variability of two variables X and Y:
+
+    \[
+    \text{Cov}(X,Y) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})
+    \]
+
+    Interpretation:
+    - Positive → X and Y increase together  
+    - Negative → X increases, Y decreases
+
+    Geometric:
+    - Projects points onto x and y axes, measures alignment
+
+    ML Relevance:
+    - Feature relationships, multicollinearity detection
+    """)
+
+        with st.expander("Correlation Coefficient"):
+            st.markdown("""
+    Standardized covariance → range [-1,1]:
+
+    \[
+    \rho_{X,Y} = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}
+    \]
+
+    Interpretation:
+    - 1 → perfect positive linear  
+    - -1 → perfect negative linear  
+    - 0 → no linear correlation
+
+    Geometric:
+    - Cosine of angle between centered data vectors
+
+    ML Relevance:
+    - Feature selection, understanding relationships, PCA
+    """)
+
+        with st.expander("Positive vs Negative Correlation"):
+            st.markdown("""
+    - Positive: both variables increase together  
+    - Negative: one increases, other decreases  
+    - Geometric: slope of scatter plot
+
+    ML Relevance:
+    - Helps in multivariate feature analysis and regression diagnostics
+    """)
+
+    with st.expander("2.3.6 Regression Basics"):
+
+        with st.expander("Simple Linear Regression"):
+            st.markdown("""
+    Models relationship between one independent variable X and dependent Y:
+
+    \[
+    Y = \beta_0 + \beta_1 X + \epsilon
+    \]
+
+    - β₀ = intercept, β₁ = slope, ε = error term  
+    - Geometric: line that best fits scatter plot of points
+
+    ML Relevance:
+    - Predictive modeling, trend analysis
+    """)
+
+        with st.expander("Least Squares Method"):
+            st.markdown("""
+    Objective: Minimize sum of squared residuals:
+
+    \[
+    \min_{\beta_0, \beta_1} \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i))^2
+    \]
+
+    Geometric: vertical distances squared between points and regression line, minimized
+
+    ML Relevance:
+    - Foundation for linear regression, gradient-based optimization
+    """)
+
+        with st.expander("Residuals and Error"):
+            st.markdown("""
+    Residual = difference between observed and predicted:
+
+    \[
+    e_i = y_i - \hat{y}_i
+    \]
+
+    - Geometric: vertical distance from point to regression line  
+    - Patterns in residuals indicate model issues (non-linearity, heteroscedasticity)
+
+    ML Relevance:
+    - Model diagnostics, error analysis, assumptions checking
+    """)
+
+        with st.expander("R-squared"):
+            st.markdown("""
+    Coefficient of determination:
+
+    \[
+    R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
+    \]
+
+    Interpretation:
+    - Fraction of variance in Y explained by X  
+    - R² = 1 → perfect fit, 0 → no fit
+
+    Geometric:
+    - Measures how well points cluster around regression line
+
+    ML Relevance:
+    - Model performance metric, goodness-of-fit
+    """)
     with st.expander("2.4 Optimization Theory"):
-        st.markdown("")
+
+        with st.expander("2.4.1 Introduction to Optimization"):
+            st.markdown("")
+            
+        with st.expander("2.4.2 Types of Optimization Problems"):
+            st.markdown("")
+            
+        with st.expander("2.4.3 Objective Function"):
+            st.markdown("")
+            
+        with st.expander("2.4.4 Constraints"):
+            st.markdown("")
+            
+        with st.expander("2.4.5 Feasible Region"):
+            st.markdown("")
+            
+        with st.expander("2.4.6 Unconstrained vs Constrained Optimization"):
+            st.markdown("")
+            
+        with st.expander("2.4.7 Convex vs Non-Convex Optimization"):
+            st.markdown("")
+            
+        with st.expander("2.4.8 Gradient Descent"):
+            st.markdown("")
+            
+        with st.expander("2.4.9 Stochastic Gradient Descent (SGD)"):
+            st.markdown("")
+            
+        with st.expander("2.4.10 Line Search Methods"):
+            st.markdown("")
+            
+        with st.expander("2.4.11 Optimality Conditions (First and Second Order)"):
+            st.markdown("")
+            
+        with st.expander("2.4.12 Lagrange Multipliers"):
+            st.markdown("")
+            
+        with st.expander("2.4.13 KKT Conditions"):
+            st.markdown("")
+            
+        with st.expander("2.4.14 Constrained Optimization Algorithms"):
+            st.markdown("")
     with st.expander("2.5 Information Theory"):
         st.markdown("")
 
