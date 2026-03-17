@@ -278,419 +278,304 @@ with st.expander("Artificial Intelligence Topics"):
     """)
 
 st.title("Machine Learning")
-with st.expander("Supervised Learning"):
-    st.markdown("""
-## Supervised Learning
+import streamlit as st
 
-Supervised Learning is a machine learning paradigm where a model learns a mapping from **inputs (features)** to **outputs (labels)** using a labeled dataset.
+# 1. Introduction to Machine Learning
+with st.expander("1. Introduction to Machine Learning"):
 
-Each training example is represented as:
+    with st.expander("1.1 What is Machine Learning"):
+        st.markdown("""
+    Machine Learning is a branch of Artificial Intelligence that focuses on building systems capable of learning from data rather than being explicitly programmed with rules. Instead of telling a computer exactly how to solve a problem step by step, we provide it with examples and allow it to discover patterns on its own.
 
-xᵢ → input vector  
-yᵢ → corresponding label
+    At its core, machine learning is about learning a mapping between inputs and outputs. Given data, the model tries to approximate a function that can generalize well to unseen examples. This ability to generalize is what makes machine learning powerful—it doesn’t just memorize; it learns underlying structure.
 
-The training dataset is:
+    For example, instead of writing thousands of rules to detect spam emails, we train a model on past emails labeled as “spam” or “not spam,” and it learns the patterns that distinguish them. This paradigm shift—from rule-based systems to data-driven learning—is what defines machine learning.
+    """)
 
-D = {(x₁,y₁), (x₂,y₂), (x₃,y₃) ... (xₙ,yₙ)}
+    with st.expander("1.2 History of Machine Learning"):
+        st.markdown("""
+    The journey of machine learning began with a simple but profound question: can machines think? In the 1950s, pioneers like Alan Turing laid the conceptual foundation, while early models like the perceptron attempted to mimic how neurons work.
 
-The goal of the learning algorithm is to find a function:
+    However, progress was not linear. After initial excitement, limitations in computational power and data led to periods known as “AI winters,” where interest declined. The field regained momentum in the 1980s and 1990s with the rise of statistical learning methods such as decision trees, support vector machines, and Bayesian approaches.
 
-f(x) ≈ y
+    The real transformation began in the 2000s and accelerated in the 2010s, driven by three key factors: massive datasets, powerful GPUs, and improved algorithms. This era gave birth to deep learning, where neural networks with many layers began outperforming traditional methods in tasks like image recognition, speech processing, and natural language understanding.
 
-that minimizes prediction error on unseen data.
+    Today, machine learning has evolved from a theoretical idea into a foundational technology that powers much of the modern digital world.
+    """)
 
-Formally, the model tries to minimize a **loss function**:
+    with st.expander("1.3 Why Machine Learning Exists"):
+        st.markdown("""
+    Machine learning exists because many real-world problems are simply too complex to solve using explicit programming. In traditional software development, we define rules and logic manually. But what happens when the problem does not have clear rules?
 
-L(y, f(x))
-
-and learns parameters θ such that:
-
-θ* = argmin Σ L(yᵢ , f(xᵢ))
-
----
-
-## Types of Supervised Learning
-
-### 1. Regression
-
-Regression predicts **continuous values**.
-
-Example:
-
-Predict house price from features
-
-x = (size, location, rooms)
-
-y = price
-
-The output variable is a **real number**.
-
----
-
-### 2. Classification
-
-Classification predicts **categorical labels**.
-
-Examples:
-
-Spam / Not Spam  
-Fraud / Not Fraud  
-Cat / Dog / Car
-
-The output variable belongs to a **finite set of classes**.
-
----
-
-# Major Supervised Learning Algorithms
-
----
-
-REGRESSION (IN-DEPTH EXPLANATION)
-
-1. What is Regression
-
-Regression is a machine learning and statistical technique used to model the
-relationship between variables and predict a continuous numerical output.
-
-Unlike classification, which predicts categories (spam/not spam),
-regression predicts real numbers.
-
-Examples
-- Predicting house prices
-- Predicting temperature
-- Predicting stock prices
-- Predicting revenue
-- Predicting electricity demand
-
-
-------------------------------------------------------------
-
-2. Basic Idea
-
-Regression tries to learn a function that maps inputs to outputs.
-
-Input variables → Features
-Output variable → Target
-
-Example
-
-House Size → House Price
-
-The model tries to learn:
-
-Price = f(Size)
-
-
-------------------------------------------------------------
-
-3. Linear Regression
-
-The simplest regression model assumes the relationship is linear.
-
-Equation
-
-y = β0 + β1x
-
-Where
-
-y  = predicted value
-x  = input variable
-β0 = intercept (value when x = 0)
-β1 = slope (rate of change)
-
-Example
-
-Price = 50000 + 150 × Size
-
-Meaning
-Every extra square foot increases price by $150.
-
-
-------------------------------------------------------------
-
-4. Multiple Linear Regression
-
-Sometimes we have multiple input variables.
-
-Example house dataset
-
-Size
-Bedrooms
-Location
-Age
-
-The model becomes
-
-y = β0 + β1x1 + β2x2 + β3x3 + ... + βnxn
-
-Example
-
-Price =
-50000
-+ 120 × Size
-+ 20000 × Bedrooms
-+ 30000 × LocationScore
-
-
-------------------------------------------------------------
-
-5. Goal of Regression
-
-Regression tries to find parameters that minimize prediction error.
-
-The difference between prediction and true value is called a residual.
-
-Residual
-
-Residual = Actual Value − Predicted Value
-
-
-------------------------------------------------------------
-
-6. Loss Function
-
-To train regression models we use a loss function.
-
-The most common one is Mean Squared Error (MSE).
-
-MSE = average of (Actual − Predicted)^2
-
-Why squared?
-
-• penalizes large errors more
-• keeps values positive
-• easier to optimize mathematically
-
-
-------------------------------------------------------------
-
-7. Optimization
-
-To minimize loss, algorithms adjust model parameters.
-
-The most common algorithm is Gradient Descent.
-
-Gradient Descent repeatedly updates parameters in the direction that
-reduces prediction error.
-
-Update rule
-
-New Parameter = Old Parameter − LearningRate × Gradient
-
-
-------------------------------------------------------------
-
-8. Polynomial Regression
-
-Linear regression cannot model curves.
-
-Polynomial regression solves this by adding higher order terms.
-
-Example
-
-y = β0 + β1x + β2x² + β3x³
-
-This allows the model to capture nonlinear patterns.
-
-
-------------------------------------------------------------
-
-9. Regularization in Regression
-
-When models become too complex they overfit the training data.
-
-Regularization adds penalties to keep coefficients small.
-
-Two major types exist.
-
-
-Ridge Regression (L2)
-
-Adds penalty on squared coefficients.
-
-Loss = MSE + λ(β1² + β2² + ... + βn²)
-
-Effect
-• reduces large coefficients
-• stabilizes the model
-
-
-Lasso Regression (L1)
-
-Adds penalty on absolute coefficients.
-
-Loss = MSE + λ(|β1| + |β2| + ... + |βn|)
-
-Effect
-• forces some coefficients to become zero
-• performs feature selection
-
-
-Elastic Net
-
-Combines L1 and L2 penalties.
-
-
-------------------------------------------------------------
-
-10. Overfitting
-
-Overfitting happens when the model memorizes training data instead of
-learning general patterns.
-
-Signs
-
-• very low training error
-• high test error
-
-Causes
-
-• too many features
-• complex model
-• small dataset
-
-
-------------------------------------------------------------
-
-11. Underfitting
-
-Underfitting happens when the model is too simple to capture patterns.
-
-Example
-
-Using a straight line to fit a curved dataset.
-
-Signs
-
-• high training error
-• high test error
-
-
-------------------------------------------------------------
-
-12. Evaluation Metrics
-
-R² Score (Coefficient of Determination)
-
-Measures how much variance in the target variable is explained by the model.
-
-R² = 1 − (Residual Sum of Squares / Total Sum of Squares)
-
-Interpretation
-
-R² = 1  → perfect model
-R² = 0  → model explains nothing
-
-
-Other metrics
-
-MAE  (Mean Absolute Error)
-RMSE (Root Mean Squared Error)
-
-
-------------------------------------------------------------
-
-13. Types of Regression Models
-
-Linear Regression
-Models linear relationships.
-
-Polynomial Regression
-Captures nonlinear curves.
-
-Ridge Regression
-Controls large coefficients.
-
-Lasso Regression
-Performs feature selection.
-
-Elastic Net
-Combines ridge and lasso penalties.
-
-Support Vector Regression (SVR)
-Uses margin-based optimization.
-
-Bayesian Regression
-Treats parameters as probability distributions.
-
-Quantile Regression
-Predicts different percentiles of the target variable.
-
-
-------------------------------------------------------------
-
-14. Real World Applications
-
-Economics
-Predict GDP growth.
-
-Healthcare
-Predict disease risk.
-
-Finance
-Predict stock returns.
-
-Retail
-Predict product demand.
-
-Energy
-Predict electricity consumption.
-
-Weather
-Predict temperature and rainfall.
-
-
-------------------------------------------------------------
-
-15. Intuition
-
-Regression is essentially about fitting the best curve through data.
-
-The model tries to answer:
-
-"What function best explains how inputs influence outputs?"
-
-# Evaluation Metrics
-
-### Regression
-
-Mean Squared Error
-
-MSE = (1/n) Σ (y − ŷ)²
-
-Root Mean Squared Error
-
-RMSE = √MSE
-
-R² Score
-
-Measures variance explained.
-
----
-
-### Classification
-
-Accuracy
-
-Precision
-
-Recall
-
-F1 Score
-
-ROC-AUC
-
----
-
-Supervised learning forms the backbone of modern AI systems such as recommendation engines, fraud detection systems, medical diagnosis tools, and natural language classifiers.
-""")
-
-with st.expander("Unsupervised Learning"):
-    st.markdown("")
-
-with st.expander("Reinforcement Learning"):
-    st.markdown("")
-
+    Consider recognizing faces in images. Lighting conditions, angles, expressions, and backgrounds vary infinitely. Writing rules to handle all such variations is practically impossible. This is where machine learning becomes essential—it learns directly from data instead of relying on handcrafted logic.
+
+    Another reason is the explosion of data. Every second, enormous amounts of data are generated from sensors, websites, and user interactions. Hidden within this data are patterns that can drive decisions, predictions, and automation. Machine learning provides the tools to extract these patterns efficiently.
+
+    In essence, machine learning exists to bridge the gap between complexity and automation. It allows systems to adapt, improve over time, and make intelligent decisions in environments where traditional programming fails.
+    """)
+
+    with st.expander("1.4 Types of Machine Learning"):
+        st.markdown("""
+    Machine learning can be broadly categorized based on how the model learns from data and the kind of feedback it receives.
+
+    In supervised learning, the model is trained on labeled data, meaning each input comes with a known output. The goal is to learn a mapping from inputs to outputs so that it can make accurate predictions on new data. Common tasks include regression, where outputs are continuous, and classification, where outputs belong to discrete categories.
+
+    Unsupervised learning, on the other hand, deals with unlabeled data. Here, the model tries to uncover hidden patterns or structures within the data. Clustering and dimensionality reduction are typical examples, where the system groups similar data points or compresses information into lower dimensions.
+
+    Semi-supervised learning lies between these two extremes, using a small amount of labeled data along with a large amount of unlabeled data. This is particularly useful when labeling data is expensive or time-consuming.
+
+    Reinforcement learning takes a completely different approach. Instead of learning from a static dataset, an agent interacts with an environment and learns through trial and error. It receives rewards or penalties based on its actions and gradually improves its strategy to maximize long-term rewards.
+
+    Each of these paradigms addresses different kinds of problems, and choosing the right one depends on the nature of the data and the task at hand.
+    """)
+
+    with st.expander("1.5 Real-World Applications of Machine Learning"):
+        st.markdown("""
+    Machine learning is not just a theoretical concept—it is deeply embedded in the technologies we use every day. Its applications span across industries, transforming how systems operate and decisions are made.
+
+    In computer vision, machine learning enables systems to interpret and understand visual data. This powers applications such as facial recognition, medical image analysis, and autonomous driving.
+
+    In natural language processing, it allows machines to understand and generate human language. From chatbots and translation systems to sentiment analysis, machine learning makes human-computer interaction more natural and intuitive.
+
+    Recommendation systems are another powerful application. Platforms like Netflix, Amazon, and Spotify use machine learning to analyze user behavior and suggest content tailored to individual preferences.
+
+    In healthcare, machine learning assists in diagnosing diseases, predicting patient outcomes, and analyzing medical images with remarkable accuracy. In finance, it is used for fraud detection, risk assessment, and algorithmic trading.
+
+    Even everyday tools like voice assistants rely on machine learning for speech recognition and response generation.
+
+    The common thread across all these applications is the ability of machine learning to identify patterns in data and use them to make intelligent decisions, often at a scale and speed that humans cannot match.
+    """)
+
+
+
+# 2. Mathematical Foundations
+with st.expander("2. Mathematical Foundations"):
+    with st.expander("2.1 Linear Algebra for ML"):
+        st.markdown("")
+    with st.expander("2.2 Probability Theory"):
+        st.markdown("")
+    with st.expander("2.3 Statistics for Machine Learning"):
+        st.markdown("")
+    with st.expander("2.4 Optimization Theory"):
+        st.markdown("")
+    with st.expander("2.5 Information Theory"):
+        st.markdown("")
+
+# 3. Data and Feature Engineering
+with st.expander("3. Data and Feature Engineering"):
+    with st.expander("3.1 Types of Data"):
+        st.markdown("")
+    with st.expander("3.2 Data Collection"):
+        st.markdown("")
+    with st.expander("3.3 Data Cleaning"):
+        st.markdown("")
+    with st.expander("3.4 Handling Missing Data"):
+        st.markdown("")
+    with st.expander("3.5 Feature Engineering"):
+        st.markdown("")
+    with st.expander("3.6 Feature Scaling"):
+        st.markdown("")
+    with st.expander("3.7 Feature Selection"):
+        st.markdown("")
+    with st.expander("3.8 Dimensionality Reduction"):
+        st.markdown("")
+
+# 4. Supervised Learning
+with st.expander("4. Supervised Learning"):
+    with st.expander("4.1 Regression"):
+        st.markdown("")
+    with st.expander("4.2 Classification"):
+        st.markdown("")
+    with st.expander("4.3 Bias-Variance Tradeoff"):
+        st.markdown("")
+    with st.expander("4.4 Model Evaluation Metrics"):
+        st.markdown("")
+    with st.expander("4.5 Regularization Techniques"):
+        st.markdown("")
+
+# 5. Regression Algorithms
+with st.expander("5. Regression Algorithms"):
+    with st.expander("5.1 Linear Regression"):
+        st.markdown("")
+    with st.expander("5.2 Polynomial Regression"):
+        st.markdown("")
+    with st.expander("5.3 Ridge Regression"):
+        st.markdown("")
+    with st.expander("5.4 Lasso Regression"):
+        st.markdown("")
+    with st.expander("5.5 Elastic Net"):
+        st.markdown("")
+
+# 6. Classification Algorithms
+with st.expander("6. Classification Algorithms"):
+    with st.expander("6.1 Logistic Regression"):
+        st.markdown("")
+    with st.expander("6.2 Decision Trees"):
+        st.markdown("")
+    with st.expander("6.3 Random Forest"):
+        st.markdown("")
+    with st.expander("6.4 Support Vector Machines"):
+        st.markdown("")
+    with st.expander("6.5 Naive Bayes"):
+        st.markdown("")
+    with st.expander("6.6 K-Nearest Neighbors"):
+        st.markdown("")
+    with st.expander("6.7 Gradient Boosting"):
+        st.markdown("")
+    with st.expander("6.8 XGBoost / LightGBM / CatBoost"):
+        st.markdown("")
+
+# 7. Unsupervised Learning
+with st.expander("7. Unsupervised Learning"):
+    with st.expander("7.1 Clustering"):
+        st.markdown("")
+    with st.expander("7.2 Dimensionality Reduction"):
+        st.markdown("")
+    with st.expander("7.3 Density Estimation"):
+        st.markdown("")
+    with st.expander("7.4 Association Rule Learning"):
+        st.markdown("")
+
+# 8. Clustering Algorithms
+with st.expander("8. Clustering Algorithms"):
+    with st.expander("8.1 K-Means Clustering"):
+        st.markdown("")
+    with st.expander("8.2 Hierarchical Clustering"):
+        st.markdown("")
+    with st.expander("8.3 DBSCAN"):
+        st.markdown("")
+    with st.expander("8.4 Mean Shift"):
+        st.markdown("")
+    with st.expander("8.5 Gaussian Mixture Models"):
+        st.markdown("")
+
+# 9. Dimensionality Reduction
+with st.expander("9. Dimensionality Reduction"):
+    with st.expander("9.1 Principal Component Analysis (PCA)"):
+        st.markdown("")
+    with st.expander("9.2 Linear Discriminant Analysis (LDA)"):
+        st.markdown("")
+    with st.expander("9.3 t-SNE"):
+        st.markdown("")
+    with st.expander("9.4 UMAP"):
+        st.markdown("")
+    with st.expander("9.5 Autoencoders"):
+        st.markdown("")
+
+# 10. Semi-Supervised Learning
+with st.expander("10. Semi-Supervised Learning"):
+    with st.expander("10.1 Self-Training"):
+        st.markdown("")
+    with st.expander("10.2 Co-Training"):
+        st.markdown("")
+    with st.expander("10.3 Label Propagation"):
+        st.markdown("")
+    with st.expander("10.4 Pseudo-Labeling"):
+        st.markdown("")
+
+# 11. Reinforcement Learning
+with st.expander("11. Reinforcement Learning"):
+    with st.expander("11.1 Markov Decision Processes"):
+        st.markdown("")
+    with st.expander("11.2 Policy vs Value Functions"):
+        st.markdown("")
+    with st.expander("11.3 Q-Learning"):
+        st.markdown("")
+    with st.expander("11.4 Deep Q Networks"):
+        st.markdown("")
+    with st.expander("11.5 Policy Gradient Methods"):
+        st.markdown("")
+    with st.expander("11.6 Actor-Critic Methods"):
+        st.markdown("")
+
+# 12. Ensemble Learning
+with st.expander("12. Ensemble Learning"):
+    with st.expander("12.1 Bagging"):
+        st.markdown("")
+    with st.expander("12.2 Boosting"):
+        st.markdown("")
+    with st.expander("12.3 Stacking"):
+        st.markdown("")
+    with st.expander("12.4 Voting Classifiers"):
+        st.markdown("")
+
+# 13. Neural Networks
+with st.expander("13. Neural Networks"):
+    with st.expander("13.1 Perceptron"):
+        st.markdown("")
+    with st.expander("13.2 Multi-Layer Perceptron"):
+        st.markdown("")
+    with st.expander("13.3 Activation Functions"):
+        st.markdown("")
+    with st.expander("13.4 Backpropagation"):
+        st.markdown("")
+    with st.expander("13.5 Loss Functions"):
+        st.markdown("")
+    with st.expander("13.6 Optimization Algorithms"):
+        st.markdown("")
+
+# 14. Deep Learning Architectures
+with st.expander("14. Deep Learning Architectures"):
+    with st.expander("14.1 Convolutional Neural Networks"):
+        st.markdown("")
+    with st.expander("14.2 Recurrent Neural Networks"):
+        st.markdown("")
+    with st.expander("14.3 LSTM and GRU"):
+        st.markdown("")
+    with st.expander("14.4 Transformers"):
+        st.markdown("")
+    with st.expander("14.5 Attention Mechanisms"):
+        st.markdown("")
+
+# 15. Model Training and Optimization
+with st.expander("15. Model Training and Optimization"):
+    with st.expander("15.1 Gradient Descent"):
+        st.markdown("")
+    with st.expander("15.2 Stochastic Gradient Descent"):
+        st.markdown("")
+    with st.expander("15.3 Mini-Batch Gradient Descent"):
+        st.markdown("")
+    with st.expander("15.4 Adam Optimizer"):
+        st.markdown("")
+    with st.expander("15.5 Learning Rate Scheduling"):
+        st.markdown("")
+
+# 16. Model Evaluation
+with st.expander("16. Model Evaluation"):
+    with st.expander("16.1 Train / Validation / Test Split"):
+        st.markdown("")
+    with st.expander("16.2 Cross Validation"):
+        st.markdown("")
+    with st.expander("16.3 Confusion Matrix"):
+        st.markdown("")
+    with st.expander("16.4 Precision Recall"):
+        st.markdown("")
+    with st.expander("16.5 ROC Curve and AUC"):
+        st.markdown("")
+
+# 17. Model Deployment
+with st.expander("17. Model Deployment"):
+    with st.expander("17.1 Model Serialization"):
+        st.markdown("")
+    with st.expander("17.2 APIs for ML Models"):
+        st.markdown("")
+    with st.expander("17.3 Real-Time vs Batch Inference"):
+        st.markdown("")
+    with st.expander("17.4 Monitoring ML Models"):
+        st.markdown("")
+
+# 18. Responsible Machine Learning
+with st.expander("18. Responsible Machine Learning"):
+    with st.expander("18.1 Bias in Machine Learning"):
+        st.markdown("")
+    with st.expander("18.2 Fairness"):
+        st.markdown("")
+    with st.expander("18.3 Explainable AI"):
+        st.markdown("")
+    with st.expander("18.4 Model Interpretability"):
+        st.markdown("")
+    with st.expander("18.5 Ethical AI"):
+        st.markdown("")
 st.title("Deep Learning")
 with st.expander("Neural Networks"):
     st.markdown("")
