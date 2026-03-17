@@ -3277,13 +3277,137 @@ with st.expander("Machine Learning?"):
     # 7. Unsupervised Learning
     with st.expander("7. Unsupervised Learning"):
         with st.expander("7.1 Clustering"):
-            st.markdown("")
+            st.markdown("""
+    **Clustering** is the task of grouping a set of objects such that objects in the same group (cluster) are more similar to each other than to those in other groups.  
+    It is a key **unsupervised learning** method because we do not have labeled data.
+
+    ---
+
+    ### **K-Means Clustering**
+    **Objective Function:**  
+    """)
+            st.latex(r"J = \sum_{i=1}^{k} \sum_{x_j \in C_i} ||x_j - \mu_i||^2")
+            st.markdown("""
+    - \(C_i\) is cluster \(i\), \(\mu_i\) is its centroid.
+    - Minimize the sum of squared distances of points to their cluster centroids.
+
+    **Algorithm Steps:**
+    1. Randomly initialize k centroids.
+    2. Assign each point to the nearest centroid.
+    3. Recompute centroids as the mean of assigned points.
+    4. Repeat steps 2–3 until convergence.
+
+    **Geometric Intuition:** In n-dimensional space, K-Means partitions the space into Voronoi cells around centroids.  
+    **Advantages:** Simple, fast, works well for spherical clusters.  
+    **Disadvantages:** Sensitive to initialization and outliers. Use **KMeans++** for better initialization.
+
+    ---
+
+    ### **Hierarchical Clustering**
+    **Types:**
+    - **Agglomerative:** Start with each point as a cluster and merge closest clusters iteratively.
+    - **Divisive:** Start with all points in one cluster and split recursively.
+
+    **Distance Metrics:** Euclidean, Manhattan, Cosine similarity.
+
+    **Intuition:** Reveals nested clustering structure; represented as a dendrogram.  
+    **Geometric View:** Points merge along nearest neighbor distances in multi-dimensional space.  
+    **Practical Tip:** Cut dendrogram at desired level to choose the number of clusters.
+
+    ---
+
+    ### **DBSCAN (Density-Based Spatial Clustering)**
+    - Groups points based on density; clusters are dense regions separated by sparse areas.
+    - Parameters: \(\epsilon\) (neighborhood radius), minPts (minimum points to form dense region).
+
+    **Intuition:** Detects arbitrary-shaped clusters, handles noise.  
+    **Geometric View:** Points in dense regions form clusters, outliers remain unassigned.
+    """)
+
         with st.expander("7.2 Dimensionality Reduction"):
-            st.markdown("")
+            st.markdown("""
+    **Dimensionality Reduction** reduces the number of features while retaining most of the original data information.  
+    Useful for visualization, noise reduction, and speeding up algorithms.
+
+    ---
+
+    ### **Principal Component Analysis (PCA)**
+    - **Step 1:** Standardize data (zero mean, unit variance).  
+    - **Step 2:** Compute covariance matrix \(\Sigma\).  
+    - **Step 3:** Compute eigenvalues and eigenvectors of \(\Sigma\).  
+    - **Step 4:** Select top k eigenvectors as principal components.
+    """)
+            st.latex(r"\text{maximize } \text{Var}(\mathbf{z}) = \mathbf{w}^T \Sigma \mathbf{w}, \quad \text{s.t. } ||\mathbf{w}||=1")
+            st.markdown("""
+    **Intuition:** Project data onto axes capturing maximum variance.  
+    **Geometric View:** Rotate axes to align with spread; first principal component points along largest data variance.  
+
+    **Practical Tips:**  
+    - Check variance explained to decide number of components.  
+    - Use PCA before clustering for noise reduction or visualization.
+
+    ---
+
+    ### **t-SNE**
+    - Non-linear dimensionality reduction mainly for visualization.
+    - Preserves local neighbor relationships in low-dimensional space.
+
+    **Intuition:** Similar points in high-dimensional space stay close; dissimilar points are far.  
+    **Geometric View:** Clusters appear naturally in 2D/3D plots.
+
+    ---
+
+    ### **UMAP**
+    - Another non-linear DR technique. Preserves local & global structure.
+    - Faster than t-SNE on large datasets.
+    """)
+
         with st.expander("7.3 Density Estimation"):
-            st.markdown("")
+            st.markdown("""
+    **Density Estimation** estimates the probability distribution of data points.
+
+    ---
+
+    ### **Parametric Methods**
+    - Assume a distribution form (e.g., Gaussian).  
+    """)
+            st.latex(r"f(x|\mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \Big(- \frac{(x-\mu)^2}{2\sigma^2} \Big)")
+            st.markdown("""
+    - Estimate parameters (\(\mu, \sigma^2\)) from data.
+    - Works well if assumption is correct.
+
+    ---
+
+    ### **Non-Parametric Methods**
+    - **Kernel Density Estimation (KDE)**:
+    """)
+            st.latex(r"\hat{f}(x) = \frac{1}{nh} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right)")
+            st.markdown("""
+    - \(K\) is kernel function (Gaussian, Epanechnikov), \(h\) is bandwidth controlling smoothness.
+    - Intuition: Smooth the contribution of each point to estimate PDF.
+    - Geometric View: Peaks indicate high-density regions; valleys indicate sparse areas.
+    - Practical Tip: Bandwidth selection critically affects smoothness and overfitting.
+    """)
+
         with st.expander("7.4 Association Rule Learning"):
-            st.markdown("")
+            st.markdown("""
+    **Association Rule Learning** discovers relationships between variables in large datasets.
+
+    ---
+
+    **Key Measures:**
+    1. **Support:** Fraction of transactions containing an itemset.
+    """)
+            st.latex(r"\text{Support}(A) = \frac{\text{Transactions containing } A}{\text{Total transactions}}")
+            st.markdown("2. **Confidence:** Likelihood of B given A")
+            st.latex(r"\text{Confidence}(A \Rightarrow B) = \frac{\text{Support}(A \cap B)}{\text{Support}(A)}")
+            st.markdown("3. **Lift:** How much more likely B occurs given A than by chance")
+            st.latex(r"\text{Lift}(A \Rightarrow B) = \frac{\text{Confidence}(A \Rightarrow B)}{\text{Support}(B)}")
+            st.markdown("""
+    **Intuition:** Find frequent co-occurring items and their predictive relationships.  
+    **Geometric View:** Represent items as nodes in a graph; strong associations form dense clusters.  
+    **Practical Tip:** Use Apriori or FP-Growth; filter rules by minimum support, confidence, and lift thresholds.
+    """)
 
     # 8. Clustering Algorithms
     with st.expander("8. Clustering Algorithms"):
