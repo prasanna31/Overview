@@ -217,65 +217,65 @@ with st.expander("Clear AI overview"):
 
 import streamlit as st
 
-st.title("Artificial Intelligence Topics")
+with st.expander("Artificial Intelligence Topics"):
 
-with st.expander("Definition of AI"):
-    st.markdown("""**Artificial Intelligence (AI)** is the branch of computer science that focuses on creating machines and software capable of performing tasks that normally require human intelligence.  
-These tasks include:
+    with st.expander("Definition of AI"):
+        st.markdown("""**Artificial Intelligence (AI)** is the branch of computer science that focuses on creating machines and software capable of performing tasks that normally require human intelligence.  
+    These tasks include:
 
-- Learning from data and experience  
-- Reasoning and problem-solving  
-- Understanding natural language and speech  
-- Making predictions and decisions  
+    - Learning from data and experience  
+    - Reasoning and problem-solving  
+    - Understanding natural language and speech  
+    - Making predictions and decisions  
 
-In short, AI enables computers to **think, learn, and act intelligently**, simulating human cognitive abilities in various domains.
-""")
+    In short, AI enables computers to **think, learn, and act intelligently**, simulating human cognitive abilities in various domains.
+    """)
 
-with st.expander("Why AI Exists"):
-    st.markdown("""
-AI exists because humans alone **cannot efficiently process the massive amounts of data** generated every day.  
-The goals of AI include:
+    with st.expander("Why AI Exists"):
+        st.markdown("""
+    AI exists because humans alone **cannot efficiently process the massive amounts of data** generated every day.  
+    The goals of AI include:
 
-- **Automating repetitive and complex tasks** that would take humans too long to perform  
-- **Extracting insights from large datasets** to make better decisions  
-- **Enhancing productivity and innovation** across industries  
-- **Solving problems that require intelligence**, such as medical diagnosis, language translation, or autonomous driving  
+    - **Automating repetitive and complex tasks** that would take humans too long to perform  
+    - **Extracting insights from large datasets** to make better decisions  
+    - **Enhancing productivity and innovation** across industries  
+    - **Solving problems that require intelligence**, such as medical diagnosis, language translation, or autonomous driving  
 
-In short, AI exists to **augment human intelligence**, allowing machines to assist or perform tasks that are difficult, dangerous, or time-consuming for humans.
-""")
+    In short, AI exists to **augment human intelligence**, allowing machines to assist or perform tasks that are difficult, dangerous, or time-consuming for humans.
+    """)
 
-with st.expander("Core Goals of AI"):
-    st.markdown("""
-The **core goals of Artificial Intelligence** are focused on making machines capable of performing intelligent tasks like humans. Key goals include:
+    with st.expander("Core Goals of AI"):
+        st.markdown("""
+    The **core goals of Artificial Intelligence** are focused on making machines capable of performing intelligent tasks like humans. Key goals include:
 
-1. **Mimic Human Cognitive Abilities** – AI aims to replicate human-like reasoning, perception, and decision-making.  
-2. **Learn from Experience** – Systems should improve over time by analyzing data and past outcomes.  
-3. **Adapt to New Situations** – AI should generalize knowledge and adjust to unforeseen scenarios.  
-4. **Automate Intelligent Tasks** – Performing tasks efficiently that normally require human intelligence, such as diagnosis, prediction, and planning.  
-5. **Enhance Human Capabilities** – AI is designed to assist humans, augmenting productivity and reducing errors.  
+    1. **Mimic Human Cognitive Abilities** – AI aims to replicate human-like reasoning, perception, and decision-making.  
+    2. **Learn from Experience** – Systems should improve over time by analyzing data and past outcomes.  
+    3. **Adapt to New Situations** – AI should generalize knowledge and adjust to unforeseen scenarios.  
+    4. **Automate Intelligent Tasks** – Performing tasks efficiently that normally require human intelligence, such as diagnosis, prediction, and planning.  
+    5. **Enhance Human Capabilities** – AI is designed to assist humans, augmenting productivity and reducing errors.  
 
-These goals collectively drive AI development across industries, from healthcare and finance to autonomous systems and creative applications.
-""")
+    These goals collectively drive AI development across industries, from healthcare and finance to autonomous systems and creative applications.
+    """)
 
-with st.expander("Difference between AI, ML, and GenAI"):
-    st.markdown("""
-Here’s how **Artificial Intelligence (AI)**, **Machine Learning (ML)**, and **Generative AI (GenAI)** differ:
+    with st.expander("Difference between AI, ML, and GenAI"):
+        st.markdown("""
+    Here’s how **Artificial Intelligence (AI)**, **Machine Learning (ML)**, and **Generative AI (GenAI)** differ:
 
-- **Artificial Intelligence (AI):**  
-  The broad field of creating machines that can perform tasks requiring human intelligence.  
-  Examples: problem-solving, decision-making, language understanding.
+    - **Artificial Intelligence (AI):**  
+    The broad field of creating machines that can perform tasks requiring human intelligence.  
+    Examples: problem-solving, decision-making, language understanding.
 
-- **Machine Learning (ML):**  
-  A subset of AI where systems **learn patterns from data** and improve over time without explicit programming.  
-  Examples: predicting house prices, classifying emails as spam, recommendation systems.
+    - **Machine Learning (ML):**  
+    A subset of AI where systems **learn patterns from data** and improve over time without explicit programming.  
+    Examples: predicting house prices, classifying emails as spam, recommendation systems.
 
-- **Generative AI (GenAI):**  
-  A subset of AI (and often ML) focused on **creating new content** such as text, images, or code.  
-  Examples: GPT generating text, DALL·E generating images, GANs creating synthetic data.
+    - **Generative AI (GenAI):**  
+    A subset of AI (and often ML) focused on **creating new content** such as text, images, or code.  
+    Examples: GPT generating text, DALL·E generating images, GANs creating synthetic data.
 
-**Summary:**  
-AI is the big umbrella, ML is the learning engine under it, and GenAI is the creative subset producing novel outputs.
-""")
+    **Summary:**  
+    AI is the big umbrella, ML is the learning engine under it, and GenAI is the creative subset producing novel outputs.
+    """)
 
 st.title("Machine Learning")
 with st.expander("Supervised Learning"):
@@ -345,293 +345,310 @@ The output variable belongs to a **finite set of classes**.
 
 ---
 
-# 1. Linear Regression
+REGRESSION (IN-DEPTH EXPLANATION)
 
-Linear Regression models the relationship between input features and output using a linear equation.
+1. What is Regression
 
-For one feature:
+Regression is a machine learning and statistical technique used to model the
+relationship between variables and predict a continuous numerical output.
 
-y = w x + b
+Unlike classification, which predicts categories (spam/not spam),
+regression predicts real numbers.
 
-For multiple features:
+Examples
+- Predicting house prices
+- Predicting temperature
+- Predicting stock prices
+- Predicting revenue
+- Predicting electricity demand
 
-y = w₁x₁ + w₂x₂ + ... + wₙxₙ + b
 
-or in vector form:
+------------------------------------------------------------
 
-y = wᵀx + b
+2. Basic Idea
 
-### Loss Function
+Regression tries to learn a function that maps inputs to outputs.
 
-Mean Squared Error (MSE):
+Input variables → Features
+Output variable → Target
 
-L = (1/n) Σ (yᵢ − ŷᵢ)²
+Example
 
-where
+House Size → House Price
 
-ŷᵢ = predicted value
+The model tries to learn:
 
-### Goal
+Price = f(Size)
 
-Find weights **w** and bias **b** that minimize the loss.
 
-### Optimization
+------------------------------------------------------------
 
-Typically solved using **Gradient Descent**.
+3. Linear Regression
 
-### Algorithm Steps
+The simplest regression model assumes the relationship is linear.
 
-1. Initialize weights randomly.
-2. Compute prediction:
+Equation
 
-   ŷ = wᵀx + b
+y = β0 + β1x
 
-3. Compute loss using MSE.
-4. Compute gradients:
+Where
 
-   ∂L/∂w  
-   ∂L/∂b
+y  = predicted value
+x  = input variable
+β0 = intercept (value when x = 0)
+β1 = slope (rate of change)
 
-5. Update parameters:
+Example
 
-   w = w − α ∂L/∂w  
-   b = b − α ∂L/∂b
+Price = 50000 + 150 × Size
 
-6. Repeat until convergence.
+Meaning
+Every extra square foot increases price by $150.
 
-### Intuition
 
-The algorithm finds the **best fitting line or hyperplane** that minimizes squared error between predictions and actual values.
+------------------------------------------------------------
 
----
+4. Multiple Linear Regression
 
-# 2. Logistic Regression
+Sometimes we have multiple input variables.
 
-Despite the name, logistic regression is used for **classification**.
+Example house dataset
 
-Instead of predicting a continuous value, it predicts **probability**.
+Size
+Bedrooms
+Location
+Age
 
-Linear model:
+The model becomes
 
-z = wᵀx + b
+y = β0 + β1x1 + β2x2 + β3x3 + ... + βnxn
 
-This value is passed through the **sigmoid function**:
+Example
 
-σ(z) = 1 / (1 + e^(−z))
+Price =
+50000
++ 120 × Size
++ 20000 × Bedrooms
++ 30000 × LocationScore
 
-The output is:
 
-P(y=1 | x) = σ(wᵀx + b)
+------------------------------------------------------------
 
-### Decision Rule
+5. Goal of Regression
 
-If
+Regression tries to find parameters that minimize prediction error.
 
-P ≥ 0.5 → class 1  
-P < 0.5 → class 0
+The difference between prediction and true value is called a residual.
 
-### Loss Function
+Residual
 
-Binary Cross Entropy:
+Residual = Actual Value − Predicted Value
 
-L = − Σ [ y log(p) + (1−y) log(1−p) ]
 
-### Algorithm Steps
+------------------------------------------------------------
 
-1. Initialize weights.
-2. Compute linear combination:
+6. Loss Function
 
-   z = wᵀx + b
+To train regression models we use a loss function.
 
-3. Apply sigmoid:
+The most common one is Mean Squared Error (MSE).
 
-   p = σ(z)
+MSE = average of (Actual − Predicted)^2
 
-4. Compute cross-entropy loss.
-5. Compute gradients.
-6. Update weights using gradient descent.
-7. Repeat.
+Why squared?
 
-### Intuition
+• penalizes large errors more
+• keeps values positive
+• easier to optimize mathematically
 
-Logistic regression finds a **decision boundary (hyperplane)** separating classes.
 
----
+------------------------------------------------------------
 
-# 3. Decision Trees
+7. Optimization
 
-Decision Trees split data into regions using **feature-based rules**.
+To minimize loss, algorithms adjust model parameters.
 
-Example:
+The most common algorithm is Gradient Descent.
 
-IF age > 30  
-THEN income > 50k  
-THEN approve loan
+Gradient Descent repeatedly updates parameters in the direction that
+reduces prediction error.
 
-### Key Idea
+Update rule
 
-Choose splits that **maximize class purity**.
+New Parameter = Old Parameter − LearningRate × Gradient
 
-### Impurity Measures
 
-#### Gini Impurity
+------------------------------------------------------------
 
-Gini = 1 − Σ pᵢ²
+8. Polynomial Regression
 
-#### Entropy
+Linear regression cannot model curves.
 
-Entropy = − Σ pᵢ log₂ pᵢ
+Polynomial regression solves this by adding higher order terms.
 
-Lower impurity means better splits.
+Example
 
-### Algorithm Steps
+y = β0 + β1x + β2x² + β3x³
 
-1. Start with entire dataset as root.
-2. Evaluate every possible split.
-3. Compute impurity reduction.
-4. Choose split with maximum gain.
-5. Recursively repeat for child nodes.
-6. Stop when:
+This allows the model to capture nonlinear patterns.
 
-   - maximum depth reached  
-   - node pure  
-   - minimum samples reached
 
-### Intuition
+------------------------------------------------------------
 
-Decision trees partition the feature space into **rectangular regions**.
+9. Regularization in Regression
 
----
+When models become too complex they overfit the training data.
 
-# 4. Random Forest
+Regularization adds penalties to keep coefficients small.
 
-Random Forest is an **ensemble of decision trees**.
+Two major types exist.
 
-Each tree is trained on:
 
-- Random subset of data (bootstrapping)
-- Random subset of features
+Ridge Regression (L2)
 
-Prediction is obtained by:
+Adds penalty on squared coefficients.
 
-Classification → majority vote  
-Regression → average prediction
+Loss = MSE + λ(β1² + β2² + ... + βn²)
 
-### Algorithm Steps
+Effect
+• reduces large coefficients
+• stabilizes the model
 
-1. Draw bootstrap samples.
-2. Train decision tree on each sample.
-3. At each split choose random subset of features.
-4. Build many trees.
-5. Aggregate predictions.
 
-### Intuition
+Lasso Regression (L1)
 
-Combining many weak learners reduces **variance and overfitting**.
+Adds penalty on absolute coefficients.
 
----
+Loss = MSE + λ(|β1| + |β2| + ... + |βn|)
 
-# 5. Support Vector Machines (SVM)
+Effect
+• forces some coefficients to become zero
+• performs feature selection
 
-SVM tries to find a **hyperplane that maximizes the margin** between classes.
 
-Hyperplane:
+Elastic Net
 
-wᵀx + b = 0
+Combines L1 and L2 penalties.
 
-Two margin boundaries:
 
-wᵀx + b = 1  
-wᵀx + b = −1
+------------------------------------------------------------
 
-Margin width:
+10. Overfitting
 
-2 / ||w||
+Overfitting happens when the model memorizes training data instead of
+learning general patterns.
 
-### Optimization Problem
+Signs
 
-Minimize:
+• very low training error
+• high test error
 
-½ ||w||²
+Causes
 
-subject to
+• too many features
+• complex model
+• small dataset
 
-yᵢ (wᵀxᵢ + b) ≥ 1
 
-### Kernel Trick
+------------------------------------------------------------
 
-For non-linear data, inputs are mapped into higher dimensions:
+11. Underfitting
 
-K(x,x') = φ(x) · φ(x')
+Underfitting happens when the model is too simple to capture patterns.
 
-Common kernels:
+Example
 
-- Linear
-- Polynomial
-- RBF (Gaussian)
+Using a straight line to fit a curved dataset.
 
-### Intuition
+Signs
 
-SVM finds the **largest margin separator**, improving generalization.
+• high training error
+• high test error
 
----
 
-# 6. k-Nearest Neighbors (kNN)
+------------------------------------------------------------
 
-kNN is a **lazy learning algorithm**.
+12. Evaluation Metrics
 
-It stores the training data and predicts based on nearest neighbors.
+R² Score (Coefficient of Determination)
 
-### Distance Metric
+Measures how much variance in the target variable is explained by the model.
 
-Most common:
+R² = 1 − (Residual Sum of Squares / Total Sum of Squares)
 
-Euclidean Distance
+Interpretation
 
-d(x₁,x₂) = √ Σ (x₁ − x₂)²
+R² = 1  → perfect model
+R² = 0  → model explains nothing
 
-### Algorithm Steps
 
-1. Choose k.
-2. Compute distance from new point to all training points.
-3. Select k closest points.
-4. Classification → majority vote.
-5. Regression → average value.
+Other metrics
 
-### Intuition
+MAE  (Mean Absolute Error)
+RMSE (Root Mean Squared Error)
 
-Points close in feature space likely belong to the same class.
 
----
+------------------------------------------------------------
 
-# 7. Naive Bayes
+13. Types of Regression Models
 
-Naive Bayes is based on **Bayes Theorem**.
+Linear Regression
+Models linear relationships.
 
-P(A|B) = P(B|A) P(A) / P(B)
+Polynomial Regression
+Captures nonlinear curves.
 
-For classification:
+Ridge Regression
+Controls large coefficients.
 
-P(class | features)
+Lasso Regression
+Performs feature selection.
 
-Assuming feature independence:
+Elastic Net
+Combines ridge and lasso penalties.
 
-P(y | x₁,x₂,...,xₙ)
+Support Vector Regression (SVR)
+Uses margin-based optimization.
 
-= P(y) Π P(xᵢ | y)
+Bayesian Regression
+Treats parameters as probability distributions.
 
-### Algorithm Steps
+Quantile Regression
+Predicts different percentiles of the target variable.
 
-1. Estimate prior probabilities P(y).
-2. Estimate likelihoods P(xᵢ | y).
-3. Compute posterior probabilities.
-4. Choose class with highest probability.
 
-### Intuition
+------------------------------------------------------------
 
-Even though the independence assumption is unrealistic, it works well in high-dimensional data like text.
+14. Real World Applications
 
----
+Economics
+Predict GDP growth.
+
+Healthcare
+Predict disease risk.
+
+Finance
+Predict stock returns.
+
+Retail
+Predict product demand.
+
+Energy
+Predict electricity consumption.
+
+Weather
+Predict temperature and rainfall.
+
+
+------------------------------------------------------------
+
+15. Intuition
+
+Regression is essentially about fitting the best curve through data.
+
+The model tries to answer:
+
+"What function best explains how inputs influence outputs?"
 
 # Evaluation Metrics
 
