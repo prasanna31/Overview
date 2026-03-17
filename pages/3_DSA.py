@@ -41,534 +41,474 @@ They are one of the most fundamental data structures and are widely used in prob
 searching, sorting, and numerical computations.
 """)
 
-st.subheader("Array Patterns")
 
 
 import streamlit as st
 
-st.header("Array Patterns")
 
-
-with st.expander("1. Two Pointer Pattern"):
+with st.expander("Array Patterns"):
     with st.expander("1. Two Pointer Pattern"):
 
+
         st.markdown("""
-# Two Pointer Pattern
+    # Two Pointer Pattern
 
-The **Two Pointer Pattern** is a technique where **two indices (pointers)** traverse a data structure 
-— usually an array or string — in order to reduce time complexity from **O(n²)** to **O(n)**.
+    The **Two Pointer Pattern** is a technique where **two indices (pointers)** traverse a data structure 
+    — usually an array or string — in order to reduce time complexity from **O(n²)** to **O(n)**.
 
-Instead of checking every possible pair using nested loops, two pointers move strategically
-through the data to examine only the necessary elements.
+    Instead of checking every possible pair using nested loops, two pointers move strategically
+    through the data to examine only the necessary elements.
 
-This pattern is extremely common in technical interviews and is used in problems involving:
+    This pattern is extremely common in technical interviews and is used in problems involving:
 
-• pairs in sorted arrays  
-• palindrome checks  
-• removing duplicates  
-• partitioning arrays  
-• container problems  
-• merging sorted data  
+    • pairs in sorted arrays  
+    • palindrome checks  
+    • removing duplicates  
+    • partitioning arrays  
+    • container problems  
+    • merging sorted data  
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-# Core Idea
+    # Core Idea
 
-The naive approach for pair problems is:
-```python
-    for i in range(n):
-        for j in range(i+1, n):
-```
-This results in **O(n²)** comparisons.
+    The naive approach for pair problems is:
+    ```python
+        for i in range(n):
+            for j in range(i+1, n):
+    ```
+    This results in **O(n²)** comparisons.
 
-Two pointer technique avoids this by scanning the array once.
+    Two pointer technique avoids this by scanning the array once.
 
-Example pointer initialization:
+    Example pointer initialization:
 
-    left = 0
-    right = len(arr) - 1
+        left = 0
+        right = len(arr) - 1
 
-Pointers move based on a condition until they meet.
+    Pointers move based on a condition until they meet.
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-# Types of Two Pointer Techniques
+    # Types of Two Pointer Techniques
 
-## 1. Opposite Direction Pointers
+    ## 1. Opposite Direction Pointers
 
-Pointers start at **both ends** of the array and move toward each other.
+    Pointers start at **both ends** of the array and move toward each other.
 
-Visualization
+    Visualization
 
-    left -> -> -> <- <- <- right
+        left -> -> -> <- <- <- right
 
-Common Uses
+    Common Uses
 
-• pair sum in sorted arrays  
-• palindrome checks  
-• container with most water  
-• trapping rain water  
+    • pair sum in sorted arrays  
+    • palindrome checks  
+    • container with most water  
+    • trapping rain water  
 
-Example
+    Example
 
-    [1,2,3,4,6]
-     ^       ^
-    left    right
+        [1,2,3,4,6]
+        ^       ^
+        left    right
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-## 2. Same Direction Pointers
+    ## 2. Same Direction Pointers
 
-Both pointers move forward.
+    Both pointers move forward.
 
-Visualization
+    Visualization
 
-    slow -> -> -> ->
-    fast -> -> -> ->
+        slow -> -> -> ->
+        fast -> -> -> ->
 
-One pointer scans the array while the other tracks valid elements.
+    One pointer scans the array while the other tracks valid elements.
 
-Common Uses
+    Common Uses
 
-• remove duplicates  
-• move zeros  
-• stable filtering  
+    • remove duplicates  
+    • move zeros  
+    • stable filtering  
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-## 3. Fast and Slow Pointer (Runner Technique)
+    ## 3. Fast and Slow Pointer (Runner Technique)
 
-Two pointers move at **different speeds**.
+    Two pointers move at **different speeds**.
 
-Visualization
+    Visualization
 
-    slow -> -> -> ->
-    fast -> -> -> -> -> -> ->
+        slow -> -> -> ->
+        fast -> -> -> -> -> -> ->
 
-Common Uses
+    Common Uses
 
-• detect cycle in linked list  
-• find middle element  
-• detect loop in arrays  
+    • detect cycle in linked list  
+    • find middle element  
+    • detect loop in arrays  
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-# When To Use Two Pointers
+    # When To Use Two Pointers
 
-Use this pattern when:
+    Use this pattern when:
 
-### 1. The array is sorted
+    ### 1. The array is sorted
 
-Sorted data allows pointer movement decisions.
+    Sorted data allows pointer movement decisions.
 
-Example problems
+    Example problems
 
-• Two Sum II  
-• Pair with target sum  
-• remove duplicates  
+    • Two Sum II  
+    • Pair with target sum  
+    • remove duplicates  
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-### 2. Need to examine pairs
+    ### 2. Need to examine pairs
 
-Instead of nested loops.
+    Instead of nested loops.
 
-Example
+    Example
 
-    find pair whose sum = target
+        find pair whose sum = target
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-### 3. Need to compress or filter data
+    ### 3. Need to compress or filter data
 
-Examples
+    Examples
 
-• remove duplicates  
-• move zeros  
-• partition array  
+    • remove duplicates  
+    • move zeros  
+    • partition array  
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-### 4. Need symmetric comparisons
+    ### 4. Need symmetric comparisons
 
-Example
+    Example
 
-    palindrome check
+        palindrome check
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-# Generic Template (Opposite Direction)
-```python
-    left = 0
-    right = len(arr) - 1
-
-    while left < right:
-
-        if condition:
-            return result
-
-        elif need_bigger_value:
-            left += 1
-
-        else:
-            right -= 1
-```
-Time Complexity
-
-    O(n)
-
-Space Complexity
-
-    O(1)
-
-Each pointer moves at most **n times**.
-
-------------------------------------------------------------
-
-# Generic Template (Same Direction)
-```python
-    slow = 0
-
-    for fast in range(len(arr)):
-
-        if condition:
-            arr[slow] = arr[fast]
-            slow += 1
-```
-Used for
-
-• removing duplicates  
-• filtering elements  
-
-------------------------------------------------------------
-
-# Example 1 — Pair With Target Sum
-
-Problem
-
-Find two numbers that add up to a target.
-
-Sorted array
-
-    [1,2,3,4,6]
-    target = 6
-
-Solution
-```python
-    def pair_sum(arr, target):
-
+    # Generic Template (Opposite Direction)
+    ```python
         left = 0
         right = len(arr) - 1
 
         while left < right:
 
-            s = arr[left] + arr[right]
+            if condition:
+                return result
 
-            if s == target:
-                return left, right
-
-            elif s < target:
+            elif need_bigger_value:
                 left += 1
 
             else:
                 right -= 1
+    ```
+    Time Complexity
 
-        return None
-```
-Time Complexity
+        O(n)
 
-    O(n)
+    Space Complexity
 
-Space Complexity
+        O(1)
 
-    O(1)
+    Each pointer moves at most **n times**.
 
-------------------------------------------------------------
+    ------------------------------------------------------------
 
-# Example 2 — Remove Duplicates (Sorted Array)
-
-Input
-
-    [1,1,2,2,3,4,4]
-
-Solution
-```python
-    def remove_duplicates(arr):
-
+    # Generic Template (Same Direction)
+    ```python
         slow = 0
 
-        for fast in range(1, len(arr)):
+        for fast in range(len(arr)):
 
-            if arr[fast] != arr[slow]:
-                slow += 1
+            if condition:
                 arr[slow] = arr[fast]
+                slow += 1
+    ```
+    Used for
 
-        return slow + 1
-```
-------------------------------------------------------------
+    • removing duplicates  
+    • filtering elements  
 
-# Example 3 — Palindrome Check
-```python
-    def is_palindrome(s):
+    ------------------------------------------------------------
 
-        left = 0
-        right = len(s) - 1
+    # Example 1 — Pair With Target Sum
 
-        while left < right:
+    Problem
 
-            if s[left] != s[right]:
-                return False
+    Find two numbers that add up to a target.
 
-            left += 1
-            right -= 1
+    Sorted array
 
-        return True
-```
-------------------------------------------------------------
+        [1,2,3,4,6]
+        target = 6
 
-# Visual Intuition
+    Solution
+    ```python
+        def pair_sum(arr, target):
 
-Array
+            left = 0
+            right = len(arr) - 1
 
-    [1,2,3,4,6]
-    target = 6
+            while left < right:
 
-Step 1
+                s = arr[left] + arr[right]
 
-    1 + 6 = 7
-    move right
+                if s == target:
+                    return left, right
 
-Step 2
+                elif s < target:
+                    left += 1
 
-    1 + 4 = 5
-    move left
+                else:
+                    right -= 1
 
-Step 3
+            return None
+    ```
+    Time Complexity
 
-    2 + 4 = 6
-    solution found
+        O(n)
 
-Only **3 comparisons** instead of **10 comparisons** using nested loops.
+    Space Complexity
 
-------------------------------------------------------------
+        O(1)
 
-# Complexity
+    ------------------------------------------------------------
 
-Time Complexity
+    # Example 2 — Remove Duplicates (Sorted Array)
 
-    O(n)
+    Input
 
-Space Complexity
+        [1,1,2,2,3,4,4]
 
-    O(1)
+    Solution
+    ```python
+        def remove_duplicates(arr):
 
-------------------------------------------------------------
+            slow = 0
 
-# Common Interview Problems
+            for fast in range(1, len(arr)):
 
-Two Sum II  
-Container With Most Water  
-3Sum  
-Trapping Rain Water  
-Remove Duplicates from Sorted Array  
-Valid Palindrome  
-Move Zeroes  
+                if arr[fast] != arr[slow]:
+                    slow += 1
+                    arr[slow] = arr[fast]
 
-------------------------------------------------------------
+            return slow + 1
+    ```
+    ------------------------------------------------------------
 
-# Key Insight
+    # Example 3 — Palindrome Check
+    ```python
+        def is_palindrome(s):
 
-Two pointers allow us to replace nested loops.
+            left = 0
+            right = len(s) - 1
 
-    O(n²)  ->  O(n)
+            while left < right:
 
-This makes it one of the **most powerful patterns in algorithm design**.
-""")
-with st.expander("2. Sliding Window Pattern"):
+                if s[left] != s[right]:
+                    return False
 
-    st.markdown("""
-# Sliding Window Pattern
+                left += 1
+                right -= 1
 
-The **Sliding Window Pattern** is used to process **contiguous subarrays or substrings** efficiently.
+            return True
+    ```
+    ------------------------------------------------------------
 
-Instead of recalculating results for every possible window using nested loops,
-we **reuse previous computations** while expanding or shrinking a window.
+    # Visual Intuition
 
-This reduces complexity from:
+    Array
 
-    O(n²) → O(n)
+        [1,2,3,4,6]
+        target = 6
 
-Sliding Window is extremely common in problems involving:
+    Step 1
 
-• subarrays  
-• substrings  
-• fixed-size windows  
-• variable-size windows  
-• maximum/minimum values in ranges  
+        1 + 6 = 7
+        move right
 
-It is one of the **most important patterns for arrays and strings**.
+    Step 2
 
---------------------------------------------------------------------
+        1 + 4 = 5
+        move left
 
-# Core Idea
+    Step 3
 
-Imagine a window moving across the array.
+        2 + 4 = 6
+        solution found
 
-Example:
+    Only **3 comparisons** instead of **10 comparisons** using nested loops.
 
-    [2, 1, 5, 1, 3, 2]
+    ------------------------------------------------------------
 
-Window size = 3
+    # Complexity
 
-    [2, 1, 5] 1 3 2
-      [1, 5, 1] 3 2
-        [5, 1, 3] 2
-          [1, 3, 2]
+    Time Complexity
 
-Instead of recomputing every window sum:
+        O(n)
 
-    sum(arr[i:i+k])
+    Space Complexity
 
-we update incrementally:
+        O(1)
 
-    add next element
-    remove previous element
+    ------------------------------------------------------------
 
---------------------------------------------------------------------
+    # Common Interview Problems
 
-# When To Use Sliding Window
+    Two Sum II  
+    Container With Most Water  
+    3Sum  
+    Trapping Rain Water  
+    Remove Duplicates from Sorted Array  
+    Valid Palindrome  
+    Move Zeroes  
 
-Use sliding window when:
+    ------------------------------------------------------------
 
-### 1. The problem involves contiguous subarrays or substrings
+    # Key Insight
 
-Examples
+    Two pointers allow us to replace nested loops.
 
-• maximum sum subarray of size k  
-• longest substring without repeating characters  
-• smallest subarray with given sum  
+        O(n²)  ->  O(n)
 
---------------------------------------------------------------------
+    This makes it one of the **most powerful patterns in algorithm design**.
+    """)
+    with st.expander("2. Sliding Window Pattern"):
 
-### 2. Repeated computations overlap
+        st.markdown("""
+    # Sliding Window Pattern
 
-Example
+    The **Sliding Window Pattern** is used to process **contiguous subarrays or substrings** efficiently.
 
-Window size = 3
+    Instead of recalculating results for every possible window using nested loops,
+    we **reuse previous computations** while expanding or shrinking a window.
 
-Instead of computing:
+    This reduces complexity from:
 
-    sum([2,1,5])
-    sum([1,5,1])
-    sum([5,1,3])
+        O(n²) → O(n)
 
-We reuse previous work.
+    Sliding Window is extremely common in problems involving:
 
---------------------------------------------------------------------
+    • subarrays  
+    • substrings  
+    • fixed-size windows  
+    • variable-size windows  
+    • maximum/minimum values in ranges  
 
-### 3. Need optimal result over ranges
+    It is one of the **most important patterns for arrays and strings**.
 
-Examples
+    --------------------------------------------------------------------
 
-• maximum window sum  
-• longest valid substring  
-• minimum length subarray  
+    # Core Idea
 
---------------------------------------------------------------------
+    Imagine a window moving across the array.
 
-# Types of Sliding Window
+    Example:
 
-## 1. Fixed Size Window
+        [2, 1, 5, 1, 3, 2]
 
-The window size remains constant.
+    Window size = 3
 
-Example
+        [2, 1, 5] 1 3 2
+        [1, 5, 1] 3 2
+            [5, 1, 3] 2
+            [1, 3, 2]
 
-    find maximum sum of subarray of size k
+    Instead of recomputing every window sum:
 
-Window
-
-    [2,1,5] 1 3 2
-
-Move window
-
-    remove left element
-    add new right element
-
---------------------------------------------------------------------
-
-## 2. Variable Size Window
-
-Window size changes dynamically.
-
-Example
-
-    longest substring without repeating characters
-
-Window expands until constraint breaks,
-then shrinks.
-
---------------------------------------------------------------------
-
-# Fixed Window Template
-
-    window_sum = 0
-    max_sum = 0
-    window_start = 0
-
-    for window_end in range(len(arr)):
-
-        window_sum += arr[window_end]
-
-        if window_end >= k - 1:
-
-            max_sum = max(max_sum, window_sum)
-
-            window_sum -= arr[window_start]
-
-            window_start += 1
-
-Time Complexity
-
-    O(n)
-
---------------------------------------------------------------------
-
-# Variable Window Template
-
-    window_start = 0
-
-    for window_end in range(len(arr)):
-
-        add element to window
-
-        while constraint violated:
-            remove element from window
-            window_start += 1
-
-        update result
-
---------------------------------------------------------------------
-
-# Example 1 — Maximum Sum Subarray of Size K
-
-Input
-
-    arr = [2,1,5,1,3,2]
-    k = 3
-
-Brute Force
-
-    for i in range(n):
         sum(arr[i:i+k])
 
-Time
+    we update incrementally:
 
-    O(n*k)
+        add next element
+        remove previous element
 
-Sliding Window Solution
+    --------------------------------------------------------------------
 
-    def max_sum_subarray(arr, k):
+    # When To Use Sliding Window
+
+    Use sliding window when:
+
+    ### 1. The problem involves contiguous subarrays or substrings
+
+    Examples
+
+    • maximum sum subarray of size k  
+    • longest substring without repeating characters  
+    • smallest subarray with given sum  
+
+    --------------------------------------------------------------------
+
+    ### 2. Repeated computations overlap
+
+    Example
+
+    Window size = 3
+
+    Instead of computing:
+
+        sum([2,1,5])
+        sum([1,5,1])
+        sum([5,1,3])
+
+    We reuse previous work.
+
+    --------------------------------------------------------------------
+
+    ### 3. Need optimal result over ranges
+
+    Examples
+
+    • maximum window sum  
+    • longest valid substring  
+    • minimum length subarray  
+
+    --------------------------------------------------------------------
+
+    # Types of Sliding Window
+
+    ## 1. Fixed Size Window
+
+    The window size remains constant.
+
+    Example
+
+        find maximum sum of subarray of size k
+
+    Window
+
+        [2,1,5] 1 3 2
+
+    Move window
+
+        remove left element
+        add new right element
+
+    --------------------------------------------------------------------
+
+    ## 2. Variable Size Window
+
+    Window size changes dynamically.
+
+    Example
+
+        longest substring without repeating characters
+
+    Window expands until constraint breaks,
+    then shrinks.
+
+    --------------------------------------------------------------------
+
+    # Fixed Window Template
 
         window_sum = 0
         max_sum = 0
@@ -586,202 +526,260 @@ Sliding Window Solution
 
                 window_start += 1
 
-        return max_sum
+    Time Complexity
 
-Time Complexity
+        O(n)
 
-    O(n)
+    --------------------------------------------------------------------
 
-Space Complexity
+    # Variable Window Template
 
-    O(1)
+        window_start = 0
 
---------------------------------------------------------------------
+        for window_end in range(len(arr)):
 
-# Example 2 — Longest Substring Without Repeating Characters
+            add element to window
 
-Input
+            while constraint violated:
+                remove element from window
+                window_start += 1
 
-    "abcabcbb"
+            update result
 
-Goal
+    --------------------------------------------------------------------
 
-    longest substring without repeating characters
+    # Example 1 — Maximum Sum Subarray of Size K
 
-Sliding Window Solution
+    Input
 
-    def longest_unique_substring(s):
+        arr = [2,1,5,1,3,2]
+        k = 3
 
-        char_set = set()
+    Brute Force
 
-        left = 0
-        max_length = 0
+        for i in range(n):
+            sum(arr[i:i+k])
 
-        for right in range(len(s)):
+    Time
 
-            while s[right] in char_set:
-                char_set.remove(s[left])
-                left += 1
+        O(n*k)
 
-            char_set.add(s[right])
+    Sliding Window Solution
 
-            max_length = max(max_length, right - left + 1)
+        def max_sum_subarray(arr, k):
 
-        return max_length
+            window_sum = 0
+            max_sum = 0
+            window_start = 0
 
-Time Complexity
+            for window_end in range(len(arr)):
 
-    O(n)
+                window_sum += arr[window_end]
 
---------------------------------------------------------------------
+                if window_end >= k - 1:
 
-# Visual Example
+                    max_sum = max(max_sum, window_sum)
 
-Array
+                    window_sum -= arr[window_start]
 
-    [2,1,5,1,3,2]
+                    window_start += 1
 
-k = 3
+            return max_sum
 
-Step 1
+    Time Complexity
 
-    window = [2,1,5]
-    sum = 8
+        O(n)
 
-Step 2
+    Space Complexity
 
-    remove 2
-    add 1
+        O(1)
 
-    window = [1,5,1]
-    sum = 7
+    --------------------------------------------------------------------
 
-Step 3
+    # Example 2 — Longest Substring Without Repeating Characters
 
-    remove 1
-    add 3
+    Input
 
-    window = [5,1,3]
-    sum = 9
+        "abcabcbb"
 
-Step 4
+    Goal
 
-    remove 5
-    add 2
+        longest substring without repeating characters
 
-    window = [1,3,2]
-    sum = 6
+    Sliding Window Solution
 
-Maximum = 9
+        def longest_unique_substring(s):
 
---------------------------------------------------------------------
+            char_set = set()
 
-# Common Interview Problems
+            left = 0
+            max_length = 0
 
-Maximum Sum Subarray of Size K  
-Minimum Size Subarray Sum  
-Longest Substring Without Repeating Characters  
-Longest Repeating Character Replacement  
-Permutation in String  
-Sliding Window Maximum  
-Fruit Into Baskets  
+            for right in range(len(s)):
 
---------------------------------------------------------------------
+                while s[right] in char_set:
+                    char_set.remove(s[left])
+                    left += 1
 
-# Sliding Window vs Two Pointer
+                char_set.add(s[right])
 
-Sliding window is actually a **special case of two pointers**.
+                max_length = max(max_length, right - left + 1)
 
-Two pointers track window boundaries.
+            return max_length
 
-    left -> window start
-    right -> window end
+    Time Complexity
 
-But sliding window always represents a **contiguous region**.
+        O(n)
 
---------------------------------------------------------------------
+    --------------------------------------------------------------------
 
-# Complexity
+    # Visual Example
 
-Time Complexity
+    Array
 
-    O(n)
+        [2,1,5,1,3,2]
 
-Space Complexity
+    k = 3
 
-    O(1) or O(k)
+    Step 1
 
-depending on additional data structures.
+        window = [2,1,5]
+        sum = 8
 
---------------------------------------------------------------------
+    Step 2
 
-# Key Insight
+        remove 2
+        add 1
 
-Sliding Window avoids recalculating overlapping ranges.
+        window = [1,5,1]
+        sum = 7
 
-Instead of
+    Step 3
 
-    O(n²)
+        remove 1
+        add 3
 
-we get
+        window = [5,1,3]
+        sum = 9
 
-    O(n)
+    Step 4
 
-This makes it one of the **most powerful patterns for arrays and strings**.
-""")
-with st.expander("3. Prefix Sum Pattern"):
-    st.write("Precompute cumulative sums so that range sum queries can be answered in constant time.")
+        remove 5
+        add 2
 
-with st.expander("4. Difference Array Pattern"):
-    st.write("Use an auxiliary array to efficiently perform multiple range updates.")
+        window = [1,3,2]
+        sum = 6
 
-with st.expander("5. Kadane’s Algorithm Pattern"):
-    st.write("Find the maximum sum subarray by tracking the maximum sum ending at each position.")
+    Maximum = 9
 
-with st.expander("6. Cyclic Sort Pattern"):
-    st.write("Used when numbers are in a fixed range; place elements at their correct indices by swapping.")
+    --------------------------------------------------------------------
 
-with st.expander("7. Partition Pattern"):
-    st.write("Divide the array into two groups based on a pivot element.")
+    # Common Interview Problems
 
-with st.expander("8. Dutch National Flag Pattern"):
-    st.write("Three-way partitioning of elements into low, mid, and high categories.")
+    Maximum Sum Subarray of Size K  
+    Minimum Size Subarray Sum  
+    Longest Substring Without Repeating Characters  
+    Longest Repeating Character Replacement  
+    Permutation in String  
+    Sliding Window Maximum  
+    Fruit Into Baskets  
 
-with st.expander("9. Binary Search Pattern"):
-    st.write("Repeatedly divide a sorted search space in half to find an element efficiently.")
+    --------------------------------------------------------------------
 
-with st.expander("10. Rotated Array Search Pattern"):
-    st.write("Binary search variant used when a sorted array has been rotated.")
+    # Sliding Window vs Two Pointer
 
-with st.expander("11. Subarray Sum Pattern"):
-    st.write("Find subarrays with specific sums using prefix sums or hash maps.")
+    Sliding window is actually a **special case of two pointers**.
 
-with st.expander("12. Product Except Self Pattern"):
-    st.write("Compute products of all elements except the current one without division.")
+    Two pointers track window boundaries.
 
-with st.expander("13. Merge Sorted Arrays Pattern"):
-    st.write("Combine two sorted arrays into one sorted sequence.")
+        left -> window start
+        right -> window end
 
-with st.expander("14. Frequency Counting Pattern"):
-    st.write("Use hash maps or arrays to count occurrences of elements.")
+    But sliding window always represents a **contiguous region**.
 
-with st.expander("15. Greedy Rearrangement Pattern"):
-    st.write("Rearrange elements to satisfy constraints using greedy decisions.")
+    --------------------------------------------------------------------
 
-with st.expander("16. Matrix Traversal Pattern"):
-    st.write("Systematically visit elements in a 2D grid.")
+    # Complexity
 
-with st.expander("17. Spiral Traversal Pattern"):
-    st.write("Traverse a matrix layer by layer in spiral order.")
+    Time Complexity
 
-with st.expander("18. Diagonal Traversal Pattern"):
-    st.write("Traverse elements across matrix diagonals.")
+        O(n)
 
-with st.expander("19. Range Query Pattern"):
-    st.write("Answer queries on array ranges using preprocessing techniques.")
+    Space Complexity
 
-with st.expander("20. Array Simulation Pattern"):
-    st.write("Simulate operations step-by-step to model array transformations.")
+        O(1) or O(k)
+
+    depending on additional data structures.
+
+    --------------------------------------------------------------------
+
+    # Key Insight
+
+    Sliding Window avoids recalculating overlapping ranges.
+
+    Instead of
+
+        O(n²)
+
+    we get
+
+        O(n)
+
+    This makes it one of the **most powerful patterns for arrays and strings**.
+    """)
+    with st.expander("3. Prefix Sum Pattern"):
+        st.write("Precompute cumulative sums so that range sum queries can be answered in constant time.")
+
+    with st.expander("4. Difference Array Pattern"):
+        st.write("Use an auxiliary array to efficiently perform multiple range updates.")
+
+    with st.expander("5. Kadane’s Algorithm Pattern"):
+        st.write("Find the maximum sum subarray by tracking the maximum sum ending at each position.")
+
+    with st.expander("6. Cyclic Sort Pattern"):
+        st.write("Used when numbers are in a fixed range; place elements at their correct indices by swapping.")
+
+    with st.expander("7. Partition Pattern"):
+        st.write("Divide the array into two groups based on a pivot element.")
+
+    with st.expander("8. Dutch National Flag Pattern"):
+        st.write("Three-way partitioning of elements into low, mid, and high categories.")
+
+    with st.expander("9. Binary Search Pattern"):
+        st.write("Repeatedly divide a sorted search space in half to find an element efficiently.")
+
+    with st.expander("10. Rotated Array Search Pattern"):
+        st.write("Binary search variant used when a sorted array has been rotated.")
+
+    with st.expander("11. Subarray Sum Pattern"):
+        st.write("Find subarrays with specific sums using prefix sums or hash maps.")
+
+    with st.expander("12. Product Except Self Pattern"):
+        st.write("Compute products of all elements except the current one without division.")
+
+    with st.expander("13. Merge Sorted Arrays Pattern"):
+        st.write("Combine two sorted arrays into one sorted sequence.")
+
+    with st.expander("14. Frequency Counting Pattern"):
+        st.write("Use hash maps or arrays to count occurrences of elements.")
+
+    with st.expander("15. Greedy Rearrangement Pattern"):
+        st.write("Rearrange elements to satisfy constraints using greedy decisions.")
+
+    with st.expander("16. Matrix Traversal Pattern"):
+        st.write("Systematically visit elements in a 2D grid.")
+
+    with st.expander("17. Spiral Traversal Pattern"):
+        st.write("Traverse a matrix layer by layer in spiral order.")
+
+    with st.expander("18. Diagonal Traversal Pattern"):
+        st.write("Traverse elements across matrix diagonals.")
+
+    with st.expander("19. Range Query Pattern"):
+        st.write("Answer queries on array ranges using preprocessing techniques.")
+
+    with st.expander("20. Array Simulation Pattern"):
+        st.write("Simulate operations step-by-step to model array transformations.")
 
 
 # STRINGS
@@ -793,29 +791,29 @@ Strings represent sequences of characters and are used to model textual data.
 Efficient string algorithms are important for **search engines, compilers, bioinformatics, and NLP systems**.
 """)
 
-st.subheader("String Patterns")
-st.markdown("""
-1. Two Pointer String Pattern  
-2. Sliding Window String Pattern  
-3. Frequency Counter Pattern  
-4. Anagram Detection Pattern  
-5. Palindrome Check Pattern  
-6. Expand Around Center Pattern  
-7. String Hashing Pattern  
-8. Rabin Karp Pattern  
-9. KMP Pattern  
-10. Z Algorithm Pattern  
-11. Longest Substring Pattern  
-12. Subsequence Matching Pattern  
-13. Pattern Matching Pattern  
-14. Trie Based String Search Pattern  
-15. Suffix Structure Pattern  
-16. Compression Pattern  
-17. Encoding Decoding Pattern  
-18. Edit Distance Pattern  
-19. Lexicographic Ordering Pattern  
-20. String Greedy Construction Pattern
-""")
+with st.expander("String Patterns"):
+    st.markdown("""
+    1. Two Pointer String Pattern  
+    2. Sliding Window String Pattern  
+    3. Frequency Counter Pattern  
+    4. Anagram Detection Pattern  
+    5. Palindrome Check Pattern  
+    6. Expand Around Center Pattern  
+    7. String Hashing Pattern  
+    8. Rabin Karp Pattern  
+    9. KMP Pattern  
+    10. Z Algorithm Pattern  
+    11. Longest Substring Pattern  
+    12. Subsequence Matching Pattern  
+    13. Pattern Matching Pattern  
+    14. Trie Based String Search Pattern  
+    15. Suffix Structure Pattern  
+    16. Compression Pattern  
+    17. Encoding Decoding Pattern  
+    18. Edit Distance Pattern  
+    19. Lexicographic Ordering Pattern  
+    20. String Greedy Construction Pattern
+    """)
 
 
 # LINKED LIST
