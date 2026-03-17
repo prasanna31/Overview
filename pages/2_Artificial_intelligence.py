@@ -3084,196 +3084,196 @@ with st.expander("Machine Learning?"):
     """)
             st.latex(r"\text{Loss} = -\frac{1}{n} \sum_{i=1}^{n} \left[y_i \log(\hat{p}_i) + (1-y_i) \log(1-\hat{p}_i)\right]")
 
-    st.markdown("""
-    **Intuition:** Logistic regression estimates the probability of a class based on weighted input features.  
-    - If the probability > 0.5 → positive class, else negative.  
+        st.markdown("""
+        **Intuition:** Logistic regression estimates the probability of a class based on weighted input features.  
+        - If the probability > 0.5 → positive class, else negative.  
 
-    **Geometric view:** In 2D, logistic regression draws a **linear decision boundary** (line) that separates class clusters.  
-    - In higher dimensions, this is a hyperplane.  
+        **Geometric view:** In 2D, logistic regression draws a **linear decision boundary** (line) that separates class clusters.  
+        - In higher dimensions, this is a hyperplane.  
 
-    **Key points:**
-    - Handles linearly separable classes well.
-    - Sensitive to multicollinearity and outliers.
-    - Coefficients interpretation: positive coefficient → increases log-odds of positive class.
+        **Key points:**
+        - Handles linearly separable classes well.
+        - Sensitive to multicollinearity and outliers.
+        - Coefficients interpretation: positive coefficient → increases log-odds of positive class.
+
+        ---
+
+        **6.2 Decision Trees**  
+        Decision Trees split the feature space into rectangles (or hyperrectangles) recursively to classify samples.
+
+        **Algorithm:**
+        - Select a feature and threshold that **best splits** data (maximize information gain or Gini decrease).  
+        - Split recursively until stopping criterion is met (max depth, min samples, or pure leaf).
+
+        **Formulas:**
+        - **Entropy:**  
+        st.latex(r"H(S) = - \sum_{c=1}^{C} p_c \log_2 p_c")
+        - **Information Gain:**  
+        st.latex(r"\text{IG}(S, A) = H(S) - \sum_{v \in \text{Values}(A)} \frac{|S_v|}{|S|} H(S_v)")
+        - **Gini Impurity:**  
+        st.latex(r"Gini(S) = 1 - \sum_{c=1}^{C} p_c^2")
+
+        **Intuition:** Choose splits that **most reduce impurity**; leaves contain mostly one class.  
+        **Geometric view:** The feature space is partitioned into rectangles; each leaf represents a region with a class label.
+
+        ---
+
+        **6.3 Random Forest**  
+        Random Forest is an ensemble of Decision Trees that improves generalization by averaging predictions.
+
+        **Algorithm:**
+        - Build many decision trees on **bootstrapped samples** of training data.
+        - For each split, consider a **random subset of features**.
+        - Final prediction: majority vote (classification) or average (regression).
+
+        **Intuition:** Reduces variance of individual trees; robust to overfitting.  
+        **Geometric view:** Combines multiple partitioned feature spaces into a consensus decision, smoothing boundaries.
+
+        ---
+
+        **6.4 Support Vector Machines (SVM)**  
+        SVM finds a hyperplane that maximizes the **margin** between classes.
+
+        **Equation (Linear SVM):**  
+        st.latex(r"\text{maximize } \frac{2}{\|\mathbf{w}\|} \quad \text{subject to } y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \ge 1")
+        - \(\mathbf{w}\) is the normal vector to the hyperplane.  
+        - Margin = distance between closest points of different classes.
+
+        **Kernel Trick:** Map input to higher dimensions (polynomial, RBF) for non-linear separation.
+
+        **Intuition:** The wider the margin, the lower the generalization error.  
+        **Geometric view:** Hyperplane separates classes; support vectors lie on the margin.
+
+        ---
+
+        **6.5 Naive Bayes**  
+        Naive Bayes applies Bayes’ theorem with **strong independence assumptions** among features.
+
+        **Formula:**  
+        st.latex(r"P(C_k | X) = \frac{P(C_k) \prod_{i=1}^{n} P(x_i | C_k)}{P(X)}")
+
+        **Types:**
+        - Gaussian: continuous features.  
+        - Multinomial: count data (e.g., text).  
+        - Bernoulli: binary features.
+
+        **Intuition:** Even with naive independence assumptions, performs surprisingly well on text classification.  
+        **Geometric view:** Projects probabilities in high-dimensional feature space; class with highest posterior wins.
+
+        ---
+
+        **6.6 K-Nearest Neighbors (KNN)**  
+        KNN predicts the label of a point by **majority voting among its k closest neighbors**.
+
+        **Distance metric:**  
+        st.latex(r"d(\mathbf{x}, \mathbf{x}') = \sqrt{\sum_{i=1}^{n} (x_i - x'_i)^2}")
+
+        **Intuition:** Assumes points close in feature space have similar labels.  
+        **Geometric view:** Draw a hypersphere around test point; label is the most common class inside.
+
+        ---
+
+        **6.7 Gradient Boosting**  
+        Gradient Boosting builds models sequentially, **correcting errors of previous models**.
+
+        **Algorithm:**
+        - Fit weak learners (usually shallow trees) to negative gradients of loss function.
+        - Update model iteratively:  
+        st.latex(r"F_{m}(x) = F_{m-1}(x) + \eta \cdot h_m(x)")
+
+        **Intuition:** Each learner focuses on what the previous learners got wrong.  
+        **Geometric view:** Iteratively improves approximation in feature space, reducing residuals.
+
+        ---
+        
+        """)
+        st.markdown("""
+    These are **advanced gradient boosting frameworks** that improve upon basic gradient boosting by optimizing speed, accuracy, and handling large/high-dimensional datasets efficiently.
 
     ---
 
-    **6.2 Decision Trees**  
-    Decision Trees split the feature space into rectangles (or hyperrectangles) recursively to classify samples.
-
-    **Algorithm:**
-    - Select a feature and threshold that **best splits** data (maximize information gain or Gini decrease).  
-    - Split recursively until stopping criterion is met (max depth, min samples, or pure leaf).
-
-    **Formulas:**
-    - **Entropy:**  
-    st.latex(r"H(S) = - \sum_{c=1}^{C} p_c \log_2 p_c")
-    - **Information Gain:**  
-    st.latex(r"\text{IG}(S, A) = H(S) - \sum_{v \in \text{Values}(A)} \frac{|S_v|}{|S|} H(S_v)")
-    - **Gini Impurity:**  
-    st.latex(r"Gini(S) = 1 - \sum_{c=1}^{C} p_c^2")
-
-    **Intuition:** Choose splits that **most reduce impurity**; leaves contain mostly one class.  
-    **Geometric view:** The feature space is partitioned into rectangles; each leaf represents a region with a class label.
-
-    ---
-
-    **6.3 Random Forest**  
-    Random Forest is an ensemble of Decision Trees that improves generalization by averaging predictions.
-
-    **Algorithm:**
-    - Build many decision trees on **bootstrapped samples** of training data.
-    - For each split, consider a **random subset of features**.
-    - Final prediction: majority vote (classification) or average (regression).
-
-    **Intuition:** Reduces variance of individual trees; robust to overfitting.  
-    **Geometric view:** Combines multiple partitioned feature spaces into a consensus decision, smoothing boundaries.
-
-    ---
-
-    **6.4 Support Vector Machines (SVM)**  
-    SVM finds a hyperplane that maximizes the **margin** between classes.
-
-    **Equation (Linear SVM):**  
-    st.latex(r"\text{maximize } \frac{2}{\|\mathbf{w}\|} \quad \text{subject to } y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \ge 1")
-    - \(\mathbf{w}\) is the normal vector to the hyperplane.  
-    - Margin = distance between closest points of different classes.
-
-    **Kernel Trick:** Map input to higher dimensions (polynomial, RBF) for non-linear separation.
-
-    **Intuition:** The wider the margin, the lower the generalization error.  
-    **Geometric view:** Hyperplane separates classes; support vectors lie on the margin.
-
-    ---
-
-    **6.5 Naive Bayes**  
-    Naive Bayes applies Bayes’ theorem with **strong independence assumptions** among features.
-
-    **Formula:**  
-    st.latex(r"P(C_k | X) = \frac{P(C_k) \prod_{i=1}^{n} P(x_i | C_k)}{P(X)}")
-
-    **Types:**
-    - Gaussian: continuous features.  
-    - Multinomial: count data (e.g., text).  
-    - Bernoulli: binary features.
-
-    **Intuition:** Even with naive independence assumptions, performs surprisingly well on text classification.  
-    **Geometric view:** Projects probabilities in high-dimensional feature space; class with highest posterior wins.
-
-    ---
-
-    **6.6 K-Nearest Neighbors (KNN)**  
-    KNN predicts the label of a point by **majority voting among its k closest neighbors**.
-
-    **Distance metric:**  
-    st.latex(r"d(\mathbf{x}, \mathbf{x}') = \sqrt{\sum_{i=1}^{n} (x_i - x'_i)^2}")
-
-    **Intuition:** Assumes points close in feature space have similar labels.  
-    **Geometric view:** Draw a hypersphere around test point; label is the most common class inside.
-
-    ---
-
-    **6.7 Gradient Boosting**  
-    Gradient Boosting builds models sequentially, **correcting errors of previous models**.
-
-    **Algorithm:**
-    - Fit weak learners (usually shallow trees) to negative gradients of loss function.
-    - Update model iteratively:  
-    st.latex(r"F_{m}(x) = F_{m-1}(x) + \eta \cdot h_m(x)")
-
-    **Intuition:** Each learner focuses on what the previous learners got wrong.  
-    **Geometric view:** Iteratively improves approximation in feature space, reducing residuals.
-
-    ---
-    
+    ### **XGBoost (Extreme Gradient Boosting)**
+    **Objective Function:**
     """)
-    st.markdown("""
-These are **advanced gradient boosting frameworks** that improve upon basic gradient boosting by optimizing speed, accuracy, and handling large/high-dimensional datasets efficiently.
+        st.latex(r"\mathcal{L}(\phi) = \sum_{i=1}^{n} l(y_i, \hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k)")
+        st.latex(r"\Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2")
+        st.markdown("""
+    - \(l(y_i, \hat{y}_i)\) is the training loss (e.g., squared error or log loss).  
+    - \(f_k\) is the k-th tree in the ensemble.  
+    - \(\Omega(f)\) penalizes tree complexity (number of leaves \(T\) and leaf weights \(w_j\)).  
 
----
+    **Algorithm Intuition:**  
+    1. Sequentially fit trees to the negative gradient of the loss.  
+    2. Regularize to prevent overfitting using \(\gamma\) (penalize number of leaves) and \(\lambda\) (shrink leaf weights).  
+    3. Use clever tricks: column subsampling, parallelization, sparsity awareness.  
 
-### **XGBoost (Extreme Gradient Boosting)**
-**Objective Function:**
-""")
-    st.latex(r"\mathcal{L}(\phi) = \sum_{i=1}^{n} l(y_i, \hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k)")
-    st.latex(r"\Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2")
-    st.markdown("""
-- \(l(y_i, \hat{y}_i)\) is the training loss (e.g., squared error or log loss).  
-- \(f_k\) is the k-th tree in the ensemble.  
-- \(\Omega(f)\) penalizes tree complexity (number of leaves \(T\) and leaf weights \(w_j\)).  
+    **Geometric View:**  
+    - Each new tree adds corrections along directions in the feature space where the previous ensemble has largest residuals.  
+    - The decision boundary becomes a complex, piecewise-linear function in high-dimensional space.
 
-**Algorithm Intuition:**  
-1. Sequentially fit trees to the negative gradient of the loss.  
-2. Regularize to prevent overfitting using \(\gamma\) (penalize number of leaves) and \(\lambda\) (shrink leaf weights).  
-3. Use clever tricks: column subsampling, parallelization, sparsity awareness.  
+    **Advantages:**  
+    - Highly accurate, handles sparse data well.  
+    - Regularization prevents overfitting.  
+    - Parallelizable and fast on large datasets.
 
-**Geometric View:**  
-- Each new tree adds corrections along directions in the feature space where the previous ensemble has largest residuals.  
-- The decision boundary becomes a complex, piecewise-linear function in high-dimensional space.
+    ---
 
-**Advantages:**  
-- Highly accurate, handles sparse data well.  
-- Regularization prevents overfitting.  
-- Parallelizable and fast on large datasets.
+    ### **LightGBM**
+    **Key Features:**
+    - Gradient-based One-Side Sampling (GOSS): Focus on high-gradient (hard) samples for faster training.  
+    - Exclusive Feature Bundling (EFB): Combines mutually exclusive features to reduce dimensionality.  
+    - Leaf-wise tree growth: splits leaves with largest loss reduction.
 
----
+    **Loss Function:** Same as standard gradient boosting, e.g., squared error for regression, log loss for classification.
 
-### **LightGBM**
-**Key Features:**
-- Gradient-based One-Side Sampling (GOSS): Focus on high-gradient (hard) samples for faster training.  
-- Exclusive Feature Bundling (EFB): Combines mutually exclusive features to reduce dimensionality.  
-- Leaf-wise tree growth: splits leaves with largest loss reduction.
+    **Intuition:**  
+    - By growing leaf-wise instead of level-wise, LightGBM achieves **lower loss** faster.  
+    - Feature bundling reduces high-dimensional sparsity issues.
 
-**Loss Function:** Same as standard gradient boosting, e.g., squared error for regression, log loss for classification.
+    **Geometric View:**  
+    - Decision boundaries evolve faster along directions of greatest loss reduction.  
+    - Leaf-wise splitting produces more **flexible, non-linear boundaries** than level-wise growth.
 
-**Intuition:**  
-- By growing leaf-wise instead of level-wise, LightGBM achieves **lower loss** faster.  
-- Feature bundling reduces high-dimensional sparsity issues.
+    **Advantages:**  
+    - Extremely fast and memory-efficient.  
+    - Works well on very large datasets.  
+    - Supports categorical features via one-hot or native handling.
 
-**Geometric View:**  
-- Decision boundaries evolve faster along directions of greatest loss reduction.  
-- Leaf-wise splitting produces more **flexible, non-linear boundaries** than level-wise growth.
+    ---
 
-**Advantages:**  
-- Extremely fast and memory-efficient.  
-- Works well on very large datasets.  
-- Supports categorical features via one-hot or native handling.
+    ### **CatBoost**
+    **Key Features:**
+    - Handles **categorical features natively** without one-hot encoding.  
+    - Uses **ordered boosting** to prevent target leakage during gradient computation.  
+    - Reduces overfitting in small datasets via permutation-driven techniques.
 
----
+    **Loss Function:** Standard boosting loss (e.g., cross-entropy for classification).
 
-### **CatBoost**
-**Key Features:**
-- Handles **categorical features natively** without one-hot encoding.  
-- Uses **ordered boosting** to prevent target leakage during gradient computation.  
-- Reduces overfitting in small datasets via permutation-driven techniques.
+    **Intuition:**  
+    - CatBoost ensures that categorical features are encoded properly during training, avoiding data leakage.  
+    - Ordered boosting: predictions for a sample are made using only previous data to prevent bias.
 
-**Loss Function:** Standard boosting loss (e.g., cross-entropy for classification).
+    **Geometric View:**  
+    - Complex piecewise-linear boundaries in high-dimensional space.  
+    - Each iteration corrects misclassified regions like standard gradient boosting, but with careful ordering.
 
-**Intuition:**  
-- CatBoost ensures that categorical features are encoded properly during training, avoiding data leakage.  
-- Ordered boosting: predictions for a sample are made using only previous data to prevent bias.
+    **Advantages:**  
+    - Handles categorical features naturally.  
+    - Reduces overfitting and bias.  
+    - Very competitive on Kaggle competitions and structured datasets.
 
-**Geometric View:**  
-- Complex piecewise-linear boundaries in high-dimensional space.  
-- Each iteration corrects misclassified regions like standard gradient boosting, but with careful ordering.
+    ---
 
-**Advantages:**  
-- Handles categorical features naturally.  
-- Reduces overfitting and bias.  
-- Very competitive on Kaggle competitions and structured datasets.
+    **Summary:**  
+    - **XGBoost:** Standard, regularized gradient boosting, fast and scalable.  
+    - **LightGBM:** Leaf-wise growth, optimized for large datasets, very fast.  
+    - **CatBoost:** Categorical-friendly, ordered boosting, robust for small datasets.
 
----
-
-**Summary:**  
-- **XGBoost:** Standard, regularized gradient boosting, fast and scalable.  
-- **LightGBM:** Leaf-wise growth, optimized for large datasets, very fast.  
-- **CatBoost:** Categorical-friendly, ordered boosting, robust for small datasets.
-
-**Practical Tip:**  
-- Use **XGBoost** when you want high accuracy and control over regularization.  
-- Use **LightGBM** for very large datasets or when speed is critical.  
-- Use **CatBoost** for datasets with many categorical variables.
-""")
+    **Practical Tip:**  
+    - Use **XGBoost** when you want high accuracy and control over regularization.  
+    - Use **LightGBM** for very large datasets or when speed is critical.  
+    - Use **CatBoost** for datasets with many categorical variables.
+    """)
 
     # 7. Unsupervised Learning
     with st.expander("7. Unsupervised Learning"):
