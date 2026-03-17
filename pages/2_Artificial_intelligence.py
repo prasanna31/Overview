@@ -2381,133 +2381,133 @@ with st.expander("2. Mathematical Foundations"):
         - ML Relevance: Guides model complexity, regularization, and overfitting prevention.
         """)
 
-    with st.expander("2.3.4 Hypothesis Testing"):
+        with st.expander("2.3.4 Hypothesis Testing"):
 
-        with st.expander("Null and Alternative Hypothesis"):
-            st.markdown("""
-        - **Null Hypothesis (H₀)**: Default assumption, usually "no effect" or "no difference".  
-        - **Alternative Hypothesis (H₁ or Ha)**: What you want to test for, "there is an effect".  
+            with st.expander("Null and Alternative Hypothesis"):
+                st.markdown("""
+            - **Null Hypothesis (H₀)**: Default assumption, usually "no effect" or "no difference".  
+            - **Alternative Hypothesis (H₁ or Ha)**: What you want to test for, "there is an effect".  
 
-        Example:
-        - Coin: H₀: coin is fair (p = 0.5), H₁: coin is biased (p ≠ 0.5)
+            Example:
+            - Coin: H₀: coin is fair (p = 0.5), H₁: coin is biased (p ≠ 0.5)
 
-        Geometric intuition:
-        - Imagine probability distributions under H₀.  
-        - H₁ represents deviation from this distribution.  
+            Geometric intuition:
+            - Imagine probability distributions under H₀.  
+            - H₁ represents deviation from this distribution.  
+
+            ML Relevance:
+            - Evaluating model improvements
+            - Statistical significance of features
+            """)
+
+            with st.expander("p-value"):
+                st.markdown("""
+        - Probability of observing data at least as extreme as sample, assuming H₀ is true.
+
+        Formula:
+        \[
+        p\text{-value} = P(\text{data} \mid H_0)
+        \]
+
+        Interpretation:
+        - Low p-value (< 0.05) → reject H₀
+        - High p-value → fail to reject H₀
+
+        Geometric:
+        - Area under null distribution curve beyond observed statistic.
 
         ML Relevance:
-        - Evaluating model improvements
-        - Statistical significance of features
+        - Feature selection, significance testing of model metrics.
         """)
 
-        with st.expander("p-value"):
-            st.markdown("""
-    - Probability of observing data at least as extreme as sample, assuming H₀ is true.
+            with st.expander("Type I and Type II Errors"):
+                st.markdown("""
+        - **Type I Error (α)**: Rejecting H₀ when it’s true (false positive)  
+        - **Type II Error (β)**: Failing to reject H₀ when H₁ is true (false negative)
 
-    Formula:
-    \[
-    p\text{-value} = P(\text{data} \mid H_0)
-    \]
+        Tradeoff:
+        - Decreasing α increases β and vice versa
 
-    Interpretation:
-    - Low p-value (< 0.05) → reject H₀
-    - High p-value → fail to reject H₀
+        Geometric:
+        - α = area of rejection region under H₀  
+        - β = area under H₁ not in rejection region
 
-    Geometric:
-    - Area under null distribution curve beyond observed statistic.
+        ML Relevance:
+        - Important in classification thresholds and hypothesis-based tests
+        """)
 
-    ML Relevance:
-    - Feature selection, significance testing of model metrics.
-    """)
+            with st.expander("t-test, z-test"):
+                st.markdown("""
+        **t-test**: Used when population variance unknown, small sample  
+        \[
+        t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
+        \]
 
-        with st.expander("Type I and Type II Errors"):
-            st.markdown("""
-    - **Type I Error (α)**: Rejecting H₀ when it’s true (false positive)  
-    - **Type II Error (β)**: Failing to reject H₀ when H₁ is true (false negative)
+        **z-test**: Used when population variance known, large sample  
+        \[
+        z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
+        \]
 
-    Tradeoff:
-    - Decreasing α increases β and vice versa
+        Geometric:
+        - Test statistic measures distance from null mean in units of standard error  
+        - Compare against critical value for rejection region
 
-    Geometric:
-    - α = area of rejection region under H₀  
-    - β = area under H₁ not in rejection region
+        ML Relevance:
+        - Model comparisons, evaluating mean differences between datasets
+        """)
 
-    ML Relevance:
-    - Important in classification thresholds and hypothesis-based tests
-    """)
+        with st.expander("2.3.5 Correlation and Covariance"):
 
-        with st.expander("t-test, z-test"):
-            st.markdown("""
-    **t-test**: Used when population variance unknown, small sample  
-    \[
-    t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
-    \]
+            with st.expander("Covariance"):
+                st.markdown("""
+        Measures joint variability of two variables X and Y:
 
-    **z-test**: Used when population variance known, large sample  
-    \[
-    z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
-    \]
+        \[
+        \text{Cov}(X,Y) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})
+        \]
 
-    Geometric:
-    - Test statistic measures distance from null mean in units of standard error  
-    - Compare against critical value for rejection region
+        Interpretation:
+        - Positive → X and Y increase together  
+        - Negative → X increases, Y decreases
 
-    ML Relevance:
-    - Model comparisons, evaluating mean differences between datasets
-    """)
+        Geometric:
+        - Projects points onto x and y axes, measures alignment
 
-    with st.expander("2.3.5 Correlation and Covariance"):
+        ML Relevance:
+        - Feature relationships, multicollinearity detection
+        """)
 
-        with st.expander("Covariance"):
-            st.markdown("""
-    Measures joint variability of two variables X and Y:
+            with st.expander("Correlation Coefficient"):
+                st.markdown("""
+        Standardized covariance → range [-1,1]:
 
-    \[
-    \text{Cov}(X,Y) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})
-    \]
+        \[
+        \rho_{X,Y} = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}
+        \]
 
-    Interpretation:
-    - Positive → X and Y increase together  
-    - Negative → X increases, Y decreases
+        Interpretation:
+        - 1 → perfect positive linear  
+        - -1 → perfect negative linear  
+        - 0 → no linear correlation
 
-    Geometric:
-    - Projects points onto x and y axes, measures alignment
+        Geometric:
+        - Cosine of angle between centered data vectors
 
-    ML Relevance:
-    - Feature relationships, multicollinearity detection
-    """)
+        ML Relevance:
+        - Feature selection, understanding relationships, PCA
+        """)
 
-        with st.expander("Correlation Coefficient"):
-            st.markdown("""
-    Standardized covariance → range [-1,1]:
+            with st.expander("Positive vs Negative Correlation"):
+                st.markdown("""
+        - Positive: both variables increase together  
+        - Negative: one increases, other decreases  
+        - Geometric: slope of scatter plot
 
-    \[
-    \rho_{X,Y} = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}
-    \]
+        ML Relevance:
+        - Helps in multivariate feature analysis and regression diagnostics
+        """)
 
-    Interpretation:
-    - 1 → perfect positive linear  
-    - -1 → perfect negative linear  
-    - 0 → no linear correlation
-
-    Geometric:
-    - Cosine of angle between centered data vectors
-
-    ML Relevance:
-    - Feature selection, understanding relationships, PCA
-    """)
-
-        with st.expander("Positive vs Negative Correlation"):
-            st.markdown("""
-    - Positive: both variables increase together  
-    - Negative: one increases, other decreases  
-    - Geometric: slope of scatter plot
-
-    ML Relevance:
-    - Helps in multivariate feature analysis and regression diagnostics
-    """)
-
-    with st.expander("2.3.6 Regression Basics"):
+        with st.expander("2.3.6 Regression Basics"):
 
         with st.expander("Simple Linear Regression"):
             st.markdown("""
@@ -2792,24 +2792,131 @@ with st.expander("2. Mathematical Foundations"):
     - Generative models, Bayesian inference
     """)
 
-# 3. Data and Feature Engineering
-with st.expander("3. Data and Feature Engineering"):
-    with st.expander("3.1 Types of Data"):
-        st.markdown("")
-    with st.expander("3.2 Data Collection"):
-        st.markdown("")
-    with st.expander("3.3 Data Cleaning"):
-        st.markdown("")
-    with st.expander("3.4 Handling Missing Data"):
-        st.markdown("")
-    with st.expander("3.5 Feature Engineering"):
-        st.markdown("")
-    with st.expander("3.6 Feature Scaling"):
-        st.markdown("")
-    with st.expander("3.7 Feature Selection"):
-        st.markdown("")
-    with st.expander("3.8 Dimensionality Reduction"):
-        st.markdown("")
+    import streamlit as st
+    with st.expander("3. Data and Feature Engineering"):
+        st.markdown("""
+    Data and Feature Engineering is a critical step in the machine learning pipeline.  
+    It involves transforming raw data into meaningful features so models can learn effectively.  
+    Good feature engineering often improves model performance more than complex algorithms.
+    """)
+
+        with st.expander("3.1 Types of Data"):
+            st.markdown("""
+    **Types of Data**:
+
+    1. **Numerical Data (Quantitative)**
+    - **Continuous:** Can take any value in a range (e.g., height, temperature).  
+    - **Discrete:** Integer values only (e.g., number of students).
+
+    2. **Categorical Data (Qualitative)**
+    - **Nominal:** Categories with no order (e.g., colors, gender).  
+    - **Ordinal:** Ordered categories (e.g., low, medium, high).
+
+    3. **Time-Series Data:** Sequentially indexed over time (e.g., stock prices).
+
+    4. **Text Data:** Sequences of characters or words (e.g., tweets, reviews).
+
+    5. **Image/Audio Data:** High-dimensional structured/unstructured data.
+
+    **Intuition:** Different data types require different preprocessing.  
+    **Geometric view:** Numerical features live in Euclidean space; categorical features live in discrete spaces.
+    """)
+
+        with st.expander("3.2 Data Collection"):
+            st.markdown("""
+    **Data Collection**: Gathering raw data from reliable sources.  
+
+    **Sources:** Databases, APIs, web scraping, IoT sensors, public datasets (Kaggle, UCI ML Repo).
+
+    **Sampling Ratio Formula:**
+    st.latex(r"r = \frac{\text{Number of collected samples}}{\text{Total number of population samples}}")
+
+    **Intuition:** A higher sampling ratio reduces sampling error.  
+    **Geometric view:** More points better cover the “data manifold”.
+    """)
+
+        with st.expander("3.3 Data Cleaning"):
+            st.markdown("""
+    **Data Cleaning:** Preparing raw data by removing duplicates, correcting errors, handling outliers, and standardizing formats.
+
+    **Outlier detection using IQR:**
+    st.latex(r"\text{IQR} = Q_3 - Q_1")
+    st.latex(r"\text{Lower Bound} = Q_1 - 1.5 \times IQR")
+    st.latex(r"\text{Upper Bound} = Q_3 + 1.5 \times IQR")
+
+    **Intuition:** Outliers distort models, especially distance-based ones like k-NN.  
+    **Geometric view:** Outliers are far from the main cluster in feature space.
+    """)
+
+        with st.expander("3.4 Handling Missing Data"):
+            st.markdown("""
+    **Types of Missing Data:**
+    - **MCAR:** Missing completely at random.
+    - **MAR:** Missing at random, depends on other features.
+    - **MNAR:** Missing not at random, depends on itself.
+
+    **Mean Imputation:**
+    st.latex(r"x_i^{new} = \frac{1}{n_{obs}} \sum_{j=1}^{n_{obs}} x_j")
+
+    **Intuition:** Filling missing values preserves dataset size without distorting distributions.  
+    **Geometric view:** Imputation fills gaps along the feature manifold.
+    """)
+
+        with st.expander("3.5 Feature Engineering"):
+            st.markdown("""
+    **Feature Engineering:** Creating new features from raw data to improve model performance.
+
+    **Techniques:**
+    1. **Transformation:** Log, square root, polynomial features.  
+    Example: st.latex(r"x_{new} = \log(x + 1)")
+    2. **Aggregation:** Summing or averaging multiple features.
+    3. **Encoding Categorical Features:** One-hot, label, or target encoding.
+    4. **Binning/Discretization:** Convert continuous to categorical.
+
+    **Intuition:** Better features = easier patterns for models to learn.  
+    **Geometric view:** Transformations reshape feature space to make classes separable.
+    """)
+
+        with st.expander("3.6 Feature Scaling"):
+            st.markdown("""
+    **Feature Scaling:** Standardizing features to the same scale improves learning.
+
+    **Common Techniques:**
+    1. **Min-Max Scaling:**  
+    st.latex(r"x' = \frac{x - x_{min}}{x_{max} - x_{min}}")
+    2. **Standardization (Z-score):**  
+    st.latex(r"x' = \frac{x - \mu}{\sigma}")
+
+    **Intuition:** Prevents features with larger scales from dominating the model.  
+    **Geometric view:** Scaling changes the shape of the feature space but preserves structure.
+    """)
+
+        with st.expander("3.7 Feature Selection"):
+            st.markdown("""
+    **Feature Selection:** Choosing the most relevant features to reduce dimensionality and improve model performance.
+
+    **Techniques:**
+    1. **Filter Methods:** Correlation, Chi-square test.
+    2. **Wrapper Methods:** Recursive Feature Elimination (RFE).
+    3. **Embedded Methods:** Lasso Regression, Tree-based importance.
+
+    **Intuition:** Remove noise and redundant features.  
+    **Geometric view:** Projection onto a lower-dimensional space containing only relevant directions.
+    """)
+
+        with st.expander("3.8 Dimensionality Reduction"):
+            st.markdown("""
+    **Dimensionality Reduction:** Reducing the number of features while preserving information.
+
+    **Techniques:**
+    1. **PCA (Principal Component Analysis):**  
+    Maximize variance along new axes.  
+    st.latex(r"Z = X W \quad \text{where } W \text{ contains eigenvectors of } \Sigma")
+    2. **t-SNE / UMAP:** Non-linear methods for visualization.
+
+    **Intuition:** Simplify the dataset while keeping essential patterns.  
+    **Geometric view:** Rotate and project the original high-dimensional space onto fewer dimensions along the most informative directions.
+    """)
 
 # 4. Supervised Learning
 with st.expander("4. Supervised Learning"):
