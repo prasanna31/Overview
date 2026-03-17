@@ -283,68 +283,68 @@ import streamlit as st
 # 1. Introduction to Machine Learning
 with st.expander("1. Introduction to Machine Learning"):
 
-with st.expander("1.1 What is Machine Learning"):
-    st.markdown("""
-Machine Learning is a branch of Artificial Intelligence that focuses on building systems capable of learning from data rather than being explicitly programmed with rules. Instead of telling a computer exactly how to solve a problem step by step, we provide it with examples and allow it to discover patterns on its own.
+    with st.expander("1.1 What is Machine Learning"):
+        st.markdown("""
+    Machine Learning is a branch of Artificial Intelligence that focuses on building systems capable of learning from data rather than being explicitly programmed with rules. Instead of telling a computer exactly how to solve a problem step by step, we provide it with examples and allow it to discover patterns on its own.
 
-At its core, machine learning is about learning a mapping between inputs and outputs. Given data, the model tries to approximate a function that can generalize well to unseen examples. This ability to generalize is what makes machine learning powerful—it doesn’t just memorize; it learns underlying structure.
+    At its core, machine learning is about learning a mapping between inputs and outputs. Given data, the model tries to approximate a function that can generalize well to unseen examples. This ability to generalize is what makes machine learning powerful—it doesn’t just memorize; it learns underlying structure.
 
-For example, instead of writing thousands of rules to detect spam emails, we train a model on past emails labeled as “spam” or “not spam,” and it learns the patterns that distinguish them. This paradigm shift—from rule-based systems to data-driven learning—is what defines machine learning.
-""")
+    For example, instead of writing thousands of rules to detect spam emails, we train a model on past emails labeled as “spam” or “not spam,” and it learns the patterns that distinguish them. This paradigm shift—from rule-based systems to data-driven learning—is what defines machine learning.
+    """)
 
-with st.expander("1.2 History of Machine Learning"):
-    st.markdown("""
-The journey of machine learning began with a simple but profound question: can machines think? In the 1950s, pioneers like Alan Turing laid the conceptual foundation, while early models like the perceptron attempted to mimic how neurons work.
+    with st.expander("1.2 History of Machine Learning"):
+        st.markdown("""
+    The journey of machine learning began with a simple but profound question: can machines think? In the 1950s, pioneers like Alan Turing laid the conceptual foundation, while early models like the perceptron attempted to mimic how neurons work.
 
-However, progress was not linear. After initial excitement, limitations in computational power and data led to periods known as “AI winters,” where interest declined. The field regained momentum in the 1980s and 1990s with the rise of statistical learning methods such as decision trees, support vector machines, and Bayesian approaches.
+    However, progress was not linear. After initial excitement, limitations in computational power and data led to periods known as “AI winters,” where interest declined. The field regained momentum in the 1980s and 1990s with the rise of statistical learning methods such as decision trees, support vector machines, and Bayesian approaches.
 
-The real transformation began in the 2000s and accelerated in the 2010s, driven by three key factors: massive datasets, powerful GPUs, and improved algorithms. This era gave birth to deep learning, where neural networks with many layers began outperforming traditional methods in tasks like image recognition, speech processing, and natural language understanding.
+    The real transformation began in the 2000s and accelerated in the 2010s, driven by three key factors: massive datasets, powerful GPUs, and improved algorithms. This era gave birth to deep learning, where neural networks with many layers began outperforming traditional methods in tasks like image recognition, speech processing, and natural language understanding.
 
-Today, machine learning has evolved from a theoretical idea into a foundational technology that powers much of the modern digital world.
-""")
+    Today, machine learning has evolved from a theoretical idea into a foundational technology that powers much of the modern digital world.
+    """)
 
-with st.expander("1.3 Why Machine Learning Exists"):
-    st.markdown("""
-Machine learning exists because many real-world problems are simply too complex to solve using explicit programming. In traditional software development, we define rules and logic manually. But what happens when the problem does not have clear rules?
+    with st.expander("1.3 Why Machine Learning Exists"):
+        st.markdown("""
+    Machine learning exists because many real-world problems are simply too complex to solve using explicit programming. In traditional software development, we define rules and logic manually. But what happens when the problem does not have clear rules?
 
-Consider recognizing faces in images. Lighting conditions, angles, expressions, and backgrounds vary infinitely. Writing rules to handle all such variations is practically impossible. This is where machine learning becomes essential—it learns directly from data instead of relying on handcrafted logic.
+    Consider recognizing faces in images. Lighting conditions, angles, expressions, and backgrounds vary infinitely. Writing rules to handle all such variations is practically impossible. This is where machine learning becomes essential—it learns directly from data instead of relying on handcrafted logic.
 
-Another reason is the explosion of data. Every second, enormous amounts of data are generated from sensors, websites, and user interactions. Hidden within this data are patterns that can drive decisions, predictions, and automation. Machine learning provides the tools to extract these patterns efficiently.
+    Another reason is the explosion of data. Every second, enormous amounts of data are generated from sensors, websites, and user interactions. Hidden within this data are patterns that can drive decisions, predictions, and automation. Machine learning provides the tools to extract these patterns efficiently.
 
-In essence, machine learning exists to bridge the gap between complexity and automation. It allows systems to adapt, improve over time, and make intelligent decisions in environments where traditional programming fails.
-""")
+    In essence, machine learning exists to bridge the gap between complexity and automation. It allows systems to adapt, improve over time, and make intelligent decisions in environments where traditional programming fails.
+    """)
 
-with st.expander("1.4 Types of Machine Learning"):
-    st.markdown("""
-Machine learning can be broadly categorized based on how the model learns from data and the kind of feedback it receives.
+    with st.expander("1.4 Types of Machine Learning"):
+        st.markdown("""
+    Machine learning can be broadly categorized based on how the model learns from data and the kind of feedback it receives.
 
-In supervised learning, the model is trained on labeled data, meaning each input comes with a known output. The goal is to learn a mapping from inputs to outputs so that it can make accurate predictions on new data. Common tasks include regression, where outputs are continuous, and classification, where outputs belong to discrete categories.
+    In supervised learning, the model is trained on labeled data, meaning each input comes with a known output. The goal is to learn a mapping from inputs to outputs so that it can make accurate predictions on new data. Common tasks include regression, where outputs are continuous, and classification, where outputs belong to discrete categories.
 
-Unsupervised learning, on the other hand, deals with unlabeled data. Here, the model tries to uncover hidden patterns or structures within the data. Clustering and dimensionality reduction are typical examples, where the system groups similar data points or compresses information into lower dimensions.
+    Unsupervised learning, on the other hand, deals with unlabeled data. Here, the model tries to uncover hidden patterns or structures within the data. Clustering and dimensionality reduction are typical examples, where the system groups similar data points or compresses information into lower dimensions.
 
-Semi-supervised learning lies between these two extremes, using a small amount of labeled data along with a large amount of unlabeled data. This is particularly useful when labeling data is expensive or time-consuming.
+    Semi-supervised learning lies between these two extremes, using a small amount of labeled data along with a large amount of unlabeled data. This is particularly useful when labeling data is expensive or time-consuming.
 
-Reinforcement learning takes a completely different approach. Instead of learning from a static dataset, an agent interacts with an environment and learns through trial and error. It receives rewards or penalties based on its actions and gradually improves its strategy to maximize long-term rewards.
+    Reinforcement learning takes a completely different approach. Instead of learning from a static dataset, an agent interacts with an environment and learns through trial and error. It receives rewards or penalties based on its actions and gradually improves its strategy to maximize long-term rewards.
 
-Each of these paradigms addresses different kinds of problems, and choosing the right one depends on the nature of the data and the task at hand.
-""")
+    Each of these paradigms addresses different kinds of problems, and choosing the right one depends on the nature of the data and the task at hand.
+    """)
 
-with st.expander("1.5 Real-World Applications of Machine Learning"):
-    st.markdown("""
-Machine learning is not just a theoretical concept—it is deeply embedded in the technologies we use every day. Its applications span across industries, transforming how systems operate and decisions are made.
+    with st.expander("1.5 Real-World Applications of Machine Learning"):
+        st.markdown("""
+    Machine learning is not just a theoretical concept—it is deeply embedded in the technologies we use every day. Its applications span across industries, transforming how systems operate and decisions are made.
 
-In computer vision, machine learning enables systems to interpret and understand visual data. This powers applications such as facial recognition, medical image analysis, and autonomous driving.
+    In computer vision, machine learning enables systems to interpret and understand visual data. This powers applications such as facial recognition, medical image analysis, and autonomous driving.
 
-In natural language processing, it allows machines to understand and generate human language. From chatbots and translation systems to sentiment analysis, machine learning makes human-computer interaction more natural and intuitive.
+    In natural language processing, it allows machines to understand and generate human language. From chatbots and translation systems to sentiment analysis, machine learning makes human-computer interaction more natural and intuitive.
 
-Recommendation systems are another powerful application. Platforms like Netflix, Amazon, and Spotify use machine learning to analyze user behavior and suggest content tailored to individual preferences.
+    Recommendation systems are another powerful application. Platforms like Netflix, Amazon, and Spotify use machine learning to analyze user behavior and suggest content tailored to individual preferences.
 
-In healthcare, machine learning assists in diagnosing diseases, predicting patient outcomes, and analyzing medical images with remarkable accuracy. In finance, it is used for fraud detection, risk assessment, and algorithmic trading.
+    In healthcare, machine learning assists in diagnosing diseases, predicting patient outcomes, and analyzing medical images with remarkable accuracy. In finance, it is used for fraud detection, risk assessment, and algorithmic trading.
 
-Even everyday tools like voice assistants rely on machine learning for speech recognition and response generation.
+    Even everyday tools like voice assistants rely on machine learning for speech recognition and response generation.
 
-The common thread across all these applications is the ability of machine learning to identify patterns in data and use them to make intelligent decisions, often at a scale and speed that humans cannot match.
-""")
+    The common thread across all these applications is the ability of machine learning to identify patterns in data and use them to make intelligent decisions, often at a scale and speed that humans cannot match.
+    """)
 
 
 
