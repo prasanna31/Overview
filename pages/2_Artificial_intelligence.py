@@ -2965,108 +2965,108 @@ with st.expander("Machine Learning?"):
                 st.markdown("**Intuition:** Combines L1 sparsity and L2 smooth shrinkage.")
                 st.markdown("**Geometric view:** Coefficients partially aligned to axes (L1) and partially shrunk to origin (L2).")
 
-        import streamlit as st
+    import streamlit as st
 
-        st.set_page_config(page_title="Regression Algorithms", layout="wide")
+    st.set_page_config(page_title="Regression Algorithms", layout="wide")
 
-        with st.expander("5. Regression Algorithms"):
+    with st.expander("5. Regression Algorithms"):
 
-            with st.expander("5.1 Linear Regression"):
-                st.markdown("""
-        **Linear Regression** models the relationship between input features and a continuous target using a linear equation.  
+        with st.expander("5.1 Linear Regression"):
+            st.markdown("""
+    **Linear Regression** models the relationship between input features and a continuous target using a linear equation.  
 
-        **Equation:**  
-        """)
-                st.latex(r"y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_n x_n + \epsilon")
-                st.markdown("""
-        - Here, \(y\) is the predicted output, \(x_i\) are features, \(\beta_i\) are coefficients, and \(\epsilon\) is the error term.
-        - **Goal:** Find coefficients \(\beta_i\) that minimize prediction error.
+    **Equation:**  
+    """)
+            st.latex(r"y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_n x_n + \epsilon")
+            st.markdown("""
+    - Here, \(y\) is the predicted output, \(x_i\) are features, \(\beta_i\) are coefficients, and \(\epsilon\) is the error term.
+    - **Goal:** Find coefficients \(\beta_i\) that minimize prediction error.
 
-        **Loss function (Mean Squared Error):**  
-        """)
-                st.latex(r"\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2")
-                st.markdown("""
-        **Intuition:** Linear regression finds the best-fitting straight line (or hyperplane in multi-dimensional space) that minimizes squared vertical deviations from the data points.
+    **Loss function (Mean Squared Error):**  
+    """)
+            st.latex(r"\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2")
+            st.markdown("""
+    **Intuition:** Linear regression finds the best-fitting straight line (or hyperplane in multi-dimensional space) that minimizes squared vertical deviations from the data points.
 
-        **Geometric view:** In feature space, each data point is a point in n-dimensional space. Linear regression finds a hyperplane that best fits the points along the least-squares direction.
+    **Geometric view:** In feature space, each data point is a point in n-dimensional space. Linear regression finds a hyperplane that best fits the points along the least-squares direction.
 
-        **Practical Notes:**
-        - Sensitive to outliers.
-        - Assumes linear relationship between features and target.
-        - Works well when multicollinearity is low.
-        """)
+    **Practical Notes:**
+    - Sensitive to outliers.
+    - Assumes linear relationship between features and target.
+    - Works well when multicollinearity is low.
+    """)
 
-            with st.expander("5.2 Polynomial Regression"):
-                st.markdown("""
-        **Polynomial Regression** extends linear regression to fit non-linear patterns by adding polynomial terms of input features.
+        with st.expander("5.2 Polynomial Regression"):
+            st.markdown("""
+    **Polynomial Regression** extends linear regression to fit non-linear patterns by adding polynomial terms of input features.
 
-        **Equation:**  
-        """)
-                st.latex(r"y = \beta_0 + \beta_1 x + \beta_2 x^2 + \dots + \beta_d x^d")
-                st.markdown("""
-        **Intuition:** Transform the feature space to include powers of features so linear regression can capture curves.  
-        - Example: Quadratic regression for a U-shaped relationship.
+    **Equation:**  
+    """)
+            st.latex(r"y = \beta_0 + \beta_1 x + \beta_2 x^2 + \dots + \beta_d x^d")
+            st.markdown("""
+    **Intuition:** Transform the feature space to include powers of features so linear regression can capture curves.  
+    - Example: Quadratic regression for a U-shaped relationship.
 
-        **Geometric view:** Linear regression in the expanded polynomial feature space. The data is effectively mapped to higher dimensions where a hyperplane fits the curved pattern in the original space.
+    **Geometric view:** Linear regression in the expanded polynomial feature space. The data is effectively mapped to higher dimensions where a hyperplane fits the curved pattern in the original space.
 
-        **Practical Notes:**
-        - Risk of overfitting if degree \(d\) is too high.
-        - Always consider feature scaling when using high-degree polynomials.
-        """)
+    **Practical Notes:**
+    - Risk of overfitting if degree \(d\) is too high.
+    - Always consider feature scaling when using high-degree polynomials.
+    """)
 
-            with st.expander("5.3 Ridge Regression"):
-                st.markdown("""
-        **Ridge Regression** adds **L2 regularization** to linear regression to reduce overfitting by shrinking coefficients.
+        with st.expander("5.3 Ridge Regression"):
+            st.markdown("""
+    **Ridge Regression** adds **L2 regularization** to linear regression to reduce overfitting by shrinking coefficients.
 
-        **Loss function:**  
-        """)
-                st.latex(r"\text{Loss}_{Ridge} = \text{MSE} + \lambda \sum_{j=1}^{n} \beta_j^2")
-                st.markdown("""
-        - \(\lambda\) is the regularization parameter controlling shrinkage.
-        - Larger \(\lambda\) → more shrinkage, smaller coefficients.
+    **Loss function:**  
+    """)
+            st.latex(r"\text{Loss}_{Ridge} = \text{MSE} + \lambda \sum_{j=1}^{n} \beta_j^2")
+            st.markdown("""
+    - \(\lambda\) is the regularization parameter controlling shrinkage.
+    - Larger \(\lambda\) → more shrinkage, smaller coefficients.
 
-        **Intuition:** Prevents model from fitting noise by penalizing large weights.
+    **Intuition:** Prevents model from fitting noise by penalizing large weights.
 
-        **Geometric view:** Coefficients are pulled towards the origin in n-dimensional space. The hyperplane becomes smoother, reducing variance.
+    **Geometric view:** Coefficients are pulled towards the origin in n-dimensional space. The hyperplane becomes smoother, reducing variance.
 
-        **Practical Notes:**
-        - Keeps all features (no sparsity).
-        - Works well with multicollinearity.
-        """)
+    **Practical Notes:**
+    - Keeps all features (no sparsity).
+    - Works well with multicollinearity.
+    """)
 
-            with st.expander("5.4 Lasso Regression"):
-                st.markdown("""
-        **Lasso Regression** uses **L1 regularization**, which can set some coefficients to exactly zero, performing feature selection.
+        with st.expander("5.4 Lasso Regression"):
+            st.markdown("""
+    **Lasso Regression** uses **L1 regularization**, which can set some coefficients to exactly zero, performing feature selection.
 
-        **Loss function:**  
-        """)
-                st.latex(r"\text{Loss}_{Lasso} = \text{MSE} + \lambda \sum_{j=1}^{n} |\beta_j|")
-                st.markdown("""
-        **Intuition:** Forces irrelevant feature coefficients to zero, reducing variance and improving interpretability.
+    **Loss function:**  
+    """)
+            st.latex(r"\text{Loss}_{Lasso} = \text{MSE} + \lambda \sum_{j=1}^{n} |\beta_j|")
+            st.markdown("""
+    **Intuition:** Forces irrelevant feature coefficients to zero, reducing variance and improving interpretability.
 
-        **Geometric view:** Coefficient vector is projected onto axes, leading to a sparse solution where some dimensions are exactly zero.
+    **Geometric view:** Coefficient vector is projected onto axes, leading to a sparse solution where some dimensions are exactly zero.
 
-        **Practical Notes:**
-        - Good when you suspect many features are irrelevant.
-        - May struggle when features are highly correlated.
-        """)
+    **Practical Notes:**
+    - Good when you suspect many features are irrelevant.
+    - May struggle when features are highly correlated.
+    """)
 
-            with st.expander("5.5 Elastic Net"):
-                st.markdown("""
-        **Elastic Net Regression** combines **L1 and L2 regularization**, balancing sparsity and shrinkage.
+        with st.expander("5.5 Elastic Net"):
+            st.markdown("""
+    **Elastic Net Regression** combines **L1 and L2 regularization**, balancing sparsity and shrinkage.
 
-        **Loss function:**  
-        """)
-                st.latex(r"\text{Loss}_{EN} = \text{MSE} + \lambda_1 \sum_{j=1}^{n} |\beta_j| + \lambda_2 \sum_{j=1}^{n} \beta_j^2")
-                st.markdown("""
-        **Intuition:** Combines benefits of Lasso (feature selection) and Ridge (smooth shrinkage). Ideal when there are many correlated features.
+    **Loss function:**  
+    """)
+            st.latex(r"\text{Loss}_{EN} = \text{MSE} + \lambda_1 \sum_{j=1}^{n} |\beta_j| + \lambda_2 \sum_{j=1}^{n} \beta_j^2")
+            st.markdown("""
+    **Intuition:** Combines benefits of Lasso (feature selection) and Ridge (smooth shrinkage). Ideal when there are many correlated features.
 
-        **Geometric view:** Coefficients are partially shrunk to zero (L1) and partially pulled towards the origin (L2), giving a balanced sparse-smooth solution.
+    **Geometric view:** Coefficients are partially shrunk to zero (L1) and partially pulled towards the origin (L2), giving a balanced sparse-smooth solution.
 
-        **Practical Notes:**
-        - Requires tuning two parameters (\(\lambda_1, \lambda_2\)).
-        - Very effective when there are correlated and high-dimensional features.
-        """)
+    **Practical Notes:**
+    - Requires tuning two parameters (\(\lambda_1, \lambda_2\)).
+    - Very effective when there are correlated and high-dimensional features.
+    """)
 
     # 6. Classification Algorithms
     with st.expander("6. Classification Algorithms"):
